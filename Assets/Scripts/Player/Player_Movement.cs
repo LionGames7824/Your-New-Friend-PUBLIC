@@ -12,24 +12,24 @@ namespace YourNewFriend{
 
         }
 
-        private void FixedUpdate()
-        {
-            if (Input.GetKey("w".ToLower()))
-            {
-                Player.transform.position += Player.transform.forward * Speed * Time.deltaTime;
-            }
-            if (Input.GetKey("a".ToLower()))
-            {
-                Player.transform.position += Player.transform.right * Speed * -1 * Time.deltaTime;
-            }
-            if (Input.GetKey("s".ToLower()))
-            {
-                Player.transform.position += Player.transform.forward * Speed * -1 * Time.deltaTime;
-            }
-            if (Input.GetKey("d".ToLower()))
-            {
-                Player.transform.position += Player.transform.right * Speed * Time.deltaTime;
-            }
-        }
+        //private void FixedUpdate()
+        //{
+        //    if (Input.GetKey("w".ToLower()))
+        //    {
+        //        Player.transform.position += Player.transform.forward * Speed * Time.deltaTime;
+        //    }
+        //    if (Input.GetKey("a".ToLower()))
+        //    {
+        //        Player.transform.position += Player.transform.right * Speed * -1 * Time.deltaTime;
+        //    }
+        //    if (Input.GetKey("s".ToLower()))
+        //    {
+        //        Player.transform.position += Player.transform.forward * Speed * -1 * Time.deltaTime;
+        //    }
+        //    if (Input.GetKey("d".ToLower()))
+        //    {
+        //        Player.transform.position += Player.transform.right * Speed * Time.deltaTime;
+        //    }
+        //}
     }
 }
