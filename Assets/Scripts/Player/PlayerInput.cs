@@ -19,7 +19,9 @@ namespace YourNewFriend
             _input = new();
             _input.Player.SetCallbacks(this);
             _input.Player.Enable();
+            ShowMouse(false);
         }
+
         private void OnDestroy()
         {
             _input?.Player.SetCallbacks(null);
@@ -38,6 +40,12 @@ namespace YourNewFriend
         public void OnMoveCampera(InputAction.CallbackContext context)
         {
             OnPlayerCamera?.Invoke(context.ReadValue<Vector2>());
+        }
+
+        public void ShowMouse(bool show)
+        {
+            Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = show;
         }
     }
 }
