@@ -534,8 +534,8 @@ MonoBehaviour:
   _raycastDistance: 60
   _cameraRotationSpeed: 1
   _minRotDelta: 0.3
-  _minPitch: 0
-  _maxPitch: 0
+  _minPitch: -30
+  _maxPitch: 30
   _minYaw: 0
   _maxYaw: 0
 --- !u!143 &891549909

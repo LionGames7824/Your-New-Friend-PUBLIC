@@ -131,12 +131,18 @@ namespace YourNewFriend
 
         private void OnPlayerCamera(Vector2 posDelta)
         {
-            _currentCameraYaw = posDelta.x * _rotationSpeed * Time.deltaTime;
-            _currentCameraPitch = posDelta.y * _rotationSpeed * Time.deltaTime;
+            // Calculate yaw and pitch from the input
+            _currentCameraYaw += posDelta.x * _rotationSpeed * Time.deltaTime;
+            _currentCameraPitch -= posDelta.y * _rotationSpeed * Time.deltaTime; // Invert pitch to match typical camera control
 
-            transform.Rotate(Vector3.up, _currentCameraYaw);
+            // Clamp the pitch to avoid excessive up/down tilt
+            _currentCameraPitch = Mathf.Clamp(_currentCameraPitch, _minPitch, _maxPitch);
 
-            _cameraMainTransform.eulerAngles += new Vector3(-_currentCameraPitch, _currentCameraYaw, 0);
+            // Apply the yaw rotation to the player object
+            transform.rotation = Quaternion.Euler(0, _currentCameraYaw, 0);
+
+            // Apply pitch rotation to the camera transform
+            _cameraMainTransform.localRotation = Quaternion.Euler(_currentCameraPitch, 0, 0);
         }
 
         private void UpdateRotation()
