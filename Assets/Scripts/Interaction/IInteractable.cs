@@ -7,6 +7,6 @@ namespace YourNewFriend
     public interface IInteractable
     {
         public string InteractionPrompt { get; }
-        public bool Interact(Player_Interactor interactor);
+        public bool Interact(PlayerController interactor);
     }
 }

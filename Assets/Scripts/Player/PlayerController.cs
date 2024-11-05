@@ -1,39 +1,48 @@
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 namespace YourNewFriend
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Player Movement Variables")]
         [SerializeField] private float _jumpHeight = 1.0f;
         [SerializeField] private float _gravityValue = -9.81f;
         [SerializeField] private float _rotationSpeed = 5f;
         [SerializeField] private float _playerSpeed = 2f;
-        [SerializeField] private bool _debugEnabled;
 
+        [Header("Camera Control Variables")]
         [SerializeField] private Transform _cameraLookAt;
-        [SerializeField] private LayerMask _raycastLayers;
-        [SerializeField] private LayerMask _raycastObstructionLayer;
-        [SerializeField] private float _raycastDistance = 60f;
-        [SerializeField] private float _cameraRotationSpeed = 1;
-        [SerializeField] private float _minRotDelta = 0.3f;
         [SerializeField] private float _minPitch;
         [SerializeField] private float _maxPitch;
         [SerializeField] private float _minYaw;
         [SerializeField] private float _maxYaw;
+
+        // Player State Variables
         private float _currentCameraYaw;
         private float _currentCameraPitch;
-
-
+        private bool _isInteractable;
         private PlayerInput _playerInput;
         private CharacterController _controller;
         private Transform _cameraMainTransform;
         private Vector3 _playerVelocity;
         private Vector2 _inputVector;
         private bool _groundedPlayer;
+
+        [Header("Interaction with objects")]
+        [SerializeField] private LayerMask _raycastLayers;
+        [SerializeField] private LayerMask _raycastObstructionLayer;
+        [SerializeField] private float _raycastDistance = 5f;
+        
+        [Header("Debug Tool")]
+        [SerializeField] private bool _debugEnabled;
 
         private void Awake()
         {
@@ -43,7 +52,10 @@ namespace YourNewFriend
 
             _playerInput.OnPlayerMove += OnPlayerMove;
             _playerInput.OnPlayerJump += OnPlayerJump;
+            _playerInput.OnPlayerInteract += OnPlayerInteract;
             _playerInput.OnPlayerCamera += OnPlayerCamera;
+
+            _isInteractable = false;
 
             CalculateInitialCameraRotation();
         }
@@ -52,14 +64,42 @@ namespace YourNewFriend
         {
             _playerInput.OnPlayerMove -= OnPlayerMove;
             _playerInput.OnPlayerJump -= OnPlayerJump;
+            _playerInput.OnPlayerInteract -= OnPlayerInteract;
             _playerInput.OnPlayerCamera -= OnPlayerCamera;
-
         }
 
         private void Update()
         {
             MovePlayer();
             UpdateRotation();
+            Interaction();
+        }
+
+        private void Interaction()
+        {
+            Vector3 direction = _cameraMainTransform.forward;
+            Vector3 startPos = _cameraMainTransform.position;
+
+            if (_debugEnabled)
+                Debug.DrawLine(startPos, startPos + (direction * _raycastDistance), Color.cyan, 3);
+
+            if (Physics.Raycast(startPos, direction, out RaycastHit hitInfo, _raycastDistance, _raycastLayers.value))
+            {
+                if ((_raycastObstructionLayer.value & (1 << hitInfo.collider.gameObject.layer)) != 0)
+                    return;
+                
+                var interactable = hitInfo.collider.gameObject.GetComponent<IInteractable>();
+                
+                if (_debugEnabled)
+                    Debug.Log(interactable.InteractionPrompt);
+
+                if(interactable != null && _isInteractable)
+                {
+                    interactable.Interact(this);
+                }
+
+            }            
+            _isInteractable = false;
         }
 
         /*
@@ -112,6 +152,14 @@ namespace YourNewFriend
             _inputVector = vector;
         }
 
+        private void OnPlayerInteract(float value)
+        {            
+            if (value > 0)
+            {
+                _isInteractable = true;
+            }
+        }
+
         private void OnPlayerJump(float value)
         {
             _groundedPlayer = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
@@ -133,7 +181,7 @@ namespace YourNewFriend
         {
             // Calculate yaw and pitch from the input
             _currentCameraYaw += posDelta.x * _rotationSpeed * Time.deltaTime;
-            _currentCameraPitch -= posDelta.y * _rotationSpeed * Time.deltaTime; // Invert pitch to match typical camera control
+            _currentCameraPitch -= posDelta.y * _rotationSpeed * Time.deltaTime; 
 
             // Clamp the pitch to avoid excessive up/down tilt
             _currentCameraPitch = Mathf.Clamp(_currentCameraPitch, _minPitch, _maxPitch);

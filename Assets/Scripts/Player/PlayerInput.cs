@@ -10,6 +10,7 @@ namespace YourNewFriend
     public class PlayerInput : MonoBehaviour, IPlayerActions
     {
         public Action<float> OnPlayerJump;
+        public Action<float> OnPlayerInteract;
         public Action<Vector2> OnPlayerMove;
         public Action<Vector2> OnPlayerCamera;
         private Input _input;
@@ -46,6 +47,11 @@ namespace YourNewFriend
         {
             Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = show;
+        }
+
+        public void OnInteractable(InputAction.CallbackContext context)
+        {
+            OnPlayerInteract?.Invoke(context.ReadValue<float>());
         }
     }
 }

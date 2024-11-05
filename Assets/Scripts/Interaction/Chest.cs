@@ -9,7 +9,7 @@ namespace YourNewFriend
         [SerializeField] private string _prompt;
         public string InteractionPrompt => _prompt;
 
-        public bool Interact(Player_Interactor interactor)
+        public bool Interact(PlayerController interactor)
         {
             Debug.Log("Opening chest");
             return true;
