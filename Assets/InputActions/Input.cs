@@ -55,6 +55,15 @@ namespace YourNewFriend
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interactable"",
+                    ""type"": ""Value"",
+                    ""id"": ""76e0c1b2-e5d9-4a3c-84e4-afe6edf9eee0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -83,7 +92,7 @@ namespace YourNewFriend
                 {
                     ""name"": ""down"",
                     ""id"": ""ba15f94d-6cd5-458f-80b1-5129b10965ff"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -94,7 +103,7 @@ namespace YourNewFriend
                 {
                     ""name"": ""left"",
                     ""id"": ""7207cc4f-e2f4-408a-bf1e-660a09eb0e07"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,6 +143,17 @@ namespace YourNewFriend
                     ""action"": ""MoveCampera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05036eb5-2e9b-4d09-b1df-7571a56e377f"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -145,6 +165,7 @@ namespace YourNewFriend
             m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_MoveCampera = m_Player.FindAction("MoveCampera", throwIfNotFound: true);
+            m_Player_Interactable = m_Player.FindAction("Interactable", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -207,6 +228,7 @@ namespace YourNewFriend
         private readonly InputAction m_Player_PlayerMove;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_MoveCampera;
+        private readonly InputAction m_Player_Interactable;
         public struct PlayerActions
         {
             private @Input m_Wrapper;
@@ -214,6 +236,7 @@ namespace YourNewFriend
             public InputAction @PlayerMove => m_Wrapper.m_Player_PlayerMove;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @MoveCampera => m_Wrapper.m_Player_MoveCampera;
+            public InputAction @Interactable => m_Wrapper.m_Player_Interactable;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ namespace YourNewFriend
                     @MoveCampera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCampera;
                     @MoveCampera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCampera;
                     @MoveCampera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCampera;
+                    @Interactable.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractable;
+                    @Interactable.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractable;
+                    @Interactable.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractable;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -245,6 +271,9 @@ namespace YourNewFriend
                     @MoveCampera.started += instance.OnMoveCampera;
                     @MoveCampera.performed += instance.OnMoveCampera;
                     @MoveCampera.canceled += instance.OnMoveCampera;
+                    @Interactable.started += instance.OnInteractable;
+                    @Interactable.performed += instance.OnInteractable;
+                    @Interactable.canceled += instance.OnInteractable;
                 }
             }
         }
@@ -254,6 +283,7 @@ namespace YourNewFriend
             void OnPlayerMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnMoveCampera(InputAction.CallbackContext context);
+            void OnInteractable(InputAction.CallbackContext context);
         }
     }
 }
