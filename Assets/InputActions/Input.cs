@@ -48,7 +48,7 @@ namespace YourNewFriend
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""MoveCampera"",
+                    ""name"": ""MoveCamera"",
                     ""type"": ""PassThrough"",
                     ""id"": ""b7bf91c1-9e59-486b-b671-df716bd524c7"",
                     ""expectedControlType"": ""Vector2"",
@@ -64,6 +64,24 @@ namespace YourNewFriend
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Value"",
+                    ""id"": ""a8baa301-a08b-42a9-b155-83e70301b28e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""a61f51b5-e20f-47c7-94f4-5bfc1a83d73e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -124,8 +142,30 @@ namespace YourNewFriend
                 },
                 {
                     ""name"": """",
+                    ""id"": ""98dd908e-a28c-47df-9465-a558e036551a"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""17b6e93f-2a34-4bcd-9758-900a2856599d"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49f26d5b-4cec-47f9-a393-9ad03181ab7a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -140,20 +180,130 @@ namespace YourNewFriend
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MoveCampera"",
+                    ""action"": ""MoveCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2875b6d1-c7d6-432e-ba18-f27f53030f72"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""05036eb5-2e9b-4d09-b1df-7571a56e377f"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interactable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""843f1645-a2b7-4f65-98fa-a29f39d4b999"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7ebe3d9-b412-478a-bea0-b358d5166b98"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""800ba266-d158-4707-8e97-e44ef2ec0375"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Control"",
+                    ""id"": ""3663fc8a-6bea-4316-a65f-eac3f134110c"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Modifier"",
+                    ""id"": ""af651b6d-5293-457e-9cb7-c45c43b01d27"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Binding"",
+                    ""id"": ""a44b8645-b565-4883-b5f3-6422ef65e0df"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left Trigger"",
+                    ""id"": ""88587179-1a68-4509-afad-3824fad00473"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""7a007354-9180-4273-a89b-cb3692a25a08"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""fd07f04b-c8a8-4708-b157-5ee780d5269a"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -164,8 +314,10 @@ namespace YourNewFriend
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_PlayerMove = m_Player.FindAction("PlayerMove", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-            m_Player_MoveCampera = m_Player.FindAction("MoveCampera", throwIfNotFound: true);
+            m_Player_MoveCamera = m_Player.FindAction("MoveCamera", throwIfNotFound: true);
             m_Player_Interactable = m_Player.FindAction("Interactable", throwIfNotFound: true);
+            m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -227,16 +379,20 @@ namespace YourNewFriend
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_PlayerMove;
         private readonly InputAction m_Player_Jump;
-        private readonly InputAction m_Player_MoveCampera;
+        private readonly InputAction m_Player_MoveCamera;
         private readonly InputAction m_Player_Interactable;
+        private readonly InputAction m_Player_Crouch;
+        private readonly InputAction m_Player_Sprint;
         public struct PlayerActions
         {
             private @Input m_Wrapper;
             public PlayerActions(@Input wrapper) { m_Wrapper = wrapper; }
             public InputAction @PlayerMove => m_Wrapper.m_Player_PlayerMove;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
-            public InputAction @MoveCampera => m_Wrapper.m_Player_MoveCampera;
+            public InputAction @MoveCamera => m_Wrapper.m_Player_MoveCamera;
             public InputAction @Interactable => m_Wrapper.m_Player_Interactable;
+            public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -252,12 +408,18 @@ namespace YourNewFriend
                     @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                    @MoveCampera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCampera;
-                    @MoveCampera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCampera;
-                    @MoveCampera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCampera;
+                    @MoveCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
+                    @MoveCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
+                    @MoveCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveCamera;
                     @Interactable.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractable;
                     @Interactable.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractable;
                     @Interactable.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteractable;
+                    @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                    @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                    @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                    @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -268,12 +430,18 @@ namespace YourNewFriend
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
-                    @MoveCampera.started += instance.OnMoveCampera;
-                    @MoveCampera.performed += instance.OnMoveCampera;
-                    @MoveCampera.canceled += instance.OnMoveCampera;
+                    @MoveCamera.started += instance.OnMoveCamera;
+                    @MoveCamera.performed += instance.OnMoveCamera;
+                    @MoveCamera.canceled += instance.OnMoveCamera;
                     @Interactable.started += instance.OnInteractable;
                     @Interactable.performed += instance.OnInteractable;
                     @Interactable.canceled += instance.OnInteractable;
+                    @Crouch.started += instance.OnCrouch;
+                    @Crouch.performed += instance.OnCrouch;
+                    @Crouch.canceled += instance.OnCrouch;
+                    @Sprint.started += instance.OnSprint;
+                    @Sprint.performed += instance.OnSprint;
+                    @Sprint.canceled += instance.OnSprint;
                 }
             }
         }
@@ -282,8 +450,10 @@ namespace YourNewFriend
         {
             void OnPlayerMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
-            void OnMoveCampera(InputAction.CallbackContext context);
+            void OnMoveCamera(InputAction.CallbackContext context);
             void OnInteractable(InputAction.CallbackContext context);
+            void OnCrouch(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
         }
     }
 }

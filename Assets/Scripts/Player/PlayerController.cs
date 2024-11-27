@@ -16,7 +16,10 @@ namespace YourNewFriend
         [SerializeField] private float _jumpHeight = 1.0f;
         [SerializeField] private float _gravityValue = -9.81f;
         [SerializeField] private float _rotationSpeed = 5f;
-        [SerializeField] private float _playerSpeed = 2f;
+        [SerializeField] private float _playerAcceleratedSpeed = 4f;
+        [SerializeField] private float _playerNormalSpeed = 2f;
+        [SerializeField] private float _playerCrouchSpeed = 1f;
+
 
         [Header("Camera Control Variables")]
         [SerializeField] private Transform _cameraLookAt;
@@ -26,6 +29,7 @@ namespace YourNewFriend
         [SerializeField] private float _maxYaw;
 
         // Player State Variables
+        private float _playerSpeed;
         private float _currentCameraYaw;
         private float _currentCameraPitch;
         private bool _isInteractable;
@@ -49,11 +53,14 @@ namespace YourNewFriend
             _controller = GetComponent<CharacterController>();
             _playerInput = GetComponent<PlayerInput>();
             _cameraMainTransform = Camera.main.transform;
+            _playerSpeed = _playerNormalSpeed;
 
             _playerInput.OnPlayerMove += OnPlayerMove;
             _playerInput.OnPlayerJump += OnPlayerJump;
             _playerInput.OnPlayerInteract += OnPlayerInteract;
             _playerInput.OnPlayerCamera += OnPlayerCamera;
+            _playerInput.OnPlayerSprint += OnPlayerSprint;
+            _playerInput.OnPlayerCrouch += OnPlayerCrouch;
 
             _isInteractable = false;
 
@@ -66,6 +73,8 @@ namespace YourNewFriend
             _playerInput.OnPlayerJump -= OnPlayerJump;
             _playerInput.OnPlayerInteract -= OnPlayerInteract;
             _playerInput.OnPlayerCamera -= OnPlayerCamera;
+            _playerInput.OnPlayerSprint -= OnPlayerSprint;
+            _playerInput.OnPlayerCrouch -= OnPlayerCrouch;
         }
 
         private void Update()
@@ -93,7 +102,7 @@ namespace YourNewFriend
                 if (_debugEnabled)
                     Debug.Log(interactable.InteractionPrompt);
 
-                if(interactable != null && _isInteractable)
+                if (interactable != null && _isInteractable)
                 {
                     interactable.Interact(this);
                 }
@@ -150,6 +159,32 @@ namespace YourNewFriend
         private void OnPlayerMove(Vector2 vector)
         {
             _inputVector = vector;
+        }
+
+        private void OnPlayerSprint(float value)
+        {
+            if (value > 0)
+            {
+                _playerSpeed = _playerAcceleratedSpeed;
+            }
+            else
+            {
+                _playerSpeed = _playerNormalSpeed;
+            }
+        }
+
+        private void OnPlayerCrouch(float value)
+        {
+            if (value > 0)
+            {
+                _controller.height = 0.1f;
+                _playerSpeed = _playerCrouchSpeed;
+            }
+            else
+            {
+                _controller.height = 1.8f;
+                _playerSpeed = _playerNormalSpeed;
+            }
         }
 
         private void OnPlayerInteract(float value)

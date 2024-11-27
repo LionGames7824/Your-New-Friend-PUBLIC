@@ -9,6 +9,8 @@ namespace YourNewFriend
 {
     public class PlayerInput : MonoBehaviour, IPlayerActions
     {
+        public Action<float> OnPlayerSprint;
+        public Action<float> OnPlayerCrouch;
         public Action<float> OnPlayerJump;
         public Action<float> OnPlayerInteract;
         public Action<Vector2> OnPlayerMove;
@@ -33,12 +35,22 @@ namespace YourNewFriend
         {
             OnPlayerMove?.Invoke(context.ReadValue<Vector2>());
         }
-        public void OnJump(InputAction.CallbackContext context)
+
+        void IPlayerActions.OnCrouch(InputAction.CallbackContext context)
+        {
+            OnPlayerCrouch?.Invoke(context.ReadValue<float>());
+        }
+
+        void IPlayerActions.OnSprint(InputAction.CallbackContext context)
+        {
+            OnPlayerSprint?.Invoke(context.ReadValue<float>());
+        }
+        void IPlayerActions.OnJump(InputAction.CallbackContext context)
         {
             OnPlayerJump?.Invoke(context.ReadValue<float>());
         }
 
-        public void OnMoveCampera(InputAction.CallbackContext context)
+        void IPlayerActions.OnMoveCamera(InputAction.CallbackContext context)
         {
             OnPlayerCamera?.Invoke(context.ReadValue<Vector2>());
         }
@@ -49,7 +61,7 @@ namespace YourNewFriend
             Cursor.visible = show;
         }
 
-        public void OnInteractable(InputAction.CallbackContext context)
+        void IPlayerActions.OnInteractable(InputAction.CallbackContext context)
         {
             OnPlayerInteract?.Invoke(context.ReadValue<float>());
         }
