@@ -1,11 +1,4 @@
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
 namespace YourNewFriend
 {
@@ -55,12 +48,12 @@ namespace YourNewFriend
             _cameraMainTransform = Camera.main.transform;
             _playerSpeed = _playerNormalSpeed;
 
-            _playerInput.OnPlayerMove += OnPlayerMove;
-            _playerInput.OnPlayerJump += OnPlayerJump;
-            _playerInput.OnPlayerInteract += OnPlayerInteract;
-            _playerInput.OnPlayerCamera += OnPlayerCamera;
-            _playerInput.OnPlayerSprint += OnPlayerSprint;
-            _playerInput.OnPlayerCrouch += OnPlayerCrouch;
+            _playerInput.OnPlayerMove += HandlePlayerMove;
+            _playerInput.OnPlayerJump += HandlePlayerJump;
+            _playerInput.OnPlayerInteract += HandlePlayerInteract;
+            _playerInput.OnPlayerCamera += HandleCamera;
+            _playerInput.OnPlayerSprint += HandlePlayerSprint;
+            _playerInput.OnPlayerCrouch += HandlePlayerCrouch;
 
             _isInteractable = false;
 
@@ -69,12 +62,12 @@ namespace YourNewFriend
 
         private void OnDestroy()
         {
-            _playerInput.OnPlayerMove -= OnPlayerMove;
-            _playerInput.OnPlayerJump -= OnPlayerJump;
-            _playerInput.OnPlayerInteract -= OnPlayerInteract;
-            _playerInput.OnPlayerCamera -= OnPlayerCamera;
-            _playerInput.OnPlayerSprint -= OnPlayerSprint;
-            _playerInput.OnPlayerCrouch -= OnPlayerCrouch;
+            _playerInput.OnPlayerMove -= HandlePlayerMove;
+            _playerInput.OnPlayerJump -= HandlePlayerJump;
+            _playerInput.OnPlayerInteract -= HandlePlayerInteract;
+            _playerInput.OnPlayerCamera -= HandleCamera;
+            _playerInput.OnPlayerSprint -= HandlePlayerSprint;
+            _playerInput.OnPlayerCrouch -= HandlePlayerCrouch;
         }
 
         private void Update()
@@ -156,12 +149,12 @@ namespace YourNewFriend
             _controller.Move(_playerVelocity * Time.deltaTime);
         }
 
-        private void OnPlayerMove(Vector2 vector)
+        private void HandlePlayerMove(Vector2 vector)
         {
             _inputVector = vector;
         }
 
-        private void OnPlayerSprint(float value)
+        private void HandlePlayerSprint(float value)
         {
             if (value > 0)
             {
@@ -173,7 +166,7 @@ namespace YourNewFriend
             }
         }
 
-        private void OnPlayerCrouch(float value)
+        private void HandlePlayerCrouch(float value)
         {
             if (value > 0)
             {
@@ -187,7 +180,7 @@ namespace YourNewFriend
             }
         }
 
-        private void OnPlayerInteract(float value)
+        private void HandlePlayerInteract(float value)
         {            
             if (value > 0)
             {
@@ -195,7 +188,7 @@ namespace YourNewFriend
             }
         }
 
-        private void OnPlayerJump(float value)
+        private void HandlePlayerJump(float value)
         {
             _groundedPlayer = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
 
@@ -212,7 +205,7 @@ namespace YourNewFriend
             }
         }
 
-        private void OnPlayerCamera(Vector2 posDelta)
+        private void HandleCamera(Vector2 posDelta)
         {
             // Calculate yaw and pitch from the input
             _currentCameraYaw += posDelta.x * _rotationSpeed * Time.deltaTime;
