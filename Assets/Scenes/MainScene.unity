@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d25e29d56e49d41a622e5d2835b90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Press i to interact
+  _prompt: Press E to interact
 --- !u!4 &8624579627649997633
 Transform:
   m_ObjectHideFlags: 0
