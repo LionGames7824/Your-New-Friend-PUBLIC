@@ -13,7 +13,6 @@ namespace YourNewFriend
         [SerializeField] private float _playerNormalSpeed = 2f;
         [SerializeField] private float _playerCrouchSpeed = 1f;
 
-
         [Header("Camera Control Variables")]
         [SerializeField] private Transform _cameraLookAt;
         [SerializeField] private float _minPitch;
@@ -55,6 +54,8 @@ namespace YourNewFriend
             _playerInput.OnPlayerSprint += HandlePlayerSprint;
             _playerInput.OnPlayerCrouch += HandlePlayerCrouch;
 
+            GameStateManager.Instance.IsOpenInventory += HandleInventory;
+
             _isInteractable = false;
 
             CalculateInitialCameraRotation();
@@ -68,6 +69,8 @@ namespace YourNewFriend
             _playerInput.OnPlayerCamera -= HandleCamera;
             _playerInput.OnPlayerSprint -= HandlePlayerSprint;
             _playerInput.OnPlayerCrouch -= HandlePlayerCrouch;
+
+            GameStateManager.Instance.IsOpenInventory -= HandleInventory;
         }
 
         private void Update()
@@ -224,6 +227,14 @@ namespace YourNewFriend
         private void UpdateRotation()
         {
             transform.rotation = Quaternion.Euler(0, _currentCameraYaw, 0);
+        }
+
+        private void HandleInventory(bool isOpen)
+        {
+            if (!isOpen)
+            {
+                _playerInput.ResumeGame();
+            }
         }
     }
 }

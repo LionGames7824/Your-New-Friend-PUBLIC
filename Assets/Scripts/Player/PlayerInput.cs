@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static YourNewFriend.Input;
@@ -55,15 +53,31 @@ namespace YourNewFriend
             OnPlayerCamera?.Invoke(context.ReadValue<Vector2>());
         }
 
+        void IPlayerActions.OnInteractable(InputAction.CallbackContext context)
+        {
+            OnPlayerInteract?.Invoke(context.ReadValue<float>());
+        }
+
+        void IPlayerActions.OnInventory(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Time.timeScale = 0.0f;
+                ShowMouse(true);
+                GameStateManager.Instance.IsOpenInventory(true);
+            }
+        }
+
         public void ShowMouse(bool show)
         {
             Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = show;
         }
 
-        void IPlayerActions.OnInteractable(InputAction.CallbackContext context)
+        public void ResumeGame()
         {
-            OnPlayerInteract?.Invoke(context.ReadValue<float>());
+            Time.timeScale = 1.0f;
+            ShowMouse(false);
         }
     }
 }
