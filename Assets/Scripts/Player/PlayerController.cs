@@ -20,6 +20,14 @@ namespace YourNewFriend
         [SerializeField] private float _minYaw;
         [SerializeField] private float _maxYaw;
 
+        [Header("Interaction with objects")]
+        [SerializeField] private LayerMask _raycastLayers;
+        [SerializeField] private LayerMask _raycastObstructionLayer;
+        [SerializeField] private float _raycastDistance = 5f;
+        
+        [Header("Debug Tool")]
+        [SerializeField] private bool _debugEnabled;
+
         // Player State Variables
         private float _playerSpeed;
         private float _currentCameraYaw;
@@ -31,14 +39,6 @@ namespace YourNewFriend
         private Vector3 _playerVelocity;
         private Vector2 _inputVector;
         private bool _groundedPlayer;
-
-        [Header("Interaction with objects")]
-        [SerializeField] private LayerMask _raycastLayers;
-        [SerializeField] private LayerMask _raycastObstructionLayer;
-        [SerializeField] private float _raycastDistance = 5f;
-        
-        [Header("Debug Tool")]
-        [SerializeField] private bool _debugEnabled;
 
         private void Awake()
         {
@@ -86,7 +86,9 @@ namespace YourNewFriend
             Vector3 startPos = _cameraMainTransform.position;
 
             if (_debugEnabled)
+            {
                 Debug.DrawLine(startPos, startPos + (direction * _raycastDistance), Color.cyan, 3);
+            }
 
             if (Physics.Raycast(startPos, direction, out RaycastHit hitInfo, _raycastDistance, _raycastLayers.value))
             {
@@ -94,9 +96,11 @@ namespace YourNewFriend
                     return;
                 
                 var interactable = hitInfo.collider.gameObject.GetComponent<IInteractable>();
-                
+
                 if (_debugEnabled)
+                {
                     Debug.Log(interactable.InteractionPrompt);
+                }
 
                 if (interactable != null && _isInteractable)
                 {
