@@ -60,11 +60,21 @@ namespace YourNewFriend
 
         void IPlayerActions.OnInventory(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            // Toggle the inventory state
+            bool isCurrentlyOpen = GameStateManager.Instance.HasInventoryOpen;
+
+            if (isCurrentlyOpen)
             {
+                // Close inventory
+                ResumeGame();
+                GameStateManager.Instance.OpenInventory(false);
+            }
+            else
+            {
+                // Open inventory
                 Time.timeScale = 0.0f;
                 ShowMouse(true);
-                GameStateManager.Instance.IsOpenInventory(true);
+                GameStateManager.Instance.OpenInventory(true);
             }
         }
 
