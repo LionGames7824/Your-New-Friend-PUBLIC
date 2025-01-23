@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace YourNewFriend
         [SerializeField] private List<IconMap> _iconMapping;
         [SerializeField] private TMP_Text _quantityLabel;
         [SerializeField] private Image _icon;
+        [SerializeField] private Button _btnDeleteItem;
 
         public string ItemId { get; private set; }
 
@@ -25,6 +28,13 @@ namespace YourNewFriend
         private void Awake()
         {
             _defaultColor = _icon.color;
+
+            _btnDeleteItem.onClick.AddListener(OnDeleteItem);
+        }
+
+        private void OnDeleteItem()
+        {
+            InventoryManager.Instance.RemoveItem(ItemId, 1);
         }
 
         public void UpdateData(InventoryItem inventoryItem)
@@ -48,5 +58,6 @@ namespace YourNewFriend
             ItemId = string.Empty;
             _quantityLabel.text = string.Empty;
         }
+
     }
 }

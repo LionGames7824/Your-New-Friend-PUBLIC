@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ namespace YourNewFriend
             _pool.Initialize(_buttonPrefab, _initPoolSize);
 
             GameStateManager.Instance.IsOpenInventory += OpenInventory;
+            InventoryManager.Instance.OnInventoryUpdated += UpdateDeletedItem;
+            InventoryManager.Instance.OnItemRemoved += HandleItemRemoved;
 
             _btnCloseInventory.onClick.AddListener(OnExitClick);
             gameObject.SetActive(false);
@@ -29,6 +32,7 @@ namespace YourNewFriend
         private void OnDestroy()
         {
             GameStateManager.Instance.IsOpenInventory -= OpenInventory;
+            InventoryManager.Instance.OnItemRemoved -= HandleItemRemoved;
         }
 
         private void OnExitClick()
@@ -45,20 +49,87 @@ namespace YourNewFriend
             {
                 foreach (var item in InventoryManager.Instance.Inventory.Items)
                 {
-                    GameObject itemPool = _pool.GetFromPool();
-                    var itemView = itemPool.GetComponent<InventoryItemView>();
-                    itemView.UpdateData(item);
-                    itemPool.SetActive(true);
+                    bool itemFound = false;
+
+                    // Check if an existing view already represents this item
+                    foreach (Transform child in _containerInventory)
+                    {
+                        var itemView = child.GetComponent<InventoryItemView>();
+                        if (itemView != null && itemView.ItemId == item.ItemName)
+                        {
+                            itemView.UpdateData(item);
+                            itemFound = true;
+                            break;
+                        }
+                    }
+
+                    // If no view exists for this item, create a new one
+                    if (!itemFound)
+                    {
+                        GameObject itemPool = _pool.GetFromPool();
+                        var itemView = itemPool.GetComponent<InventoryItemView>();
+                        itemView.UpdateData(item);
+                        itemPool.SetActive(true);
+                    }
                 }
             }
             else
             {
-                _pool.ReturnAllPooledObjects((pooledItemGameObj) =>
+                _pool.ReturnAllPooledObjects(pooledItemGameObj =>
                 {
                     var itemView = pooledItemGameObj.GetComponent<InventoryItemView>();
                     itemView.ResetData();
                 });
             }
         }
+
+
+        private void UpdateDeletedItem(string itemName, int quantity)
+        {
+            foreach (Transform child in _containerInventory)
+            {
+                var itemView = child.GetComponent<InventoryItemView>();
+                if (itemView != null && itemView.ItemId == itemName)
+                {
+                    if (quantity > 0)
+                    {
+                        // Update the quantity of the existing item view
+                        itemView.UpdateData(new InventoryItem { ItemName = itemName, Quantity = quantity });
+                    }
+                    else
+                    {
+                        // If the quantity is 0, remove the item from the pool and reset data
+                        _pool.ReturnToPool(itemView.gameObject);
+                        itemView.ResetData();
+                    }
+                    return;
+                }
+            }
+
+            // If no existing item view is found and quantity > 0, add a new item view
+            if (quantity > 0)
+            {
+                GameObject itemPool = _pool.GetFromPool();
+                var newItemView = itemPool.GetComponent<InventoryItemView>();
+                newItemView.UpdateData(new InventoryItem { ItemName = itemName, Quantity = quantity });
+                itemPool.SetActive(true);
+            }
+        }
+
+        private void HandleItemRemoved(string itemName)
+        {
+            foreach (Transform child in _containerInventory)
+            {
+                var itemView = child.GetComponent<InventoryItemView>();
+                if (itemView != null && itemView.ItemId == itemName)
+                {
+                    // Use the pool's ReturnToPool method
+                    _pool.ReturnToPool(itemView.gameObject);
+                    itemView.ResetData();
+                    break;
+                }
+            }
+        }
+
     }
 }

@@ -47,6 +47,24 @@ namespace YourNewFriend
             return nextInstance;
         }
 
+        public void ReturnToPool(GameObject obj)
+        {
+            if (obj == null)
+                return;
+
+            if (_activeObjects.Contains(obj))
+            {
+                _activeObjects.Remove(obj);
+                obj.SetActive(false);
+
+                if (!_pooledObjects.Contains(obj))
+                {
+                    _pooledObjects.Push(obj);
+                }
+            }
+        }
+
+
         public void ReturnAllPooledObjects(Action<GameObject> resetAction)
         {
             for (int i = _activeObjects.Count - 1; i >= 0; --i)
