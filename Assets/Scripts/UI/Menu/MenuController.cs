@@ -8,9 +8,14 @@ namespace YourNewFriend
 {
     public class MenuController : MonoBehaviour
     {
+        [Header("Menu Video Variables")]
         [SerializeField] private VideoPlayer _videoPlayer;
-        [SerializeField] private GameObject _menuOptions;
         [SerializeField] private GameObject _rawImage;
+
+        [Header("Menu Variables")]
+        [SerializeField] private GameObject _menuOptions;
+        [SerializeField] private AudioSource _selectSound;
+
         private InputAction _anyKey;
         private Animator _animatorRawImage;
 
@@ -40,6 +45,7 @@ namespace YourNewFriend
         {
             if (!_videoPlayer.isPlaying)
             {
+                _selectSound.Play();
                 _videoPlayer.Play();
                 _rawImage.SetActive(true);
                 _animatorRawImage.SetTrigger("fadeIn");
