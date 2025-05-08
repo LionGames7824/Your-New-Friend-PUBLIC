@@ -326,6 +326,56 @@ namespace YourNewFriend
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""be8dc203-a9ce-4325-aa6f-dd5de62efdf4"",
+            ""actions"": [
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9d55cc0-b794-4bcc-bc95-4790e9ae7977"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""eda1f412-f215-498f-b453-4a7d762c65a4"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""190549c5-de00-444d-8b40-25f679c4a8be"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""665790c1-b810-4500-9adc-8e6bff363703"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AnyKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -339,6 +389,9 @@ namespace YourNewFriend
             m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+            // Menu
+            m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+            m_Menu_AnyKey = m_Menu.FindAction("AnyKey", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -475,6 +528,39 @@ namespace YourNewFriend
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // Menu
+        private readonly InputActionMap m_Menu;
+        private IMenuActions m_MenuActionsCallbackInterface;
+        private readonly InputAction m_Menu_AnyKey;
+        public struct MenuActions
+        {
+            private @Input m_Wrapper;
+            public MenuActions(@Input wrapper) { m_Wrapper = wrapper; }
+            public InputAction @AnyKey => m_Wrapper.m_Menu_AnyKey;
+            public InputActionMap Get() { return m_Wrapper.m_Menu; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+            public void SetCallbacks(IMenuActions instance)
+            {
+                if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+                {
+                    @AnyKey.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnAnyKey;
+                    @AnyKey.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnAnyKey;
+                    @AnyKey.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnAnyKey;
+                }
+                m_Wrapper.m_MenuActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @AnyKey.started += instance.OnAnyKey;
+                    @AnyKey.performed += instance.OnAnyKey;
+                    @AnyKey.canceled += instance.OnAnyKey;
+                }
+            }
+        }
+        public MenuActions @Menu => new MenuActions(this);
         public interface IPlayerActions
         {
             void OnPlayerMove(InputAction.CallbackContext context);
@@ -484,6 +570,10 @@ namespace YourNewFriend
             void OnCrouch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
+        }
+        public interface IMenuActions
+        {
+            void OnAnyKey(InputAction.CallbackContext context);
         }
     }
 }
