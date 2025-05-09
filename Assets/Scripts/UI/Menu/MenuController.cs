@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace YourNewFriend
@@ -15,6 +16,8 @@ namespace YourNewFriend
         [Header("Menu Variables")]
         [SerializeField] private GameObject _menuOptions;
         [SerializeField] private AudioSource _selectSound;
+
+        [SerializeField] private string _sceneName = "MainScene";
 
         private InputAction _anyKey;
         private Animator _animatorRawImage;
@@ -51,6 +54,28 @@ namespace YourNewFriend
                 _animatorRawImage.SetTrigger("fadeIn");
                 _menuOptions.SetActive(true);
             }
+        }
+
+        public void OnStartGame()
+        {
+            SceneManager.LoadScene(_sceneName);
+        }
+
+        public void OnLoadGame()
+        {
+            // Future: Load from save file, etc.
+            Debug.Log("Load game functionality not implemented yet.");
+        }
+
+        public void OnOptions()
+        {
+            // Future: Show Options UI
+            Debug.Log("Open Options Menu");
+        }
+
+        public void OnExitGame()
+        {
+            Application.Quit();
         }
     }
 }
