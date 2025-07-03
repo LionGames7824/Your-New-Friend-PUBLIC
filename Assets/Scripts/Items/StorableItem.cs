@@ -63,12 +63,16 @@ namespace YourNewFriend
             {
                 case Data.State.Locked:
                     // TODO: handle locked state
+                    // Not visible to player
+                    
                     break;
                 case Data.State.Unlocked:
                     // TODO: handle Unlocked state
+                    // Visible to player
+            
                     break;
                 case Data.State.Granted:
-                    // TODO: handle Granted state
+                    Destroy(gameObject);
                     break;
             }
         }

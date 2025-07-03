@@ -13,7 +13,7 @@ namespace YourNewFriend
         public class IconMap
         {
             public string ItemId;
-            public Color TargetColor;
+            public Sprite TargetSprite;
         }
 
         [SerializeField] private List<IconMap> _iconMapping;
@@ -23,11 +23,12 @@ namespace YourNewFriend
 
         public string ItemId { get; private set; }
 
-        private Color _defaultColor;
+        private Sprite _defaultSprite;
 
         private void Awake()
         {
-            _defaultColor = _icon.color;
+            _defaultSprite = _icon.sprite;
+            _icon.preserveAspect = true;
 
             _btnDeleteItem.onClick.AddListener(OnDeleteItem);
         }
@@ -46,7 +47,7 @@ namespace YourNewFriend
             {
                 if (!string.IsNullOrEmpty(inventoryItem.ItemName) && inventoryItem.ItemName.Equals(iconMap.ItemId))
                 {
-                    _icon.color = iconMap.TargetColor;
+                    _icon.sprite = iconMap.TargetSprite;
                     break;
                 }
             }
@@ -54,10 +55,9 @@ namespace YourNewFriend
 
         public void ResetData()
         {
-            _icon.color = _defaultColor;
+            _icon.sprite = _defaultSprite;
             ItemId = string.Empty;
             _quantityLabel.text = string.Empty;
         }
-
     }
 }

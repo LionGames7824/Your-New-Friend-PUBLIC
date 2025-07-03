@@ -80,6 +80,13 @@ namespace YourNewFriend
             Interaction();
         }
 
+        /// <summary>
+        /// Casts a ray from the player's camera forward to detect and interact with objects
+        /// that implement the IInteractable interface. The ray only checks objects on the 
+        /// specified interaction layers and ignores any that are on obstruction layers.
+        /// If a valid interactable is hit and interaction is allowed, the object's Interact() 
+        /// method is called. Includes optional debug visualization and logging.
+        /// </summary>
         private void Interaction()
         {
             Vector3 direction = _cameraMainTransform.forward;

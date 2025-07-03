@@ -1,9 +1,17 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 namespace YourNewFriend
 {
+    [Serializable]
+    public class ItemPrefabMap
+    {
+        public string ItemId;
+        public GameObject ItemPrefab;
+    }
+
     public class InventoryManager : Singleton<InventoryManager>
     {
         private const string _inventorySaveKey = "InventorySave";
@@ -12,8 +20,14 @@ namespace YourNewFriend
         public event Action<string, int> OnInventoryUpdated;
         public event Action<string> OnItemRemoved;
 
+        [Header("Item Drop Settings")]
+        [SerializeField] private List<ItemPrefabMap> _itemPrefabs;
+        [SerializeField] private Transform _playerTransform;
+        [SerializeField] private float _spawnDistance = 1.5f;
+        [SerializeField] private Vector3 _spawnOffset = new Vector3(0, 0.5f, 0);
 
         private Inventory _inventory;
+
         private void Start()
         {
             LoadInventory();
@@ -44,8 +58,6 @@ namespace YourNewFriend
         {
             var inventoryItem = _inventory.AddItem(itemName, quantity);
             SaveInventory();
-
-            // Notify UI about the updated inventory
             OnInventoryUpdated?.Invoke(itemName, inventoryItem != null ? inventoryItem.Quantity : quantity);
         }
 
@@ -58,16 +70,17 @@ namespace YourNewFriend
                 if (item.Quantity <= 0)
                 {
                     _inventory.Items.Remove(item);
-                    OnInventoryUpdated?.Invoke(itemName, 0); // Notify UI the item is gone
+                    OnInventoryUpdated?.Invoke(itemName, 0);
                 }
                 else
                 {
-                    OnInventoryUpdated?.Invoke(itemName, item.Quantity); // Notify UI about the new quantity
+                    OnInventoryUpdated?.Invoke(itemName, item.Quantity);
                 }
+
                 SaveInventory();
+                SpawnDroppedItem(itemName);
             }
         }
-
 
         public bool CheckItem(string itemName)
         {
@@ -79,6 +92,11 @@ namespace YourNewFriend
         {
             InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
             return item != null ? item.Quantity : 0;
+        }
+
+        private void SpawnDroppedItem(string itemName)
+        {
+            Debug.Log("Spanna essa caralha no cu do jovenal");
         }
 
     }
