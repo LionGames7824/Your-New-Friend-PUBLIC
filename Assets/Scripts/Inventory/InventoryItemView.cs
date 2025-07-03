@@ -41,7 +41,15 @@ namespace YourNewFriend
         public void UpdateData(InventoryItem inventoryItem)
         {
             ItemId = inventoryItem.ItemName;
-            _quantityLabel.text = $"{inventoryItem.Quantity}";
+
+            if (inventoryItem.Quantity == 1)
+            {
+                _quantityLabel.text = $"";
+            }
+            else
+            {
+                _quantityLabel.text = $"{inventoryItem.Quantity}";
+            }
 
             foreach (var iconMap in _iconMapping)
             {
