@@ -5,13 +5,6 @@ using UnityEngine;
 
 namespace YourNewFriend
 {
-    [Serializable]
-    public class ItemPrefabMap
-    {
-        public string ItemId;
-        public GameObject ItemPrefab;
-    }
-
     public class InventoryManager : Singleton<InventoryManager>
     {
         private const string _inventorySaveKey = "InventorySave";
@@ -19,12 +12,7 @@ namespace YourNewFriend
         public Inventory Inventory => _inventory;
         public event Action<string, int> OnInventoryUpdated;
         public event Action<string> OnItemRemoved;
-
-        [Header("Item Drop Settings")]
-        [SerializeField] private List<ItemPrefabMap> _itemPrefabs;
-        [SerializeField] private Transform _playerTransform;
-        [SerializeField] private float _spawnDistance = 1.5f;
-        [SerializeField] private Vector3 _spawnOffset = new Vector3(0, 0.5f, 0);
+        public event Action<string> OnItemDropped;
 
         private Inventory _inventory;
 
@@ -71,14 +59,14 @@ namespace YourNewFriend
                 {
                     _inventory.Items.Remove(item);
                     OnInventoryUpdated?.Invoke(itemName, 0);
+                    OnItemRemoved?.Invoke(itemName);
                 }
                 else
                 {
                     OnInventoryUpdated?.Invoke(itemName, item.Quantity);
                 }
-
                 SaveInventory();
-                SpawnDroppedItem(itemName);
+                OnItemDropped?.Invoke(itemName);
             }
         }
 
@@ -92,28 +80,6 @@ namespace YourNewFriend
         {
             InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
             return item != null ? item.Quantity : 0;
-        }
-
-        private void SpawnDroppedItem(string itemName)
-        {
-            StorableItem[] storableItems = FindObjectsOfType<StorableItem>(true); 
-
-            foreach (var item in storableItems)
-            {
-                if (item.name.Contains(itemName) || item.GetId() == itemName) 
-                {
-                    Debug.Log($"Reactivating existing item: {itemName}");
-
-                    // Place it in front of player
-                    Vector3 spawnPos = _playerTransform.position + _playerTransform.forward * _spawnDistance + _spawnOffset;
-                    item.transform.position = spawnPos;
-
-                    item.Reactivate(); 
-                    return;
-                }
-            }
-
-            Debug.LogWarning($"No inactive item with id '{itemName}' found to reactivate.");
-        }
+        }        
     }
 }

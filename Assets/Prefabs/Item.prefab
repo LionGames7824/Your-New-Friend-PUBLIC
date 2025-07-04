@@ -233,7 +233,7 @@ MonoBehaviour:
     TargetSprite: {fileID: 21300000, guid: f4f4ddaaeb7470c49b246ec2548aa2f5, type: 3}
   _quantityLabel: {fileID: 2561196559767548650}
   _icon: {fileID: 1813637753467309716}
-  _btnDeleteItem: {fileID: 6897930975062028672}
+  _btnRemoveItem: {fileID: 6897930975062028672}
   _btnUseItem: {fileID: 5057608213692594681}
 --- !u!1 &3051341482803082866
 GameObject:
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 884993308517223573}
   - component: {fileID: 6897930975062028672}
   m_Layer: 5
-  m_Name: BtnDelete
+  m_Name: BtnRemove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
