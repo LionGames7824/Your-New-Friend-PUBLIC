@@ -96,22 +96,24 @@ namespace YourNewFriend
 
         private void SpawnDroppedItem(string itemName)
         {
-            Debug.Log($"Attempting to drop item: {itemName}");
+            StorableItem[] storableItems = FindObjectsOfType<StorableItem>(true); 
 
-            GameObject prefab = _itemPrefabs.Find(map => map.ItemId == itemName)?.ItemPrefab;
-            if (prefab == null)
+            foreach (var item in storableItems)
             {
-                Debug.LogWarning($"Item '{itemName}' has a null prefab assigned.");
-                return;
+                if (item.name.Contains(itemName) || item.GetId() == itemName) 
+                {
+                    Debug.Log($"Reactivating existing item: {itemName}");
+
+                    // Place it in front of player
+                    Vector3 spawnPos = _playerTransform.position + _playerTransform.forward * _spawnDistance + _spawnOffset;
+                    item.transform.position = spawnPos;
+
+                    item.Reactivate(); 
+                    return;
+                }
             }
 
-            Vector3 forward = _playerTransform.forward;
-            Vector3 spawnPos = _playerTransform.position + forward * _spawnDistance + _spawnOffset;
-
-            Debug.Log($"Spawning '{itemName}' at {spawnPos}");
-            GameObject droppedItem = GameObject.Instantiate(prefab, spawnPos, Quaternion.identity);
-            droppedItem.name = $"Dropped_{itemName}";
+            Debug.LogWarning($"No inactive item with id '{itemName}' found to reactivate.");
         }
-
     }
 }

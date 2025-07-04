@@ -23,12 +23,13 @@ namespace YourNewFriend
                 Granted // Player got it already
             }
 
-            public State ChestState;
+            public State StorableItemState;
         }
 
         [SerializeField] private string _id;
         [SerializeField] private string _prompt;
-
+        
+        public string GetId() => _id;
         public string InteractionPrompt => _prompt;
 
         private Data _data;
@@ -49,7 +50,7 @@ namespace YourNewFriend
             {
                 _data = new()
                 {
-                    ChestState = Data.State.Unlocked
+                    StorableItemState = Data.State.Unlocked
                 };
                 Debug.Log("No data file found, creating a new one.");
             }
@@ -59,7 +60,7 @@ namespace YourNewFriend
 
         private void UpdateState()
         {
-            switch (_data.ChestState)
+            switch (_data.StorableItemState)
             {
                 case Data.State.Locked:
                     // TODO: handle locked state
@@ -69,19 +70,19 @@ namespace YourNewFriend
                 case Data.State.Unlocked:
                     // TODO: handle Unlocked state
                     // Visible to player
-            
+
                     break;
                 case Data.State.Granted:
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                     break;
             }
         }
 
         private void UpdateData()
         {
-            if (_data.ChestState == Data.State.Unlocked)
+            if (_data.StorableItemState == Data.State.Unlocked)
             {
-                _data.ChestState = Data.State.Granted;
+                _data.StorableItemState = Data.State.Granted;
                 SaveData();
                 InventoryManager.Instance.AddItem(_id, 1);
             }
@@ -102,5 +103,13 @@ namespace YourNewFriend
             UpdateData();
             return true;
         }
+
+        public void Reactivate()
+        {
+            _data.StorableItemState = Data.State.Unlocked;
+            SaveData();
+            gameObject.SetActive(true);
+        }
+
     }
 }
