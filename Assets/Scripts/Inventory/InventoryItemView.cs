@@ -20,6 +20,7 @@ namespace YourNewFriend
         [SerializeField] private TMP_Text _quantityLabel;
         [SerializeField] private Image _icon;
         [SerializeField] private Button _btnDeleteItem;
+        [SerializeField] private Button _btnUseItem;
 
         public string ItemId { get; private set; }
 
@@ -31,11 +32,17 @@ namespace YourNewFriend
             _icon.preserveAspect = true;
 
             _btnDeleteItem.onClick.AddListener(OnDeleteItem);
+            _btnUseItem.onClick.AddListener(OnUseItem);
         }
 
         private void OnDeleteItem()
         {
             InventoryManager.Instance.RemoveItem(ItemId, 1);
+        }
+
+        private void OnUseItem()
+        {
+            Debug.Log("Item Used (?) :)");
         }
 
         public void UpdateData(InventoryItem inventoryItem)

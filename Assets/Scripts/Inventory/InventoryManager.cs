@@ -96,7 +96,21 @@ namespace YourNewFriend
 
         private void SpawnDroppedItem(string itemName)
         {
-            Debug.Log("Spanna essa caralha no cu do jovenal");
+            Debug.Log($"Attempting to drop item: {itemName}");
+
+            GameObject prefab = _itemPrefabs.Find(map => map.ItemId == itemName)?.ItemPrefab;
+            if (prefab == null)
+            {
+                Debug.LogWarning($"Item '{itemName}' has a null prefab assigned.");
+                return;
+            }
+
+            Vector3 forward = _playerTransform.forward;
+            Vector3 spawnPos = _playerTransform.position + forward * _spawnDistance + _spawnOffset;
+
+            Debug.Log($"Spawning '{itemName}' at {spawnPos}");
+            GameObject droppedItem = GameObject.Instantiate(prefab, spawnPos, Quaternion.identity);
+            droppedItem.name = $"Dropped_{itemName}";
         }
 
     }
