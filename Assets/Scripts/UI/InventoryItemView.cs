@@ -32,6 +32,11 @@ namespace YourNewFriend
             _btnDeleteItem.onClick.AddListener(OnDeleteItem);
         }
 
+        public void EquipItem()
+        {
+            InteractionManager.Instance.EquipItem(ItemId);
+            Debug.Log("Item equipped");
+        }
         private void OnDeleteItem()
         {
             InventoryManager.Instance.RemoveItem(ItemId, 1);

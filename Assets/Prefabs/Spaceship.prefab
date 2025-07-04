@@ -20995,6 +20995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2228201586502192324}
+  - component: {fileID: 5744981434956002512}
   m_Layer: 0
   m_Name: CardReader
   m_TagString: Untagged
@@ -21022,6 +21023,50 @@ Transform:
   m_Father: {fileID: 609307189612797576}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
+--- !u!114 &5744981434956002512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504520926639190958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e5ea1d757aff747a98f8466e9ebc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _validItemsId:
+  - keycard_cyan
+  _onCorrectItemUsed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5449047150053848547}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: f23e884008b5f7f448ee14d9c6e27382, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _interactionPrompt: Use
+  anim: {fileID: 0}
+  _animTriggerName: Terminal_Accepted
 --- !u!1 &1685841218058957868
 GameObject:
   m_ObjectHideFlags: 0
@@ -24575,8 +24620,8 @@ GameObject:
   - component: {fileID: 1924987074728885223}
   - component: {fileID: 5042576617141155743}
   - component: {fileID: 6671192851435532091}
-  - component: {fileID: 1903899157623951606}
   - component: {fileID: 4983054792899939664}
+  - component: {fileID: 1270271776488523753}
   m_Layer: 0
   m_Name: KeyCard
   m_TagString: Untagged
@@ -24651,21 +24696,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1903899157623951606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7526043111460392529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d25e29d56e49d41a622e5d2835b90e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: keycard_cyan
-  _prompt: Press E to take
-  _unlockedColor: {r: 0.043137256, g: 0.9803922, b: 0.8705883, a: 0}
 --- !u!65 &4983054792899939664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24679,6 +24709,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: -0.000030517578, y: -0.000015258789, z: 0.000015258789}
+--- !u!114 &1270271776488523753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7526043111460392529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56bbef6dcd542044ad035153a305e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemID: 
+  quantity: 1
+  _interactionPrompt: Pick Up
 --- !u!1 &7632726604187862981
 GameObject:
   m_ObjectHideFlags: 0
@@ -25723,6 +25768,7 @@ GameObject:
   - component: {fileID: 6564185568367017105}
   - component: {fileID: 2504990833899397418}
   - component: {fileID: 3096219290545962161}
+  - component: {fileID: 2437825840587454244}
   m_Layer: 0
   m_Name: Cube.002
   m_TagString: Untagged
@@ -25795,3 +25841,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2437825840587454244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085405924077065627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e5ea1d757aff747a98f8466e9ebc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _validItemsId:
+  - keycard_cyan
+  _onCorrectItemUsed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5449047150053848547}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: 9b441c992269ab943b9810e5c939aab9, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 372519680587152906}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2100000, guid: cb7a8e2124ea16140a45b99ded973836, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _interactionPrompt: Use
+  anim: {fileID: 0}
+  _animTriggerName: Terminal_Accepted
