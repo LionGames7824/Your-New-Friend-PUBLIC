@@ -287,6 +287,12 @@ MonoBehaviour:
   _iconMapping:
   - ItemId: keycard_cyan
     TargetColor: {r: 0, g: 1, b: 0.8745673, a: 1}
+  - ItemId: panel_key
+    TargetColor: {r: 0.57254905, g: 0.5686275, b: 0.5411765, a: 1}
+  - ItemId: cutting_pliers
+    TargetColor: {r: 0.62352943, g: 0.3137255, b: 0.2392157, a: 1}
+  - ItemId: crowbar
+    TargetColor: {r: 0.2901961, g: 0.14117648, b: 0.11764707, a: 1}
   _quantityLabel: {fileID: 2561196559767548650}
   _icon: {fileID: 1813637753467309716}
   _btnDeleteItem: {fileID: 6897930975062028672}
