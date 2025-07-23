@@ -91,6 +91,15 @@ namespace YourNewFriend
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DropItem"",
+                    ""type"": ""Value"",
+                    ""id"": ""77aa456e-9549-476b-8053-d76673230a88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -324,6 +333,17 @@ namespace YourNewFriend
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df4f85b6-29d8-4f74-8742-99db8889d0c1"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -389,6 +409,7 @@ namespace YourNewFriend
             m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+            m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_AnyKey = m_Menu.FindAction("AnyKey", throwIfNotFound: true);
@@ -458,6 +479,7 @@ namespace YourNewFriend
         private readonly InputAction m_Player_Crouch;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Inventory;
+        private readonly InputAction m_Player_DropItem;
         public struct PlayerActions
         {
             private @Input m_Wrapper;
@@ -469,6 +491,7 @@ namespace YourNewFriend
             public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
             public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+            public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -499,6 +522,9 @@ namespace YourNewFriend
                     @Inventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                     @Inventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
                     @Inventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventory;
+                    @DropItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
+                    @DropItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
+                    @DropItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -524,6 +550,9 @@ namespace YourNewFriend
                     @Inventory.started += instance.OnInventory;
                     @Inventory.performed += instance.OnInventory;
                     @Inventory.canceled += instance.OnInventory;
+                    @DropItem.started += instance.OnDropItem;
+                    @DropItem.performed += instance.OnDropItem;
+                    @DropItem.canceled += instance.OnDropItem;
                 }
             }
         }
@@ -570,6 +599,7 @@ namespace YourNewFriend
             void OnCrouch(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
+            void OnDropItem(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

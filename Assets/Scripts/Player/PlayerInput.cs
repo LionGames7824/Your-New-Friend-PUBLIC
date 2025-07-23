@@ -7,6 +7,7 @@ namespace YourNewFriend
 {
     public class PlayerInput : MonoBehaviour, IPlayerActions
     {
+        public Action OnPlayerDropItem;
         public Action<float> OnPlayerSprint;
         public Action<float> OnPlayerCrouch;
         public Action<float> OnPlayerJump;
@@ -78,6 +79,11 @@ namespace YourNewFriend
             }
         }
 
+        public void OnDropItem(InputAction.CallbackContext context)
+        {
+            OnPlayerDropItem?.Invoke();
+        }
+
         public void ShowMouse(bool show)
         {
             Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
@@ -89,5 +95,6 @@ namespace YourNewFriend
             Time.timeScale = 1.0f;
             ShowMouse(false);
         }
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace YourNewFriend
@@ -53,6 +54,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerCamera += HandleCamera;
             _playerInput.OnPlayerSprint += HandlePlayerSprint;
             _playerInput.OnPlayerCrouch += HandlePlayerCrouch;
+            _playerInput.OnPlayerDropItem += HandlePlayerDroppingItem;
 
             GameStateManager.Instance.IsOpenInventory += HandleInventory;
 
@@ -60,6 +62,8 @@ namespace YourNewFriend
 
             CalculateInitialCameraRotation();
         }
+
+
 
         private void OnDestroy()
         {
@@ -246,6 +250,11 @@ namespace YourNewFriend
             {
                 _playerInput.ResumeGame();
             }
+        }
+
+        private void HandlePlayerDroppingItem()
+        {
+            Debug.Log("Joguei no chao o item");
         }
     }
 }
