@@ -63,8 +63,6 @@ namespace YourNewFriend
             CalculateInitialCameraRotation();
         }
 
-
-
         private void OnDestroy()
         {
             _playerInput.OnPlayerMove -= HandlePlayerMove;
@@ -73,6 +71,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerCamera -= HandleCamera;
             _playerInput.OnPlayerSprint -= HandlePlayerSprint;
             _playerInput.OnPlayerCrouch -= HandlePlayerCrouch;
+            _playerInput.OnPlayerDropItem -= HandlePlayerDroppingItem;
 
             GameStateManager.Instance.IsOpenInventory -= HandleInventory;
         }

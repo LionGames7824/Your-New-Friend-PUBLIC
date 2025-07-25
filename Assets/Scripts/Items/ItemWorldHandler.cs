@@ -17,7 +17,7 @@ namespace YourNewFriend
     {
         [Header("References")]
         [SerializeField] private Transform _playerTransform;
-        [SerializeField] private Transform _playerHandTransform;
+        [SerializeField] private GameObject _playerHandTransform;
 
         [Header("Item Spawn Settings")]
         [SerializeField] private float _spawnDistance = 1.5f;
@@ -26,26 +26,31 @@ namespace YourNewFriend
         [Header("Item Drop Settings")]
         [SerializeField] private List<ItemPrefabMap> _itemPrefabs;
 
-
         private void Awake()
         {
             InventoryManager.Instance.OnItemDropped += HandleItemDropped;
+            InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
         }
 
-        private void HandleItemDropped(String item)
+        private void HandleItemEquipped(string itemId)
         {
-            SpawnDroppedItem(item);
+            HoldItem(itemId);
         }
 
-        private void SpawnDroppedItem(string itemName)
+        private void HandleItemDropped(string itemId)
+        {
+            SpawnDroppedItem(itemId);
+        }
+
+        private void SpawnDroppedItem(string itemId)
         {
             StorableItem[] storableItems = FindObjectsOfType<StorableItem>(true);
 
             foreach (var item in storableItems)
             {
-                if (item.name.Contains(itemName) || item.GetId() == itemName)
+                if (item.name.Contains(itemId) || item.GetId() == itemId)
                 {
-                    Debug.Log($"Reactivating existing item: {itemName}");
+                    Debug.Log($"Reactivating existing item: {itemId}");
 
                     // Place it in front of player
                     Vector3 spawnPos = _playerTransform.position + _playerTransform.forward * _spawnDistance + _spawnOffset;
@@ -56,7 +61,33 @@ namespace YourNewFriend
                 }
             }
 
-            Debug.LogWarning($"No inactive item with id '{itemName}' found to reactivate.");
+            Debug.LogWarning($"No inactive item with id '{itemId}' found to reactivate.");
+        }
+
+        private void HoldItem(string itemId)
+        {
+            StorableItem[] storableItems = FindObjectsOfType<StorableItem>(true);
+
+            foreach (var item in storableItems)
+            {
+                if (item.name.Contains(itemId) || item.GetId() == itemId)
+                {
+                    item.Reactivate();
+
+                    // Store the original world scale
+                    Vector3 originalScale = item.transform.lossyScale;
+
+                    // Parent the item to the hand
+                    item.transform.SetParent(_playerHandTransform.transform, true);;
+
+                    // Reset local position and rotation to align properly
+                    item.transform.localPosition = Vector3.zero;
+                    item.transform.localRotation = Quaternion.identity;
+             
+                    _playerHandTransform.SetActive(true);
+                    return;
+                }
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace YourNewFriend
         public event Action<string, int> OnInventoryUpdated;
         public event Action<string> OnItemRemoved;
         public event Action<string> OnItemDropped;
+        public event Action<string> OnItemEquipped;
 
         private Inventory _inventory;
 
@@ -68,6 +69,12 @@ namespace YourNewFriend
                 SaveInventory();
                 OnItemDropped?.Invoke(itemName);
             }
+        }
+
+        public void EquipItem(string itemName)
+        {
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            OnItemEquipped?.Invoke(itemName);
         }
 
         public bool CheckItem(string itemName)

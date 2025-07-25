@@ -23,6 +23,7 @@ namespace YourNewFriend
         [SerializeField] private Button _btnUseItem;
 
         public string ItemId { get; private set; }
+        public Action<string> ItemUsed;
 
         private Sprite _defaultSprite;
 
@@ -42,7 +43,7 @@ namespace YourNewFriend
 
         private void OnUseItem()
         {
-            Debug.Log("Item Used (?) :)");
+            InventoryManager.Instance.EquipItem(ItemId);
         }
 
         public void UpdateData(InventoryItem inventoryItem)
