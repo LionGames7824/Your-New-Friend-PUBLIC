@@ -14,8 +14,11 @@ namespace YourNewFriend
         public event Action<string> OnItemRemoved;
         public event Action<string> OnItemDropped;
         public event Action<string> OnItemEquipped;
+        public event Action OnDropItemEquipped;
 
         private Inventory _inventory;
+
+        private String _itemEquipped = string.Empty;
 
         private void Start()
         {
@@ -43,49 +46,56 @@ namespace YourNewFriend
             }
         }
 
-        public void AddItem(string itemName, int quantity)
+        public void AddItem(string itemId, int quantity)
         {
-            var inventoryItem = _inventory.AddItem(itemName, quantity);
+            var inventoryItem = _inventory.AddItem(itemId, quantity);
             SaveInventory();
-            OnInventoryUpdated?.Invoke(itemName, inventoryItem != null ? inventoryItem.Quantity : quantity);
+            OnInventoryUpdated?.Invoke(itemId, inventoryItem != null ? inventoryItem.Quantity : quantity);
         }
 
-        public void RemoveItem(string itemName, int quantity)
+        public void RemoveItem(string itemId, int quantity)
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
             if (item != null)
             {
                 item.Quantity -= quantity;
                 if (item.Quantity <= 0)
                 {
                     _inventory.Items.Remove(item);
-                    OnInventoryUpdated?.Invoke(itemName, 0);
-                    OnItemRemoved?.Invoke(itemName);
+                    OnInventoryUpdated?.Invoke(itemId, 0);
+                    OnItemRemoved?.Invoke(itemId);
                 }
                 else
                 {
-                    OnInventoryUpdated?.Invoke(itemName, item.Quantity);
+                    OnInventoryUpdated?.Invoke(itemId, item.Quantity);
                 }
                 SaveInventory();
-                OnItemDropped?.Invoke(itemName);
+                OnItemDropped?.Invoke(itemId);
             }
         }
 
-        public void EquipItem(string itemName)
+        public void EquipItem(string itemId)
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
-            OnItemEquipped?.Invoke(itemName);
+            _itemEquipped = itemId;
+            OnItemEquipped?.Invoke(itemId);
         }
 
-        public bool CheckItem(string itemName)
+        public void DropItemEquipped()
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            OnDropItemEquipped?.Invoke();
+            RemoveItem(_itemEquipped, 1);
+            _itemEquipped = string.Empty;
+        }
+
+        public bool CheckItem(string itemId)
+        {
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
             return item != null;
         }
 
-        public int CheckQuantity(string itemName)
+        public int CheckQuantity(string itemId)
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
             return item != null ? item.Quantity : 0;
         }        
     }

@@ -6,6 +6,13 @@ namespace YourNewFriend
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Camera Control Variables")]
+        [SerializeField] private Transform _cameraLookAt;
+        [SerializeField] private float _minPitch;
+        [SerializeField] private float _maxPitch;
+        [SerializeField] private float _minYaw;
+        [SerializeField] private float _maxYaw;
+
         [Header("Player Movement Variables")]
         [SerializeField] private float _jumpHeight = 1.0f;
         [SerializeField] private float _gravityValue = -9.81f;
@@ -14,12 +21,8 @@ namespace YourNewFriend
         [SerializeField] private float _playerNormalSpeed = 2f;
         [SerializeField] private float _playerCrouchSpeed = 1f;
 
-        [Header("Camera Control Variables")]
-        [SerializeField] private Transform _cameraLookAt;
-        [SerializeField] private float _minPitch;
-        [SerializeField] private float _maxPitch;
-        [SerializeField] private float _minYaw;
-        [SerializeField] private float _maxYaw;
+        [Header("Player Hand Variables")]
+        [SerializeField] private GameObject _playerHandObject;
 
         [Header("Interaction with objects")]
         [SerializeField] private LayerMask _raycastLayers;
@@ -253,7 +256,20 @@ namespace YourNewFriend
 
         private void HandlePlayerDroppingItem()
         {
-            Debug.Log("Joguei no chao o item");
+            Transform itemEquipped = _playerHandObject.transform.childCount > 0
+                ? _playerHandObject.transform.GetChild(0)
+                : null;
+
+            if (itemEquipped != null)
+            {
+                Debug.Log("Filho encontrado: " + itemEquipped.name);
+                InventoryManager.Instance.DropItemEquipped();                 
+            }
+            else
+            {
+                Debug.Log("Mao vazia");
+            }
+
         }
     }
 }

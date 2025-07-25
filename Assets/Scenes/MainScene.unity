@@ -12185,17 +12185,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbdd325b4ba2844281827e6c8d67a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraLookAt: {fileID: 24498846}
+  _minPitch: -80
+  _maxPitch: 80
+  _minYaw: 0
+  _maxYaw: 0
   _jumpHeight: 3
   _gravityValue: -9.81
   _rotationSpeed: 4
   _playerAcceleratedSpeed: 8
   _playerNormalSpeed: 4
   _playerCrouchSpeed: 1
-  _cameraLookAt: {fileID: 24498846}
-  _minPitch: -80
-  _maxPitch: 80
-  _minYaw: 0
-  _maxYaw: 0
+  _playerHandObject: {fileID: 581344535}
   _raycastLayers:
     serializedVersion: 2
     m_Bits: 192

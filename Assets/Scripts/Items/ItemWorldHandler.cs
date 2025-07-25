@@ -51,6 +51,7 @@ namespace YourNewFriend
                 if (item.name.Contains(itemId) || item.GetId() == itemId)
                 {
                     Debug.Log($"Reactivating existing item: {itemId}");
+                    item.transform.SetParent(null);
 
                     // Place it in front of player
                     Vector3 spawnPos = _playerTransform.position + _playerTransform.forward * _spawnDistance + _spawnOffset;
@@ -78,13 +79,12 @@ namespace YourNewFriend
                     Vector3 originalScale = item.transform.lossyScale;
 
                     // Parent the item to the hand
-                    item.transform.SetParent(_playerHandTransform.transform, true);;
+                    item.transform.SetParent(_playerHandTransform.transform, true);
 
                     // Reset local position and rotation to align properly
                     item.transform.localPosition = Vector3.zero;
                     item.transform.localRotation = Quaternion.identity;
              
-                    _playerHandTransform.SetActive(true);
                     return;
                 }
             }
