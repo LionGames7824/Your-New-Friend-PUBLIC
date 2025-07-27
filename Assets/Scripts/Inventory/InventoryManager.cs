@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,9 +12,14 @@ namespace YourNewFriend
         public Inventory Inventory => _inventory;
         public event Action<string, int> OnInventoryUpdated;
         public event Action<string> OnItemRemoved;
-
+        public event Action<string> OnItemDropped;
+        public event Action<string> OnItemEquipped;
+        public event Action OnDropItemEquipped;
 
         private Inventory _inventory;
+
+        private String _itemEquipped = string.Empty;
+
         private void Start()
         {
             LoadInventory();
@@ -40,46 +46,57 @@ namespace YourNewFriend
             }
         }
 
-        public void AddItem(string itemName, int quantity)
+        public void AddItem(string itemId, int quantity)
         {
-            var inventoryItem = _inventory.AddItem(itemName, quantity);
+            var inventoryItem = _inventory.AddItem(itemId, quantity);
             SaveInventory();
-
-            // Notify UI about the updated inventory
-            OnInventoryUpdated?.Invoke(itemName, inventoryItem != null ? inventoryItem.Quantity : quantity);
+            OnInventoryUpdated?.Invoke(itemId, inventoryItem != null ? inventoryItem.Quantity : quantity);
         }
 
-        public void RemoveItem(string itemName, int quantity)
+        public void RemoveItem(string itemId, int quantity)
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
             if (item != null)
             {
                 item.Quantity -= quantity;
                 if (item.Quantity <= 0)
                 {
                     _inventory.Items.Remove(item);
-                    OnInventoryUpdated?.Invoke(itemName, 0); // Notify UI the item is gone
+                    OnInventoryUpdated?.Invoke(itemId, 0);
+                    OnItemRemoved?.Invoke(itemId);
                 }
                 else
                 {
-                    OnInventoryUpdated?.Invoke(itemName, item.Quantity); // Notify UI about the new quantity
+                    OnInventoryUpdated?.Invoke(itemId, item.Quantity);
                 }
                 SaveInventory();
+                OnItemDropped?.Invoke(itemId);
             }
         }
 
-
-        public bool CheckItem(string itemName)
+        public void EquipItem(string itemId)
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            _itemEquipped = itemId;
+            OnItemEquipped?.Invoke(itemId);
+        }
+
+        public void DropItemEquipped()
+        {
+            OnDropItemEquipped?.Invoke();
+            RemoveItem(_itemEquipped, 1);
+            _itemEquipped = string.Empty;
+        }
+
+        public bool CheckItem(string itemId)
+        {
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
             return item != null;
         }
 
-        public int CheckQuantity(string itemName)
+        public int CheckQuantity(string itemId)
         {
-            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemName);
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
             return item != null ? item.Quantity : 0;
-        }
-
+        }        
     }
 }

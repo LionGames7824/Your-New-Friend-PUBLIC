@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace YourNewFriend
@@ -5,6 +6,13 @@ namespace YourNewFriend
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Camera Control Variables")]
+        [SerializeField] private Transform _cameraLookAt;
+        [SerializeField] private float _minPitch;
+        [SerializeField] private float _maxPitch;
+        [SerializeField] private float _minYaw;
+        [SerializeField] private float _maxYaw;
+
         [Header("Player Movement Variables")]
         [SerializeField] private float _jumpHeight = 1.0f;
         [SerializeField] private float _gravityValue = -9.81f;
@@ -13,12 +21,8 @@ namespace YourNewFriend
         [SerializeField] private float _playerNormalSpeed = 2f;
         [SerializeField] private float _playerCrouchSpeed = 1f;
 
-        [Header("Camera Control Variables")]
-        [SerializeField] private Transform _cameraLookAt;
-        [SerializeField] private float _minPitch;
-        [SerializeField] private float _maxPitch;
-        [SerializeField] private float _minYaw;
-        [SerializeField] private float _maxYaw;
+        [Header("Player Hand Variables")]
+        [SerializeField] private GameObject _playerHandObject;
 
         [Header("Interaction with objects")]
         [SerializeField] private LayerMask _raycastLayers;
@@ -55,6 +59,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerCamera += HandleCamera;
             _playerInput.OnPlayerSprint += HandlePlayerSprint;
             _playerInput.OnPlayerCrouch += HandlePlayerCrouch;
+            _playerInput.OnPlayerDropItem += HandlePlayerDroppingItem;
 
             GameStateManager.Instance.IsOpenInventory += HandleInventory;
 
@@ -71,6 +76,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerCamera -= HandleCamera;
             _playerInput.OnPlayerSprint -= HandlePlayerSprint;
             _playerInput.OnPlayerCrouch -= HandlePlayerCrouch;
+            _playerInput.OnPlayerDropItem -= HandlePlayerDroppingItem;
 
             GameStateManager.Instance.IsOpenInventory -= HandleInventory;
         }
@@ -82,6 +88,13 @@ namespace YourNewFriend
             Interaction();
         }
 
+        /// <summary>
+        /// Casts a ray from the player's camera forward to detect and interact with objects
+        /// that implement the IInteractable interface. The ray only checks objects on the 
+        /// specified interaction layers and ignores any that are on obstruction layers.
+        /// If a valid interactable is hit and interaction is allowed, the object's Interact() 
+        /// method is called. Includes optional debug visualization and logging.
+        /// </summary>
         private void Interaction()
         {
             Vector3 direction = _cameraMainTransform.forward;
@@ -240,6 +253,18 @@ namespace YourNewFriend
             if (!isOpen)
             {
                 _playerInput.ResumeGame();
+            }
+        }
+
+        private void HandlePlayerDroppingItem()
+        {
+            Transform itemEquipped = _playerHandObject.transform.childCount > 0
+                ? _playerHandObject.transform.GetChild(0)
+                : null;
+
+            if (itemEquipped != null)
+            {
+                InventoryManager.Instance.DropItemEquipped();                 
             }
         }
     }

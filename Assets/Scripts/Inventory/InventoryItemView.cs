@@ -13,45 +13,57 @@ namespace YourNewFriend
         public class IconMap
         {
             public string ItemId;
-            public Color TargetColor;
+            public Sprite TargetSprite;
         }
 
         [SerializeField] private List<IconMap> _iconMapping;
         [SerializeField] private TMP_Text _quantityLabel;
         [SerializeField] private Image _icon;
-        [SerializeField] private Button _btnDeleteItem;
+        [SerializeField] private Button _btnRemoveItem;
+        [SerializeField] private Button _btnUseItem;
 
         public string ItemId { get; private set; }
+        public Action<string> ItemUsed;
 
-        private Color _defaultColor;
+        private Sprite _defaultSprite;
 
         private void Awake()
         {
-            _defaultColor = _icon.color;
+            _defaultSprite = _icon.sprite;
+            _icon.preserveAspect = true;
 
-            _btnDeleteItem.onClick.AddListener(OnDeleteItem);
+            _btnRemoveItem.onClick.AddListener(OnRemoveItem);
+            _btnUseItem.onClick.AddListener(OnUseItem);
         }
 
-        public void EquipItem()
-        {
-            InteractionManager.Instance.EquipItem(ItemId);
-            Debug.Log("Item equipped");
-        }
-        private void OnDeleteItem()
+        private void OnRemoveItem()
         {
             InventoryManager.Instance.RemoveItem(ItemId, 1);
+        }
+
+        private void OnUseItem()
+        {
+            InventoryManager.Instance.EquipItem(ItemId);
         }
 
         public void UpdateData(InventoryItem inventoryItem)
         {
             ItemId = inventoryItem.ItemName;
-            _quantityLabel.text = $"{inventoryItem.Quantity}";
+
+            if (inventoryItem.Quantity == 1)
+            {
+                _quantityLabel.text = $"";
+            }
+            else
+            {
+                _quantityLabel.text = $"{inventoryItem.Quantity}";
+            }
 
             foreach (var iconMap in _iconMapping)
             {
                 if (!string.IsNullOrEmpty(inventoryItem.ItemName) && inventoryItem.ItemName.Equals(iconMap.ItemId))
                 {
-                    _icon.color = iconMap.TargetColor;
+                    _icon.sprite = iconMap.TargetSprite;
                     break;
                 }
             }
@@ -59,10 +71,9 @@ namespace YourNewFriend
 
         public void ResetData()
         {
-            _icon.color = _defaultColor;
+            _icon.sprite = _defaultSprite;
             ItemId = string.Empty;
             _quantityLabel.text = string.Empty;
         }
-
     }
 }

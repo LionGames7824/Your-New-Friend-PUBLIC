@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ namespace YourNewFriend
             GameStateManager.Instance.IsOpenInventory += OpenInventory;
             InventoryManager.Instance.OnInventoryUpdated += UpdateDeletedItem;
             InventoryManager.Instance.OnItemRemoved += HandleItemRemoved;
+            InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
 
             _btnCloseInventory.onClick.AddListener(OnExitClick);
             gameObject.SetActive(false);
@@ -33,6 +35,7 @@ namespace YourNewFriend
         {
             GameStateManager.Instance.IsOpenInventory -= OpenInventory;
             InventoryManager.Instance.OnItemRemoved -= HandleItemRemoved;
+            InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
         }
 
         private void OnExitClick()
@@ -83,18 +86,17 @@ namespace YourNewFriend
             }
         }
 
-
-        private void UpdateDeletedItem(string itemName, int quantity)
+        private void UpdateDeletedItem(string itemId, int quantity)
         {
             foreach (Transform child in _containerInventory)
             {
                 var itemView = child.GetComponent<InventoryItemView>();
-                if (itemView != null && itemView.ItemId == itemName)
+                if (itemView != null && itemView.ItemId == itemId)
                 {
                     if (quantity > 0)
                     {
                         // Update the quantity of the existing item view
-                        itemView.UpdateData(new InventoryItem { ItemName = itemName, Quantity = quantity });
+                        itemView.UpdateData(new InventoryItem { ItemName = itemId, Quantity = quantity });
                     }
                     else
                     {
@@ -111,17 +113,17 @@ namespace YourNewFriend
             {
                 GameObject itemPool = _pool.GetFromPool();
                 var newItemView = itemPool.GetComponent<InventoryItemView>();
-                newItemView.UpdateData(new InventoryItem { ItemName = itemName, Quantity = quantity });
+                newItemView.UpdateData(new InventoryItem { ItemName = itemId, Quantity = quantity });
                 itemPool.SetActive(true);
             }
         }
 
-        private void HandleItemRemoved(string itemName)
+        private void HandleItemRemoved(string itemId)
         {
             foreach (Transform child in _containerInventory)
             {
                 var itemView = child.GetComponent<InventoryItemView>();
-                if (itemView != null && itemView.ItemId == itemName)
+                if (itemView != null && itemView.ItemId == itemId)
                 {
                     // Use the pool's ReturnToPool method
                     _pool.ReturnToPool(itemView.gameObject);
@@ -131,5 +133,10 @@ namespace YourNewFriend
             }
         }
 
+        private void HandleItemEquipped(string itemId)
+        {
+            gameObject.SetActive(false);
+            GameStateManager.Instance.IsOpenInventory(false);
+        }
     }
 }
