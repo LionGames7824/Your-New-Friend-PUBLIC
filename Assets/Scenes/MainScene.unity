@@ -14193,9 +14193,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891549905}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -120}
-  m_LocalScale: {x: 2.1, y: 2.1, z: 2.1}
+  m_LocalScale: {x: 2.1000004, y: 2.1, z: 2.1000004}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8624579627649997633}
@@ -24373,7 +24373,11 @@ MonoBehaviour:
   _playerHandTransform: {fileID: 2096851738}
   _spawnDistance: 1.5
   _spawnOffset: {x: 0, y: 0.5, z: 0}
-  _itemPrefabs: []
+  _itemPrefabs:
+  - ItemId: keycard_cyan
+    ItemPrefab: {fileID: 2152583319151868140, guid: 1e855d290052e11459c010f916505530, type: 3}
+  - ItemId: keycard_cyan2
+    ItemPrefab: {fileID: 2152583319151868140, guid: 1e855d290052e11459c010f916505530, type: 3}
 --- !u!64 &1525809317
 MeshCollider:
   m_ObjectHideFlags: 0
