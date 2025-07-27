@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
 namespace YourNewFriend
 {
@@ -28,11 +31,21 @@ namespace YourNewFriend
                 renderer.material = newMaterial;
                 _material = newMaterial;
             }
+#if UNITY_EDITOR
             else
             {
-                _material = renderer.sharedMaterial; 
-            }
+                if (renderer.sharedMaterial != null)
+                {
+                    string path = AssetDatabase.GetAssetPath(renderer.sharedMaterial);
+                    if (string.IsNullOrEmpty(path)) return;
 
+                }
+                _material = new Material(renderer.sharedMaterial);
+                _material.name = renderer.sharedMaterial.name + " (Instance)";
+                renderer.sharedMaterial = _material;
+                EditorUtility.SetDirty(renderer);
+            }
+#endif 
             SetTextureTiling(_material, transform.localScale);
         }
 
