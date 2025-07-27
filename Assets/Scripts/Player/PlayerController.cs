@@ -39,6 +39,7 @@ namespace YourNewFriend
         private bool _isInteractable;
         private PlayerInput _playerInput;
         private CharacterController _controller;
+        private Animator _anim;
         private Transform _cameraMainTransform;
         private Vector3 _playerVelocity;
         private Vector2 _inputVector;
@@ -48,6 +49,7 @@ namespace YourNewFriend
         {
             _controller = GetComponent<CharacterController>();
             _playerInput = GetComponent<PlayerInput>();
+            _anim = GetComponent<Animator>();
             _cameraMainTransform = Camera.main.transform;
             _playerSpeed = _playerNormalSpeed;
 
@@ -190,12 +192,12 @@ namespace YourNewFriend
         {
             if (value > 0)
             {
-                _controller.height = 0.1f;
+                _anim.SetTrigger("Crouch");
                 _playerSpeed = _playerCrouchSpeed;
             }
             else
             {
-                _controller.height = 1.8f;
+                _anim.SetTrigger("Stand");
                 _playerSpeed = _playerNormalSpeed;
             }
         }
