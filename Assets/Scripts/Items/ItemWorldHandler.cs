@@ -53,6 +53,13 @@ namespace YourNewFriend
                     Debug.Log($"Reactivating existing item: {itemId}");
                     item.transform.SetParent(null);
 
+                    Rigidbody rb = item.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.isKinematic = false;
+                        rb.detectCollisions = true;
+                    }
+
                     // Place it in front of player
                     Vector3 spawnPos = _playerTransform.position + _playerTransform.forward * _spawnDistance + _spawnOffset;
                     item.transform.position = spawnPos;
@@ -75,6 +82,13 @@ namespace YourNewFriend
                 {
                     item.Reactivate();
 
+                    Rigidbody rb = item.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.isKinematic = true;
+                        rb.detectCollisions = false;
+                    }
+
                     // Store the original world scale
                     Vector3 originalScale = item.transform.lossyScale;
 
@@ -84,6 +98,7 @@ namespace YourNewFriend
                     // Reset local position and rotation to align properly
                     item.transform.localPosition = Vector3.zero;
                     item.transform.localRotation = Quaternion.identity;
+                    
              
                     return;
                 }

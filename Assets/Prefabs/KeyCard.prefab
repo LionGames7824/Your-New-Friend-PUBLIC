@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1502289661629044489}
   - component: {fileID: 966795212536903010}
   - component: {fileID: 5085481453573645735}
-  - component: {fileID: 6651111221403993765}
+  - component: {fileID: 2763259391760873744}
   m_Layer: 6
   m_Name: KeyCard
   m_TagString: Untagged
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: keycard_cyan
   _prompt: Press e to grab the keycard
---- !u!54 &6651111221403993765
+--- !u!54 &2763259391760873744
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
