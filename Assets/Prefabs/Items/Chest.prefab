@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: chest_1
-  _prompt: Press e pra funcionar essa caralha
+  _prompt: Press e to open the chest

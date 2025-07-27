@@ -262,14 +262,8 @@ namespace YourNewFriend
 
             if (itemEquipped != null)
             {
-                Debug.Log("Filho encontrado: " + itemEquipped.name);
                 InventoryManager.Instance.DropItemEquipped();                 
             }
-            else
-            {
-                Debug.Log("Mao vazia");
-            }
-
         }
     }
 }
