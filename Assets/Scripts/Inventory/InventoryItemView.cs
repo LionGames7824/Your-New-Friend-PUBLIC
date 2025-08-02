@@ -31,19 +31,17 @@ namespace YourNewFriend
         {
             _defaultSprite = _icon.sprite;
             _icon.preserveAspect = true;
-
-            _btnRemoveItem.onClick.AddListener(OnRemoveItem);
-            _btnUseItem.onClick.AddListener(OnUseItem);
         }
 
-        private void OnRemoveItem()
+        public void OnRemoveItem()
         {
             InventoryManager.Instance.RemoveItem(ItemId, 1);
         }
 
-        private void OnUseItem()
+        public void OnUseItem()
         {
             InventoryManager.Instance.EquipItem(ItemId);
+            Debug.Log("Item Equipped");
         }
 
         public void UpdateData(InventoryItem inventoryItem)

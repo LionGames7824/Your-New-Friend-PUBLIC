@@ -27,6 +27,7 @@ namespace YourNewFriend
         }
 
         [SerializeField] private string _id;
+        [SerializeField] private int quantity = 1;
         [SerializeField] private string _prompt;
         
         public string GetId() => _id;

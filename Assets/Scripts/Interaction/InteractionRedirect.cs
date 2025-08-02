@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace YourNewFriend
 {
+    /* If the player interacts with an item that includes this script, 
+     * it calls the highest IInteractable in the hierarchy
+     * to perform an action described with UsedOnItem script.
+     */
     public class InteractionRedirect : MonoBehaviour, IInteractable
     {
         private IInteractable _parentInteractable;

@@ -34,7 +34,7 @@ namespace YourNewFriend
 
         public bool Interact (PlayerController interaction)
         {
-            if (UseCount < _totalUses && (_validItemsId.Contains(InteractionManager.Instance.CurrentItemId) || _emptyHanded))
+            if (UseCount < _totalUses && (_validItemsId.Contains(InventoryManager.Instance._itemEquipped) || _emptyHanded))
             {
                 Debug.Log("Correct Item Used");
                 _onCorrectItemUsed.Invoke();

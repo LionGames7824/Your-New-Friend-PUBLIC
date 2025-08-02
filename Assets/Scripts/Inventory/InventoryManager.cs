@@ -18,7 +18,7 @@ namespace YourNewFriend
 
         private Inventory _inventory;
 
-        private String _itemEquipped = string.Empty;
+        public String _itemEquipped = string.Empty;
 
         private void Start()
         {
