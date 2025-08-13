@@ -9,7 +9,6 @@ namespace YourNewFriend
     {
         [SerializeField] private Transform _containerInventory;
         [SerializeField] private GameObject _inventoryScreen;
-        [SerializeField] private Button _btnCloseInventory;
 
         [Header("Pool Settings")]
         [SerializeField] private GameObject _buttonPrefab;
@@ -27,7 +26,6 @@ namespace YourNewFriend
             InventoryManager.Instance.OnItemRemoved += HandleItemRemoved;
             InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
 
-            _btnCloseInventory.onClick.AddListener(OnExitClick);
             gameObject.SetActive(false);
         }
 
@@ -36,12 +34,6 @@ namespace YourNewFriend
             GameStateManager.Instance.IsOpenInventory -= OpenInventory;
             InventoryManager.Instance.OnItemRemoved -= HandleItemRemoved;
             InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
-        }
-
-        private void OnExitClick()
-        {
-            _inventoryScreen.SetActive(false);
-            GameStateManager.Instance.IsOpenInventory(false);
         }
 
         private void OpenInventory(bool isOpen)
