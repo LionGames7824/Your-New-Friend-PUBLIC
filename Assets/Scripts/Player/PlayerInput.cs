@@ -15,7 +15,7 @@ namespace YourNewFriend
         public Action<Vector2> OnPlayerMove;
         public Action<Vector2> OnPlayerCamera;
         private Input _input;
-
+             
         private void Awake()
         {
             _input = new();
@@ -63,6 +63,7 @@ namespace YourNewFriend
         {
             // Toggle the inventory state
             bool isCurrentlyOpen = GameStateManager.Instance.HasInventoryOpen;
+            bool isCurrentlyHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
 
             if (isCurrentlyOpen)
             {
@@ -70,7 +71,7 @@ namespace YourNewFriend
                 ResumeGame();
                 GameStateManager.Instance.OpenInventory(false);
             }
-            else
+            else if (!isCurrentlyHoldingItem)  
             {
                 // Open inventory
                 Time.timeScale = 0.0f;
