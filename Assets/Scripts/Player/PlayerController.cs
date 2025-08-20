@@ -44,6 +44,7 @@ namespace YourNewFriend
         private Vector3 _playerVelocity;
         private Vector2 _inputVector;
         private bool _groundedPlayer;
+        private bool _canControl = true;
 
         private void Awake()
         {
@@ -86,6 +87,11 @@ namespace YourNewFriend
             MovePlayer();
             UpdateRotation();
             Interaction();
+        }
+
+        public void SetControl(bool canControl)
+        {
+            _canControl = canControl;
         }
 
         /// <summary>
@@ -173,11 +179,15 @@ namespace YourNewFriend
 
         private void HandlePlayerMove(Vector2 vector)
         {
+            if (!_canControl) return;
             _inputVector = vector;
+
         }
 
         private void HandlePlayerSprint(float value)
         {
+            if (!_canControl) return;
+
             if (value > 0)
             {
                 _playerSpeed = _playerAcceleratedSpeed;
@@ -190,6 +200,8 @@ namespace YourNewFriend
 
         private void HandlePlayerCrouch(float value)
         {
+            if (!_canControl) return;
+
             if (value > 0)
             {
                 _anim.SetTrigger("Crouch");
@@ -203,7 +215,9 @@ namespace YourNewFriend
         }
 
         private void HandlePlayerInteract(float value)
-        {            
+        {
+            if (!_canControl) return;
+
             if (value > 0)
             {
                 _isInteractable = true;
@@ -212,6 +226,8 @@ namespace YourNewFriend
 
         private void HandlePlayerJump(float value)
         {
+            if (!_canControl) return;
+
             _groundedPlayer = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
 
             if (_debugEnabled)
@@ -229,6 +245,8 @@ namespace YourNewFriend
 
         private void HandleCamera(Vector2 posDelta)
         {
+            if (!_canControl) return;
+
             // Calculate yaw and pitch from the input
             _currentCameraYaw += posDelta.x * _rotationSpeed * Time.deltaTime;
             _currentCameraPitch -= posDelta.y * _rotationSpeed * Time.deltaTime; 

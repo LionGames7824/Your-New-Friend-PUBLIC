@@ -70,13 +70,14 @@ namespace YourNewFriend
                 // Close inventory
                 ResumeGame();
                 GameStateManager.Instance.OpenInventory(false);
+                GetComponent<PlayerController>().SetControl(true); 
             }
             else if (!isCurrentlyHoldingItem)  
             {
                 // Open inventory
-                Time.timeScale = 0.0f;
                 ShowMouse(true);
                 GameStateManager.Instance.OpenInventory(true);
+                GetComponent<PlayerController>().SetControl(false); 
             }
         }
 
@@ -93,7 +94,6 @@ namespace YourNewFriend
 
         public void ResumeGame()
         {
-            Time.timeScale = 1.0f;
             ShowMouse(false);
         }
 
