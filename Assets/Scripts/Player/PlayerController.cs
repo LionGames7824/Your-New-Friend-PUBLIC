@@ -270,7 +270,21 @@ namespace YourNewFriend
         {
             if (!isOpen)
             {
+                // Inventory just closed
                 _playerInput.ResumeGame();
+
+                // Always restore control when inventory closes
+                SetControl(true);
+            }
+            else
+            {
+                // Inventory just opened
+                // If no item equipped, freeze player
+                bool isCurrentlyHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
+                if (!isCurrentlyHoldingItem)
+                {
+                    SetControl(false);
+                }
             }
         }
 

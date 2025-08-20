@@ -61,23 +61,19 @@ namespace YourNewFriend
 
         void IPlayerActions.OnInventory(InputAction.CallbackContext context)
         {
-            // Toggle the inventory state
             bool isCurrentlyOpen = GameStateManager.Instance.HasInventoryOpen;
-            bool isCurrentlyHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
 
             if (isCurrentlyOpen)
             {
                 // Close inventory
                 ResumeGame();
                 GameStateManager.Instance.OpenInventory(false);
-                GetComponent<PlayerController>().SetControl(true); 
             }
-            else if (!isCurrentlyHoldingItem)  
+            else
             {
                 // Open inventory
                 ShowMouse(true);
                 GameStateManager.Instance.OpenInventory(true);
-                GetComponent<PlayerController>().SetControl(false); 
             }
         }
 
