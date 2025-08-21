@@ -62,6 +62,14 @@ namespace YourNewFriend
         void IPlayerActions.OnInventory(InputAction.CallbackContext context)
         {
             bool isCurrentlyOpen = GameStateManager.Instance.HasInventoryOpen;
+            bool isCurrentlyHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
+
+            // If the player is holding an item and the inventory is closed, don't open it
+            if (!isCurrentlyOpen && isCurrentlyHoldingItem)
+            {
+                Debug.Log("Cannot open inventory while holding an item.");
+                return;
+            }
 
             if (isCurrentlyOpen)
             {
@@ -76,6 +84,7 @@ namespace YourNewFriend
                 GameStateManager.Instance.OpenInventory(true);
             }
         }
+
 
         public void OnDropItem(InputAction.CallbackContext context)
         {
