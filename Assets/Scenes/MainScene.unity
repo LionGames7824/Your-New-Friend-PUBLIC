@@ -330,10 +330,14 @@ MonoBehaviour:
   - AudioName: escapeGuide
     AudioClip: {fileID: 8300000, guid: 14e8ad3eac30c2742b3538f5ec56fcf2, type: 3}
   _soundEffectSounds:
-  - AudioName: footSteaps
+  - AudioName: Footsteaps
     AudioClip: {fileID: 8300000, guid: bdbe1d2fa49397240b95bd08911a4dd0, type: 3}
-  - AudioName: 
-    AudioClip: {fileID: 0}
+  - AudioName: GrabbingItem
+    AudioClip: {fileID: 8300000, guid: c1e7dc1d48520e94b971f9fdd666bb71, type: 3}
+  - AudioName: PlayerJumpStart
+    AudioClip: {fileID: 8300000, guid: ad216f1d2cb3b9f4aa7f07bae133f625, type: 3}
+  - AudioName: PlayerJumpEnd
+    AudioClip: {fileID: 8300000, guid: f0c94d54bff797f46b2f6fd6864114b0, type: 3}
   _musicSource: {fileID: 1529806457}
   _SoundEffectSource: {fileID: 2123593962}
 --- !u!1 &27162035
@@ -15418,7 +15422,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _raycastDistance: 5
-  _playerWalking: footSteaps
+  _playerWalking: Footsteaps
+  _footstepInterval: 0.5
+  _playerJumpStart: PlayerJumpStart
+  _playerJumpEnd: PlayerJumpEnd
+  _playerGrabbingItem: GrabbingItem
+  _playerDroppingItem: DropItem
   _debugEnabled: 0
 --- !u!143 &891549909
 CharacterController:
@@ -26453,7 +26462,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0

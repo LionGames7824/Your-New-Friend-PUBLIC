@@ -32,6 +32,10 @@ namespace YourNewFriend
         [Header("Player Sound Effects")]
         [SerializeField] private string _playerWalking;
         [SerializeField] private float _footstepInterval = 0.5f;
+        [SerializeField] private string _playerJumpStart;
+        [SerializeField] private string _playerJumpEnd;
+        [SerializeField] private string _playerGrabbingItem;
+        [SerializeField] private string _playerDroppingItem;
         private float _footstepTimer = 0f;
 
         [Header("Debug Tool")]
@@ -49,6 +53,7 @@ namespace YourNewFriend
         private Vector3 _playerVelocity;
         private Vector2 _inputVector;
         private bool _groundedPlayer;
+        private bool _wasGrounded;
         private bool _canControl = true;
 
         private void Awake()
@@ -119,7 +124,10 @@ namespace YourNewFriend
                     Debug.Log(interactable.InteractionPrompt);
 
                 if (interactable != null && _isInteractable)
+                {
                     interactable.Interact(this);
+                    AudioManager.Instance.PlaySoundEffect(_playerGrabbingItem);
+                }
             }
 
             _isInteractable = false;
@@ -252,20 +260,32 @@ namespace YourNewFriend
         {
             if (!_canControl) return;
 
-            _groundedPlayer = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
+            bool isGroundedNow = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
 
-            if (_debugEnabled)
-                Debug.Log($"Value {value} | Is grounded: {_groundedPlayer}");
-
-            if (value > 0 && _groundedPlayer)
+            // Detect jump start
+            if (value > 0 && isGroundedNow)
+            {
                 _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
+                AudioManager.Instance.PlaySoundEffect(_playerJumpStart);
+            }
+
+            // Detect landing
+            if (!_wasGrounded && isGroundedNow)
+            {
+                AudioManager.Instance.PlaySoundEffect(_playerJumpEnd);
+            }
+
+            _wasGrounded = isGroundedNow; // update state for next frame
         }
 
         private void OnPlayerDropItem()
         {
             Transform itemEquipped = _playerHandObject.transform.childCount > 0 ? _playerHandObject.transform.GetChild(0) : null;
             if (itemEquipped != null)
+            {
                 InventoryManager.Instance.DropItemEquipped();
+                AudioManager.Instance.PlaySoundEffect(_playerDroppingItem);
+            }
         }
 
         private void OnInventoryToggled(bool isOpen)
