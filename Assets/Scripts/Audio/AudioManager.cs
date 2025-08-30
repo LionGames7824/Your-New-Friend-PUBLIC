@@ -6,9 +6,9 @@ namespace YourNewFriend
     public class AudioManager : Singleton<AudioManager>
     {
         [SerializeField] private AudioLibrary[] _musicSounds;
-        [SerializeField] private AudioLibrary[] _soundEffectSounds;
+        [SerializeField] private AudioLibrary[] _sfxSounds;
         [SerializeField] private AudioSource _musicSource;
-        [SerializeField] private AudioSource _SoundEffectSource;
+        [SerializeField] private AudioSource _sfxSource;
 
         private void Awake()
         {
@@ -29,9 +29,9 @@ namespace YourNewFriend
             }           
         }
 
-        public void PlaySoundEffect(string name)
+        public void PlaySFX(string name)
         {
-            AudioLibrary sound = Array.Find(_soundEffectSounds, x => x.AudioName == name);
+            AudioLibrary sound = Array.Find(_sfxSounds, x => x.AudioName == name);
 
             if (sound == null)
             {
@@ -39,9 +39,29 @@ namespace YourNewFriend
             }
             else
             {
-                _SoundEffectSource.clip = sound.AudioClip;
-                _SoundEffectSource.Play();
+                _sfxSource.clip = sound.AudioClip;
+                _sfxSource.Play();
             }
+        }
+
+        public void ToggleMusic() 
+        {
+            _musicSource.mute = !_musicSource.mute;    
+        }
+
+        public void ToggleSFX()
+        {
+            _sfxSource.mute = !_sfxSource.mute;
+        }
+
+        public void MusicVolume(float volume)
+        {
+            _musicSource.volume = volume;
+        }
+
+        public void SFXVolume(float volume)
+        {
+            _sfxSource.volume = volume;
         }
     }
 }

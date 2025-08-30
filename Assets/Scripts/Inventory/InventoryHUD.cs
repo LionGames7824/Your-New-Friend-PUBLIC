@@ -8,7 +8,6 @@ namespace YourNewFriend
     public class InventoryHUD : MonoBehaviour
     {
         [SerializeField] private Transform _containerInventory;
-        [SerializeField] private GameObject _inventoryScreen;
 
         [Header("Pool Settings")]
         [SerializeField] private GameObject _buttonPrefab;
@@ -32,8 +31,9 @@ namespace YourNewFriend
         private void OnDestroy()
         {
             GameStateManager.Instance.IsOpenInventory -= OpenInventory;
+            InventoryManager.Instance.OnInventoryUpdated -= UpdateDeletedItem;
             InventoryManager.Instance.OnItemRemoved -= HandleItemRemoved;
-            InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
+            InventoryManager.Instance.OnItemEquipped -= HandleItemEquipped;
         }
 
         private void OpenInventory(bool isOpen)

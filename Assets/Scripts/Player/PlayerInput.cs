@@ -63,11 +63,12 @@ namespace YourNewFriend
         {
             bool isCurrentlyOpen = GameStateManager.Instance.HasInventoryOpen;
             bool isCurrentlyHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
+            bool isTheSettingsOpen = GameStateManager.Instance.HasSettingsOpen;
 
             // If the player is holding an item and the inventory is closed, don't open it
-            if (!isCurrentlyOpen && isCurrentlyHoldingItem)
+            if (!isCurrentlyOpen && isCurrentlyHoldingItem || isTheSettingsOpen)
             {
-                Debug.Log("Cannot open inventory while holding an item.");
+                Debug.Log("Cannot open inventory");
                 return;
             }
 
@@ -85,8 +86,26 @@ namespace YourNewFriend
             }
         }
 
+        void IPlayerActions.OnSettings(InputAction.CallbackContext context)
+        {
+            bool isCurrentlyOpen = GameStateManager.Instance.HasSettingsOpen;         
 
-        public void OnDropItem(InputAction.CallbackContext context)
+            if (isCurrentlyOpen)
+            {
+                // Close Settings
+                ResumeGame();
+                GameStateManager.Instance.OpenSettings(false);
+            }
+            else
+            {
+                // Open Settings
+                Time.timeScale = 0.0f;
+                ShowMouse(true);
+                GameStateManager.Instance.OpenSettings(true);
+            }
+        }
+
+        void IPlayerActions.OnDropItem(InputAction.CallbackContext context)
         {
             OnPlayerDropItem?.Invoke();
         }
@@ -99,8 +118,9 @@ namespace YourNewFriend
 
         public void ResumeGame()
         {
+            Time.timeScale = 1.0f;
             ShowMouse(false);
         }
-
+ 
     }
 }

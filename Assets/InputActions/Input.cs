@@ -164,6 +164,15 @@ namespace YourNewFriend
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Settings"",
+                    ""type"": ""Value"",
+                    ""id"": ""7dd725a5-f4b0-491c-ad0e-1445ccd0144b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -408,6 +417,17 @@ namespace YourNewFriend
                     ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d80ba720-5f36-4f4b-9444-f00db848a33f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -474,6 +494,7 @@ namespace YourNewFriend
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
+            m_Player_Settings = m_Player.FindAction("Settings", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_AnyKey = m_Menu.FindAction("AnyKey", throwIfNotFound: true);
@@ -566,6 +587,7 @@ namespace YourNewFriend
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_DropItem;
+        private readonly InputAction m_Player_Settings;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -609,6 +631,10 @@ namespace YourNewFriend
             /// Provides access to the underlying input action "Player/DropItem".
             /// </summary>
             public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Settings".
+            /// </summary>
+            public InputAction @Settings => m_Wrapper.m_Player_Settings;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -659,6 +685,9 @@ namespace YourNewFriend
                 @DropItem.started += instance.OnDropItem;
                 @DropItem.performed += instance.OnDropItem;
                 @DropItem.canceled += instance.OnDropItem;
+                @Settings.started += instance.OnSettings;
+                @Settings.performed += instance.OnSettings;
+                @Settings.canceled += instance.OnSettings;
             }
 
             /// <summary>
@@ -694,6 +723,9 @@ namespace YourNewFriend
                 @DropItem.started -= instance.OnDropItem;
                 @DropItem.performed -= instance.OnDropItem;
                 @DropItem.canceled -= instance.OnDropItem;
+                @Settings.started -= instance.OnSettings;
+                @Settings.performed -= instance.OnSettings;
+                @Settings.canceled -= instance.OnSettings;
             }
 
             /// <summary>
@@ -886,6 +918,13 @@ namespace YourNewFriend
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnDropItem(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Settings" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnSettings(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

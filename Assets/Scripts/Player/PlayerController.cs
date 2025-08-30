@@ -73,11 +73,14 @@ namespace YourNewFriend
             _playerInput.OnPlayerDropItem += OnPlayerDropItem;
 
             GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
+            GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
 
             _isInteractable = false;
 
             InitializeCameraRotation();
         }
+
+        
 
         private void OnDestroy()
         {
@@ -126,7 +129,7 @@ namespace YourNewFriend
                 if (interactable != null && _isInteractable)
                 {
                     interactable.Interact(this);
-                    AudioManager.Instance.PlaySoundEffect(_playerGrabbingItem);
+                    AudioManager.Instance.PlaySFX(_playerGrabbingItem);
                 }
             }
 
@@ -211,7 +214,7 @@ namespace YourNewFriend
                 _footstepTimer -= Time.deltaTime;
                 if (_footstepTimer <= 0f)
                 {
-                    AudioManager.Instance.PlaySoundEffect(_playerWalking);
+                    AudioManager.Instance.PlaySFX(_playerWalking);
                     _footstepTimer = _footstepInterval;
                 }
             }
@@ -266,13 +269,13 @@ namespace YourNewFriend
             if (value > 0 && isGroundedNow)
             {
                 _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
-                AudioManager.Instance.PlaySoundEffect(_playerJumpStart);
+                AudioManager.Instance.PlaySFX(_playerJumpStart);
             }
 
             // Detect landing
             if (!_wasGrounded && isGroundedNow)
             {
-                AudioManager.Instance.PlaySoundEffect(_playerJumpEnd);
+                AudioManager.Instance.PlaySFX(_playerJumpEnd);
             }
 
             _wasGrounded = isGroundedNow; // update state for next frame
@@ -283,8 +286,7 @@ namespace YourNewFriend
             Transform itemEquipped = _playerHandObject.transform.childCount > 0 ? _playerHandObject.transform.GetChild(0) : null;
             if (itemEquipped != null)
             {
-                InventoryManager.Instance.DropItemEquipped();
-                AudioManager.Instance.PlaySoundEffect(_playerDroppingItem);
+                InventoryManager.Instance.DropItemEquipped();                
             }
         }
 
@@ -300,6 +302,14 @@ namespace YourNewFriend
                 bool isHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
                 if (!isHoldingItem)
                     SetControl(false);
+            }
+        }
+
+        private void OnSettingsToggled(bool isOpen)
+        {
+            if (!isOpen)
+            {
+                _playerInput.ResumeGame();
             }
         }
     }
