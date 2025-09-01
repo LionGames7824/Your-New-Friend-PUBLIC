@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
 namespace YourNewFriend
 {
@@ -9,24 +10,64 @@ namespace YourNewFriend
         [SerializeField] private AudioLibrary[] _sfxSounds;
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _sfxSource;
+        [SerializeField] private float _fadeDuration = 1.5f; 
+        private string _currentBackgroundMusic;
 
         private void Awake()
         {
             PlayMusic("escapeGuide");
         }
 
-        public void PlayMusic(string name)
+        public void PlayMusic(string name, bool fade = true)
         {
             AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
 
-            if (sound == null) {
-                Debug.Log("Sound Not found");
-            }
-            else
+            if (sound == null)
             {
-                _musicSource.clip = sound.AudioClip;
-                _musicSource.Play();
-            }           
+                Debug.LogWarning($"Music '{name}' not found!");
+                return;
+            }
+
+            if (fade)
+                StartCoroutine(FadeToNewMusic(sound));
+            else
+                PlayImmediately(sound);
+        }
+
+        private void PlayImmediately(AudioLibrary sound)
+        {
+            _currentBackgroundMusic = sound.AudioName;
+            _musicSource.clip = sound.AudioClip;
+            _musicSource.Play();
+        }
+
+        private IEnumerator FadeToNewMusic(AudioLibrary sound)
+        {
+            float startVolume = _musicSource.volume;
+
+            // Fade out
+            for (float t = 0; t < _fadeDuration; t += Time.deltaTime)
+            {
+                _musicSource.volume = Mathf.Lerp(startVolume, 0, t / _fadeDuration);
+                yield return null;
+            }
+
+            _musicSource.volume = 0;
+            _musicSource.Stop();
+
+            // Play new track
+            _currentBackgroundMusic = sound.AudioName;
+            _musicSource.clip = sound.AudioClip;
+            _musicSource.Play();
+
+            // Fade in
+            for (float t = 0; t < _fadeDuration; t += Time.deltaTime)
+            {
+                _musicSource.volume = Mathf.Lerp(0, startVolume, t / _fadeDuration);
+                yield return null;
+            }
+
+            _musicSource.volume = startVolume;
         }
 
         public void PlaySFX(string name)
@@ -35,33 +76,18 @@ namespace YourNewFriend
 
             if (sound == null)
             {
-                Debug.Log("Sound Not found");
+                Debug.LogWarning($"SFX '{name}' not found!");
+                return;
             }
-            else
-            {
-                _sfxSource.clip = sound.AudioClip;
-                _sfxSource.Play();
-            }
+
+            _sfxSource.clip = sound.AudioClip;
+            _sfxSource.Play();
         }
 
-        public void ToggleMusic() 
-        {
-            _musicSource.mute = !_musicSource.mute;    
-        }
-
-        public void ToggleSFX()
-        {
-            _sfxSource.mute = !_sfxSource.mute;
-        }
-
-        public void MusicVolume(float volume)
-        {
-            _musicSource.volume = volume;
-        }
-
-        public void SFXVolume(float volume)
-        {
-            _sfxSource.volume = volume;
-        }
+        public void ToggleMusic() => _musicSource.mute = !_musicSource.mute;
+        public void ToggleSFX() => _sfxSource.mute = !_sfxSource.mute;
+        public void MusicVolume(float volume) => _musicSource.volume = volume;
+        public void SFXVolume(float volume) => _sfxSource.volume = volume;
+        public string GetBackgroundMusic() => _currentBackgroundMusic;
     }
 }
