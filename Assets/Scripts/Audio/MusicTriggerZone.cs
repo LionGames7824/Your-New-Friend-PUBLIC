@@ -9,9 +9,9 @@ namespace YourNewFriend
         private const string _playerTag = "Player";
         private bool _hasStoredPreviousTheme = false;
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider collision)
         {
-            if (!other.CompareTag(_playerTag)) return;
+            if (!collision.CompareTag(_playerTag)) return;
 
             // Only store the previous theme the first time we enter
             if (!_hasStoredPreviousTheme)
@@ -23,9 +23,9 @@ namespace YourNewFriend
             AudioManager.Instance.PlayMusic(_musicName);
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider collision)
         {
-            if (!other.CompareTag(_playerTag)) return;
+            if (!collision.CompareTag(_playerTag)) return;
 
             // Go back to the previous track if it was stored
             if (_hasStoredPreviousTheme && !string.IsNullOrEmpty(_previousTheme))

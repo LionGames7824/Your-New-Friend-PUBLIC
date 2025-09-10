@@ -78,9 +78,7 @@ namespace YourNewFriend
             _isInteractable = false;
 
             InitializeCameraRotation();
-        }
-
-        
+        }        
 
         private void OnDestroy()
         {
