@@ -15,12 +15,20 @@ namespace YourNewFriend
 
         public bool IsDialogueActive = false;
         public float TypingSpeed = 0.2f;
-        public Animator Animator;
+        
+        [Range(1f, 10f)]
+        public float DialogueDisplayTime = 3f;
+
+        private void Awake()
+        {
+            _lines = new Queue<DialogueLine>();
+        }
 
         public void StartDialogue(Dialogue dialogue)
         {
+            Debug.Log("Start dialogo");
             IsDialogueActive = true;
-            Animator.Play("show");
+            //Animator.Play("show");
             _lines.Clear();
 
             foreach(DialogueLine dialogueLine in dialogue.DialogueLines)
@@ -33,7 +41,7 @@ namespace YourNewFriend
 
         public void DisplayNextDialogueLine()
         {
-            if(_lines.Count > 0)
+            if (_lines.Count == 0)
             {
                 EndDialogue();
                 return;
@@ -47,18 +55,15 @@ namespace YourNewFriend
 
         IEnumerator TypeSentence(DialogueLine dialogueLine)
         {
-            _dialogueArea.text = "";
-            foreach(char letter in dialogueLine.Line.ToCharArray())
-            {
-                _dialogueArea.text += letter;
-                yield return new WaitForSeconds(TypingSpeed);
-            }
+            _dialogueArea.text = dialogueLine.Line;
+            yield return new WaitForSeconds(DialogueDisplayTime);
+            DisplayNextDialogueLine();
         }
 
         private void EndDialogue()
         {
             IsDialogueActive = false;
-            Animator.Play("hide");
+            _dialogueArea.text = "";
         }
 
     }

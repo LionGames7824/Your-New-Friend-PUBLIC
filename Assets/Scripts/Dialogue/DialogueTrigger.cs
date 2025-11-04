@@ -25,6 +25,7 @@ namespace YourNewFriend
 
         private void OnTriggerEnter(Collider collision)
         {
+            Debug.Log("Colison");
             if (collision.CompareTag(_playerTag))
             {
                 TriggerDialogue();
