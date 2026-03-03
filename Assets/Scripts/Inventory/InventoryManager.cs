@@ -29,7 +29,7 @@ namespace YourNewFriend
         {
             if (PersistenceDataHelper.TryPersistData(_inventorySaveKey, _inventory))
             {
-                Debug.Log("Inventory saved!");
+                Debug.Log($"{GetType().Name}:Inventory saved!");
             }
         }
 
@@ -37,11 +37,11 @@ namespace YourNewFriend
         {
             if (PersistenceDataHelper.TryLoadPersistedData<Inventory>(_inventorySaveKey, out _inventory))
             {
-                Debug.Log("Inventory loaded!");
+                Debug.Log($"{GetType().Name}:Inventory loaded!");
             }
             else
             {
-                Debug.Log("No inventory file found, creating a new one.");
+                Debug.Log($"{GetType().Name}:No inventory file found, creating a new one.");
                 _inventory = new Inventory();
             }
         }

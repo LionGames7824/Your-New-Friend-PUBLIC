@@ -25,10 +25,8 @@ namespace YourNewFriend
         }
 
         public void StartDialogue(Dialogue dialogue)
-        {
-            Debug.Log("Start dialogo");
+        {            
             IsDialogueActive = true;
-            //Animator.Play("show");
             _lines.Clear();
 
             foreach(DialogueLine dialogueLine in dialogue.DialogueLines)

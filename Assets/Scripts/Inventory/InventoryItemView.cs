@@ -41,7 +41,7 @@ namespace YourNewFriend
         public void OnUseItem()
         {
             InventoryManager.Instance.EquipItem(ItemId);
-            Debug.Log("Item Equipped");
+            Debug.Log($"{GetType().Name}:Item Equipped");
         }
 
         public void UpdateData(InventoryItem inventoryItem)

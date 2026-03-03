@@ -56,7 +56,7 @@ namespace YourNewFriend
         {
             if (UseCount < _totalUses && (_validItemsId.Contains(InventoryManager.Instance._itemEquipped) || _emptyHanded))
             {
-                Debug.Log("Correct Item Used");
+                Debug.Log($"{GetType().Name}:Correct Item Used");
                 _onCorrectItemUsed.Invoke();
 
                 for (int i = 0; i < anim.Count; i++)
