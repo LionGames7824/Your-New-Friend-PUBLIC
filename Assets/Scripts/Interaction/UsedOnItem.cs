@@ -31,6 +31,7 @@ namespace YourNewFriend
         [SerializeField] private List<string> _animTriggerName;
         [SerializeField] private List<string> _animBoolName;
         [SerializeField] private List<bool> _isitadoor;
+        private const string DoorStateParam = "Door_State";
 
         [Header("Events")]
         [SerializeField] private UnityEvent _onCorrectItemUsed;
@@ -87,8 +88,8 @@ namespace YourNewFriend
                     {
                         if (!animplaying[i])
                         {
-                            anim[i].SetBool("Door_State", !anim[i].GetBool("Door_State"));
-                            if (anim[i].GetBool("Door_State"))
+                            anim[i].SetBool(DoorStateParam, !anim[i].GetBool(DoorStateParam));
+                            if (anim[i].GetBool(DoorStateParam))
                                 _onCorrectItemUsed_Close.Invoke();
                             else
                                 _onCorrectItemUsed_Open.Invoke();
