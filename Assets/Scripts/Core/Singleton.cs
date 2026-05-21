@@ -23,7 +23,7 @@ namespace YourNewFriend
             }
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             SetInstanceAndRemoveDuplicates();
         }

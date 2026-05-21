@@ -45,7 +45,7 @@ namespace YourNewFriend
         {
             if (PersistenceDataHelper.TryLoadPersistedData<Data>(_id, out _data))
             {
-                Debug.Log($"{GetType().Name}:Data loaded!");
+                Debug.Log($"{GetType().Name}: Data loaded!");
             }
             else
             {
@@ -53,7 +53,7 @@ namespace YourNewFriend
                 {
                     StorableItemState = Data.State.Unlocked
                 };
-                Debug.Log($"{GetType().Name}:No data file found, creating a new one.");
+                Debug.Log($"{GetType().Name}: No data file found, creating a new one.");
             }
 
             UpdateState();
@@ -95,7 +95,7 @@ namespace YourNewFriend
         {
             if (PersistenceDataHelper.TryPersistData(_id, _data))
             {
-                Debug.Log($"{GetType().Name}:{_id} saved!");
+                Debug.Log($"{GetType().Name}: {_id} saved!");
             }
         }
 

@@ -73,6 +73,7 @@ namespace YourNewFriend
         private void HoldItem(string itemId)
         {
             StorableItem[] storableItems = FindObjectsOfType<StorableItem>(true);
+            Debug.Log($"{GetType().Name}: Holding item {itemId}");
 
             foreach (var item in storableItems)
             {

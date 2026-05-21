@@ -20,8 +20,9 @@ namespace YourNewFriend
 
         public String _itemEquipped = string.Empty;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             LoadInventory();
         }
 

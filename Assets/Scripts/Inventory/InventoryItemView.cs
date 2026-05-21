@@ -40,8 +40,8 @@ namespace YourNewFriend
 
         public void OnUseItem()
         {
+            Debug.Log($"{GetType().Name}: Item Equipped {ItemId}");
             InventoryManager.Instance.EquipItem(ItemId);
-            Debug.Log($"{GetType().Name}:Item Equipped");
         }
 
         public void UpdateData(InventoryItem inventoryItem)
