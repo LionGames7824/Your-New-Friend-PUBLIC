@@ -68,7 +68,7 @@ namespace YourNewFriend
             // If the player is holding an item and the inventory is closed, don't open it
             if (!isCurrentlyOpen && isCurrentlyHoldingItem || isTheSettingsOpen)
             {
-                Debug.Log("Cannot open inventory");
+                Debug.Log($"{GetType().Name}:Cannot open inventory");
                 return;
             }
 

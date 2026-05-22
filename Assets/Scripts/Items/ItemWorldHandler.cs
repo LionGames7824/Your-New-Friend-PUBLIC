@@ -48,7 +48,7 @@ namespace YourNewFriend
             {
                 if (item.name.Contains(itemId) || item.GetId() == itemId)
                 {
-                    Debug.Log($"Reactivating existing item: {itemId}");
+                    Debug.Log($"{GetType().Name}:Reactivating existing item: {itemId}");
                     item.transform.SetParent(null);
 
                     Rigidbody rb = item.GetComponent<Rigidbody>();
@@ -67,12 +67,13 @@ namespace YourNewFriend
                 }
             }
 
-            Debug.LogWarning($"No inactive item with id '{itemId}' found to reactivate.");
+            Debug.Log($"{GetType().Name}:No inactive item with id '{itemId}' found to reactivate.");
         }
 
         private void HoldItem(string itemId)
         {
             StorableItem[] storableItems = FindObjectsOfType<StorableItem>(true);
+            Debug.Log($"{GetType().Name}: Holding item {itemId}");
 
             foreach (var item in storableItems)
             {

@@ -25796,6 +25796,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - panel_key
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 0
+  anim:
+  - {fileID: 1140807564}
+  _animTriggerName:
+  - Cover_Opened
+  _animBoolName:
+  - 
+  _isitadoor: 
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -25805,16 +25816,6 @@ MonoBehaviour:
   _onCorrectItemUsed_Close:
     m_PersistentCalls:
       m_Calls: []
-  _interactionPrompt: Use
-  anim:
-  - {fileID: 1140807564}
-  _animTriggerName:
-  - Cover_Opened
-  _animBoolName:
-  - 
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 00
 --- !u!1 &390222014
 GameObject:
   m_ObjectHideFlags: 0
@@ -48431,6 +48432,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - crowbar
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 0
+  anim:
+  - {fileID: 1966244608475838032}
+  _animTriggerName:
+  - Crowbar_Used
+  _animBoolName:
+  - 
+  _isitadoor: 
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -48440,16 +48452,6 @@ MonoBehaviour:
   _onCorrectItemUsed_Close:
     m_PersistentCalls:
       m_Calls: []
-  _interactionPrompt: Use
-  anim:
-  - {fileID: 1966244608475838032}
-  _animTriggerName:
-  - Crowbar_Used
-  _animBoolName:
-  - 
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 01
 --- !u!1 &744380712
 GameObject:
   m_ObjectHideFlags: 0
@@ -48569,6 +48571,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - cutting_pliers
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 0
+  anim:
+  - {fileID: 1966244608475838032}
+  _animTriggerName:
+  - 
+  _animBoolName:
+  - Red_Light
+  _isitadoor: 
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -48614,16 +48627,6 @@ MonoBehaviour:
   _onCorrectItemUsed_Close:
     m_PersistentCalls:
       m_Calls: []
-  _interactionPrompt: Use
-  anim:
-  - {fileID: 1966244608475838032}
-  _animTriggerName:
-  - 
-  _animBoolName:
-  - Red_Light
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 00
 --- !u!1 &744711690
 GameObject:
   m_ObjectHideFlags: 0
@@ -152244,16 +152247,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _validItemsId: []
-  _onCorrectItemUsed:
-    m_PersistentCalls:
-      m_Calls: []
-  _onCorrectItemUsed_Open:
-    m_PersistentCalls:
-      m_Calls: []
-  _onCorrectItemUsed_Close:
-    m_PersistentCalls:
-      m_Calls: []
   _interactionPrompt: Use
+  _emptyHanded: 1
+  _totalUses: 1
+  _autoInteract: 0
   anim:
   - {fileID: 80134062}
   - {fileID: 1140807564}
@@ -152263,9 +152260,16 @@ MonoBehaviour:
   _animBoolName:
   - 
   - 
-  _emptyHanded: 1
-  _totalUses: 1
-  _isitadoor: 0000
+  _isitadoor: 
+  _onCorrectItemUsed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCorrectItemUsed_Open:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCorrectItemUsed_Close:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!33 &4250827311025552824
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -155746,6 +155750,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - keycard_cyan
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 1
+  anim:
+  - {fileID: 599901323}
+  - {fileID: 435204765929292795}
+  _animTriggerName:
+  - 
+  - 
+  _animBoolName:
+  - 
+  - 
+  _isitadoor: 0001
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -155779,14 +155797,6 @@ MonoBehaviour:
   _onCorrectItemUsed_Close:
     m_PersistentCalls:
       m_Calls: []
-  _interactionPrompt: Use
-  anim:
-  - {fileID: 0}
-  _animTriggerName: []
-  _animBoolName: []
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 
 --- !u!114 &5174345170049553767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160908,6 +160918,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - cutting_pliers
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 0
+  anim: []
+  _animTriggerName: []
+  _animBoolName: []
+  _isitadoor: 
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -160929,13 +160947,6 @@ MonoBehaviour:
   _onCorrectItemUsed_Close:
     m_PersistentCalls:
       m_Calls: []
-  _interactionPrompt: Use
-  anim: []
-  _animTriggerName: []
-  _animBoolName: []
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 
 --- !u!23 &6628934002847054419
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -164765,6 +164776,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - cutting_pliers
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 0
+  anim: []
+  _animTriggerName: []
+  _animBoolName: []
+  _isitadoor: 
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -164786,13 +164805,6 @@ MonoBehaviour:
   _onCorrectItemUsed_Close:
     m_PersistentCalls:
       m_Calls: []
-  _interactionPrompt: Use
-  anim: []
-  _animTriggerName: []
-  _animBoolName: []
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 
 --- !u!23 &7535558298789119663
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -168716,6 +168728,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _validItemsId:
   - keycard_cyan
+  _interactionPrompt: Use
+  _emptyHanded: 0
+  _totalUses: 1
+  _autoInteract: 0
+  anim:
+  - {fileID: 435204765929292795}
+  _animTriggerName:
+  - Terminal_Accepted
+  _animBoolName:
+  - 
+  _isitadoor: 
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -168773,16 +168796,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _interactionPrompt: Use
-  anim:
-  - {fileID: 435204765929292795}
-  _animTriggerName:
-  - Terminal_Accepted
-  _animBoolName:
-  - 
-  _emptyHanded: 0
-  _totalUses: 1
-  _isitadoor: 01
 --- !u!4 &8542164413809503018
 Transform:
   m_ObjectHideFlags: 0
