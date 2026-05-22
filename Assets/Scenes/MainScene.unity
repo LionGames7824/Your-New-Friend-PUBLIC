@@ -107162,6 +107162,8 @@ MonoBehaviour:
     - Line: I know I have to fix the robot, but...
     - Line: there has to be another way down, right?
     - Line: It can't be just... that...
+  _triggerOnce: 0
+  _disableCondition: 
 --- !u!65 &1638159910
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -155812,6 +155814,8 @@ MonoBehaviour:
   dialogue:
     DialogueLines:
     - Line: 'You need a card to open '
+  _triggerOnce: 0
+  _disableCondition: keycard_cyan
 --- !u!65 &5174345170049553768
 BoxCollider:
   m_ObjectHideFlags: 0
