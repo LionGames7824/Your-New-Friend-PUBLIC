@@ -61,7 +61,7 @@ namespace YourNewFriend
             PlayerController player = other.GetComponent<PlayerController>();
             Debug.Log($"PlayerController encontrado: {player != null}");
 
-            if (player != null)
+            if (player != null && !_autoInteract)
                 Interact(player);
         }
 

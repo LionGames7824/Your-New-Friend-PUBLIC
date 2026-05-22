@@ -12996,7 +12996,7 @@ MonoBehaviour:
   _dialogueArea: {fileID: 1578693394}
   IsDialogueActive: 0
   TypingSpeed: 0.2
-  DialogueDisplayTime: 3
+  DialogueDisplayTime: 5
 --- !u!1 &192385339
 GameObject:
   m_ObjectHideFlags: 0
@@ -25806,7 +25806,7 @@ MonoBehaviour:
   - Cover_Opened
   _animBoolName:
   - 
-  _isitadoor: 
+  _isitadoor: 00
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -48442,7 +48442,7 @@ MonoBehaviour:
   - Crowbar_Used
   _animBoolName:
   - 
-  _isitadoor: 
+  _isitadoor: 01
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -48581,7 +48581,7 @@ MonoBehaviour:
   - 
   _animBoolName:
   - Red_Light
-  _isitadoor: 
+  _isitadoor: 00
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -81828,8 +81828,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Settings
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4df13b94a4b89b14d94d06ccb009c0d5, type: 2}
+  m_sharedMaterial: {fileID: 3015606387924206083, guid: 4df13b94a4b89b14d94d06ccb009c0d5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -101178,8 +101178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Inventory
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4df13b94a4b89b14d94d06ccb009c0d5, type: 2}
+  m_sharedMaterial: {fileID: 3015606387924206083, guid: 4df13b94a4b89b14d94d06ccb009c0d5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -103479,8 +103479,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4df13b94a4b89b14d94d06ccb009c0d5, type: 2}
+  m_sharedMaterial: {fileID: 3015606387924206083, guid: 4df13b94a4b89b14d94d06ccb009c0d5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -103504,13 +103504,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -152260,7 +152260,7 @@ MonoBehaviour:
   _animBoolName:
   - 
   - 
-  _isitadoor: 
+  _isitadoor: 0000
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -168731,14 +168731,14 @@ MonoBehaviour:
   _interactionPrompt: Use
   _emptyHanded: 0
   _totalUses: 1
-  _autoInteract: 0
+  _autoInteract: 1
   anim:
   - {fileID: 435204765929292795}
   _animTriggerName:
   - Terminal_Accepted
   _animBoolName:
   - 
-  _isitadoor: 
+  _isitadoor: 01
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
