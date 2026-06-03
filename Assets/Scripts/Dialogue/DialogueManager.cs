@@ -26,8 +26,7 @@ namespace YourNewFriend
         public void StartDialogue(IDialogue dialogue)
         {
             if (IsActive)
-            {
-                Debug.LogWarning("[DialogueManager] Já existe um diálogo ativo. Ignorando.");
+            {                
                 return;
             }
 
@@ -38,7 +37,7 @@ namespace YourNewFriend
 
         public void Next()
         {
-            Debug.Log($"[DM] Next chamado. IsActive: {IsActive}");
+            Debug.Log($"[DM] Next called. IsActive: {IsActive}");
             if (!IsActive) return;
 
             bool hasNext = ActiveSession.MoveNext();
@@ -64,7 +63,7 @@ namespace YourNewFriend
 
         private void EndDialogue()
         {
-            Debug.Log("[DM] EndDialogue chamado");
+            Debug.Log("[DM] EndDialogue call");
             ActiveSession = null;
             OnDialogueEnded?.Invoke();
         }

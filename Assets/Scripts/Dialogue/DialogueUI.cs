@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 namespace YourNewFriend
 {
@@ -11,7 +12,8 @@ namespace YourNewFriend
         [SerializeField] private TextMeshProUGUI _bodyText;
 
         [Header("Panel")]
-        [SerializeField] private GameObject _dialoguePanel;
+        [SerializeField] private GameObject _dialoguePanel;        
+        [SerializeField] private Button _nextButton; 
 
         [Header("Timer")]
         [Range(1f, 10f)]
@@ -24,6 +26,9 @@ namespace YourNewFriend
             DialogueManager.Instance.OnDialogueStarted += HandleDialogueStarted;
             DialogueManager.Instance.OnEntryShown += HandleEntryShown;
             DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnded;
+            GameStateManager.Instance.IsOpenInventory += HandleInventoryToggle; 
+
+            gameObject.SetActive(false);
         }
 
         private void OnDestroy()
@@ -32,6 +37,7 @@ namespace YourNewFriend
             DialogueManager.Instance.OnDialogueStarted -= HandleDialogueStarted;
             DialogueManager.Instance.OnEntryShown -= HandleEntryShown;
             DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnded;
+            GameStateManager.Instance.IsOpenInventory -= HandleInventoryToggle; 
         }
 
         /// <summary>
@@ -47,11 +53,13 @@ namespace YourNewFriend
         // --- Handlers ---
         private void HandleDialogueStarted(string title)
         {
+            gameObject.SetActive(true);
             _dialoguePanel.SetActive(true);
         }
 
         private void HandleEntryShown(DialogueEntry entry)
         {
+            
             string body = entry.BodyText;
 
             if (!string.IsNullOrWhiteSpace(entry.SpeakerName))
@@ -87,6 +95,11 @@ namespace YourNewFriend
                 StopCoroutine(_autoAdvanceCoroutine);
                 _autoAdvanceCoroutine = null;
             }
+        }
+
+        private void HandleInventoryToggle(bool isOpen)
+        {
+            if (_nextButton) _nextButton.interactable = !isOpen;
         }
     }
 }
