@@ -121,6 +121,11 @@ namespace YourNewFriend
             Time.timeScale = 1.0f;
             ShowMouse(false);
         }
- 
+
+        void IPlayerActions.OnSkipDialogue(InputAction.CallbackContext context)
+        {
+            if (context.performed && DialogueManager.Instance.IsActive)
+                DialogueManager.Instance.Next();
+        }
     }
 }
