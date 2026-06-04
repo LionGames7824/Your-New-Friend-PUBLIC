@@ -8,6 +8,7 @@ namespace YourNewFriend
     public class PlayerInput : MonoBehaviour, IPlayerActions
     {
         public Action OnPlayerDropItem;
+        public Action OnPlayerUnequipItem;
         public Action<float> OnPlayerSprint;
         public Action<float> OnPlayerCrouch;
         public Action<float> OnPlayerJump;
@@ -110,6 +111,22 @@ namespace YourNewFriend
             OnPlayerDropItem?.Invoke();
         }
 
+        void IPlayerActions.OnSkipDialogue(InputAction.CallbackContext context)
+        {
+            if (context.performed && DialogueManager.Instance.IsActive)
+                DialogueManager.Instance.Next();
+        }
+
+        void IPlayerActions.OnUnequipItem(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+
+            bool isHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
+            if (!isHoldingItem) return;
+
+            OnPlayerUnequipItem?.Invoke();
+        }
+
         public void ShowMouse(bool show)
         {
             Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
@@ -122,10 +139,5 @@ namespace YourNewFriend
             ShowMouse(false);
         }
 
-        void IPlayerActions.OnSkipDialogue(InputAction.CallbackContext context)
-        {
-            if (context.performed && DialogueManager.Instance.IsActive)
-                DialogueManager.Instance.Next();
-        }
     }
 }

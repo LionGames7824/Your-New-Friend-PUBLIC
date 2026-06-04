@@ -15,6 +15,7 @@ namespace YourNewFriend
         public event Action<string> OnItemDropped;
         public event Action<string> OnItemEquipped;
         public event Action OnDropItemEquipped;
+        public event Action OnItemUnequipped;
 
         private Inventory _inventory;
 
@@ -79,6 +80,14 @@ namespace YourNewFriend
         {
             _itemEquipped = itemId;
             OnItemEquipped?.Invoke(itemId);
+        }
+
+        public void UnequipItem()
+        {
+            if (string.IsNullOrEmpty(_itemEquipped)) return;
+            AddItem(_itemEquipped, 1);
+            _itemEquipped = string.Empty;
+            OnItemUnequipped?.Invoke(); 
         }
 
         public void DropItemEquipped()

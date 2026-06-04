@@ -28,6 +28,14 @@ namespace YourNewFriend
         {
             InventoryManager.Instance.OnItemDropped += HandleItemDropped;
             InventoryManager.Instance.OnItemEquipped += HandleItemEquipped;
+            InventoryManager.Instance.OnItemUnequipped += HandleItemUnequipped;
+        }
+
+        private void OnDestroy()
+        {
+            InventoryManager.Instance.OnItemDropped -= HandleItemDropped;
+            InventoryManager.Instance.OnItemEquipped -= HandleItemEquipped;
+            InventoryManager.Instance.OnItemUnequipped -= HandleItemUnequipped;
         }
 
         private void HandleItemEquipped(string itemId)
@@ -38,6 +46,19 @@ namespace YourNewFriend
         private void HandleItemDropped(string itemId)
         {
             SpawnDroppedItem(itemId);
+        }
+
+        private void HandleItemUnequipped()
+        {
+            if (_playerHandTransform.transform.childCount == 0) return;
+
+            Transform itemInHand = _playerHandTransform.transform.GetChild(0);
+            StorableItem storable = itemInHand.GetComponent<StorableItem>();
+
+            
+            itemInHand.SetParent(null);
+            if (storable != null)
+                storable.gameObject.SetActive(false);
         }
 
         private void SpawnDroppedItem(string itemId)
