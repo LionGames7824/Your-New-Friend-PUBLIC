@@ -41,6 +41,11 @@ namespace YourNewFriend
             LoadData();
         }
 
+        private void Start()
+        {
+            UpdateState();
+        }
+
         private void LoadData()
         {
             if (PersistenceDataHelper.TryLoadPersistedData<Data>(_id, out _data))
@@ -55,8 +60,7 @@ namespace YourNewFriend
                 };
                 Debug.Log($"{GetType().Name}: No data file found, creating a new one.");
             }
-
-            UpdateState();
+            
         }
 
         private void UpdateState()

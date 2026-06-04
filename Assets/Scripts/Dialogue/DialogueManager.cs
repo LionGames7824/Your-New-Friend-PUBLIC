@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,61 +7,65 @@ using UnityEngine;
 namespace YourNewFriend
 {
     public class DialogueManager : Singleton<DialogueManager>
-    {
-        [Header("References for the UI Components")]
-        [SerializeField] private TextMeshProUGUI _dialogueArea;
-
-        private Queue<DialogueLine> _lines;
-
-        public bool IsDialogueActive = false;
-        public float TypingSpeed = 0.2f;
-        
-        [Range(1f, 10f)]
-        public float DialogueDisplayTime = 3f;
-
-        private void Awake()
+    {        
+        protected override void Awake()
         {
-            _lines = new Queue<DialogueLine>();
+            base.Awake();
+            //DontDestroyOnLoad(gameObject);
         }
 
-        public void StartDialogue(Dialogue dialogue)
-        {            
-            IsDialogueActive = true;
-            _lines.Clear();
+        // State 
+        public DialogueSession ActiveSession { get; private set; }
+        public bool IsActive => ActiveSession != null;
 
-            foreach(DialogueLine dialogueLine in dialogue.DialogueLines)
-            {
-                _lines.Enqueue(dialogueLine);
-            }
+        // Events 
+        public event Action<string> OnDialogueStarted;
+        public event Action<DialogueEntry> OnEntryShown;
+        public event Action OnDialogueEnded;
 
-            DisplayNextDialogueLine();
-        }
-
-        public void DisplayNextDialogueLine()
+        public void StartDialogue(IDialogue dialogue)
         {
-            if (_lines.Count == 0)
-            {
-                EndDialogue();
+            if (IsActive)
+            {                
                 return;
             }
 
-            DialogueLine currentLine = _lines.Dequeue();
-
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(currentLine));
+            ActiveSession = new DialogueSession(dialogue);
+            OnDialogueStarted?.Invoke(dialogue.Title);
+            ShowCurrentEntry();
         }
 
-        IEnumerator TypeSentence(DialogueLine dialogueLine)
+        public void Next()
         {
-            _dialogueArea.text = dialogueLine.Line;
-            yield return new WaitForSeconds(DialogueDisplayTime);
-            DisplayNextDialogueLine();
+            Debug.Log($"[DM] Next called. IsActive: {IsActive}");
+            if (!IsActive) return;
+
+            bool hasNext = ActiveSession.MoveNext();
+            Debug.Log($"[DM] hasNext: {hasNext}, index: {ActiveSession.CurrentIndex}");
+
+            if (hasNext)
+                ShowCurrentEntry();
+            else
+                EndDialogue();
+        }
+
+        public void DismissDialogue()
+        {
+            if (!IsActive) return;
+            EndDialogue();
+        }
+                
+        private void ShowCurrentEntry()
+        {
+            var entry = ActiveSession.CurrentEntry;
+            OnEntryShown?.Invoke(entry);
         }
 
         private void EndDialogue()
         {
-            IsDialogueActive = false;
-            _dialogueArea.text = "";
+            Debug.Log("[DM] EndDialogue call");
+            ActiveSession = null;
+            OnDialogueEnded?.Invoke();
         }
 
     }

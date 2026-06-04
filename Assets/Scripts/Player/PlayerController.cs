@@ -71,6 +71,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerSprint += OnPlayerSprint;
             _playerInput.OnPlayerCrouch += OnPlayerCrouch;
             _playerInput.OnPlayerDropItem += OnPlayerDropItem;
+            _playerInput.OnPlayerUnequipItem += OnPlayerUnequipItem;
 
             GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
@@ -79,8 +80,6 @@ namespace YourNewFriend
 
             InitializeCameraRotation();
         }
-
-        
 
         private void OnDestroy()
         {
@@ -91,6 +90,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerSprint -= OnPlayerSprint;
             _playerInput.OnPlayerCrouch -= OnPlayerCrouch;
             _playerInput.OnPlayerDropItem -= OnPlayerDropItem;
+            _playerInput.OnPlayerUnequipItem -= OnPlayerUnequipItem;
 
             GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
         }
@@ -288,6 +288,11 @@ namespace YourNewFriend
             {
                 InventoryManager.Instance.DropItemEquipped();                
             }
+        }
+
+        private void OnPlayerUnequipItem()
+        {
+            InventoryManager.Instance.UnequipItem();
         }
 
         private void OnInventoryToggled(bool isOpen)

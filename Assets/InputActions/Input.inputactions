@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SkipDialogue",
+                    "type": "Button",
+                    "id": "da56c8d8-9272-4761-b0f6-6155701e9978",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnequipItem",
+                    "type": "Button",
+                    "id": "cf1e3043-ddd5-43c2-9344-c13ae3bff7dd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -338,6 +356,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e29a5169-90d9-46fd-8bf1-b0ddbcd431d7",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0dee747-909d-4615-919c-12d40f82f4c3",
+                    "path": "<Keyboard>/numpadEnter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f90791a-290b-49a2-91d4-b338f64bf683",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnequipItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

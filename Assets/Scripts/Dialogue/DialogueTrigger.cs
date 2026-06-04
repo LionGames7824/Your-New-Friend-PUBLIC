@@ -1,40 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace YourNewFriend
 {
-
-    [System.Serializable]
-    public class DialogueLine
-    {
-        [TextArea(3,10)]
-        public string Line;
-    }
-
-    [System.Serializable]
-    public class Dialogue
-    {
-        public List<DialogueLine> DialogueLines = new List<DialogueLine>();
-    }
-
     public class DialogueTrigger : MonoBehaviour
     {
-        public Dialogue dialogue;
-        private const string _playerTag = "Player";
+        [SerializeField] private Dialogue _dialogue;
 
-        private void OnTriggerEnter(Collider collision)
-        {
-            Debug.Log($"{GetType().Name}:Colison");
-            if (collision.CompareTag(_playerTag))
-            {
-                TriggerDialogue();
-            }
-        }
+        [Tooltip("If true, the dialogue can only be triggered once")]
+        [SerializeField] private bool _triggerOnce = false;
+
+        private bool _hasTriggered = false;
 
         public void TriggerDialogue()
         {
-            DialogueManager.Instance.StartDialogue(dialogue);
+            if (_triggerOnce && _hasTriggered) return;
+
+            DialogueManager.Instance.StartDialogue(_dialogue);
+            _hasTriggered = true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+                TriggerDialogue();
         }
     }
 }

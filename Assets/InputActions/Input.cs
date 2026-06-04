@@ -173,6 +173,24 @@ namespace YourNewFriend
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SkipDialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""da56c8d8-9272-4761-b0f6-6155701e9978"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnequipItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf1e3043-ddd5-43c2-9344-c13ae3bff7dd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -428,6 +446,39 @@ namespace YourNewFriend
                     ""action"": ""Settings"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e29a5169-90d9-46fd-8bf1-b0ddbcd431d7"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0dee747-909d-4615-919c-12d40f82f4c3"",
+                    ""path"": ""<Keyboard>/numpadEnter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipDialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f90791a-290b-49a2-91d4-b338f64bf683"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnequipItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -495,6 +546,8 @@ namespace YourNewFriend
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
             m_Player_Settings = m_Player.FindAction("Settings", throwIfNotFound: true);
+            m_Player_SkipDialogue = m_Player.FindAction("SkipDialogue", throwIfNotFound: true);
+            m_Player_UnequipItem = m_Player.FindAction("UnequipItem", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_AnyKey = m_Menu.FindAction("AnyKey", throwIfNotFound: true);
@@ -588,6 +641,8 @@ namespace YourNewFriend
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_DropItem;
         private readonly InputAction m_Player_Settings;
+        private readonly InputAction m_Player_SkipDialogue;
+        private readonly InputAction m_Player_UnequipItem;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -635,6 +690,14 @@ namespace YourNewFriend
             /// Provides access to the underlying input action "Player/Settings".
             /// </summary>
             public InputAction @Settings => m_Wrapper.m_Player_Settings;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/SkipDialogue".
+            /// </summary>
+            public InputAction @SkipDialogue => m_Wrapper.m_Player_SkipDialogue;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/UnequipItem".
+            /// </summary>
+            public InputAction @UnequipItem => m_Wrapper.m_Player_UnequipItem;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -688,6 +751,12 @@ namespace YourNewFriend
                 @Settings.started += instance.OnSettings;
                 @Settings.performed += instance.OnSettings;
                 @Settings.canceled += instance.OnSettings;
+                @SkipDialogue.started += instance.OnSkipDialogue;
+                @SkipDialogue.performed += instance.OnSkipDialogue;
+                @SkipDialogue.canceled += instance.OnSkipDialogue;
+                @UnequipItem.started += instance.OnUnequipItem;
+                @UnequipItem.performed += instance.OnUnequipItem;
+                @UnequipItem.canceled += instance.OnUnequipItem;
             }
 
             /// <summary>
@@ -726,6 +795,12 @@ namespace YourNewFriend
                 @Settings.started -= instance.OnSettings;
                 @Settings.performed -= instance.OnSettings;
                 @Settings.canceled -= instance.OnSettings;
+                @SkipDialogue.started -= instance.OnSkipDialogue;
+                @SkipDialogue.performed -= instance.OnSkipDialogue;
+                @SkipDialogue.canceled -= instance.OnSkipDialogue;
+                @UnequipItem.started -= instance.OnUnequipItem;
+                @UnequipItem.performed -= instance.OnUnequipItem;
+                @UnequipItem.canceled -= instance.OnUnequipItem;
             }
 
             /// <summary>
@@ -925,6 +1000,20 @@ namespace YourNewFriend
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSettings(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "SkipDialogue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnSkipDialogue(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "UnequipItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnUnequipItem(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.
