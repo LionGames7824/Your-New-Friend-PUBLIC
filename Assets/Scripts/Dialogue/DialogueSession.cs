@@ -19,11 +19,10 @@ namespace YourNewFriend
 
         /// <summary>Goes to next entry. Return false if it is the last</summary>
         public bool MoveNext()
-        {
-            Debug.Log($"[Session] MoveNext. Index antes: {CurrentIndex}, Length: {Dialogue.Entries.Length}");
+        {            
             if (IsFinished) return false;
             CurrentIndex++;
-            Debug.Log($"[Session] Index depois: {CurrentIndex}, IsFinished: {IsFinished}");
+         
             return !IsFinished;
         }
     }
