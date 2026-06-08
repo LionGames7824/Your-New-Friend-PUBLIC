@@ -31,6 +31,7 @@ namespace YourNewFriend
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
+                Debug.Log($"UsedOnItem chamou interact");
                 Interact(player);
             }
         }
