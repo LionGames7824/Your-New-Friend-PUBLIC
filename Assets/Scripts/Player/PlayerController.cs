@@ -73,12 +73,18 @@ namespace YourNewFriend
             _playerInput.OnPlayerDropItem += OnPlayerDropItem;
             _playerInput.OnPlayerUnequipItem += OnPlayerUnequipItem;
 
+            Cover.onOpenCover += HandleCoverOpen;
             GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
 
             _isInteractable = false;
 
             InitializeCameraRotation();
+        }
+
+        private void HandleCoverOpen(bool state)
+        {
+            SetControl(state);
         }
 
         private void OnDestroy()
