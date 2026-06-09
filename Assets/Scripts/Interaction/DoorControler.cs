@@ -9,6 +9,10 @@ namespace YourNewFriend
         [Tooltip("Automatically generated. If you need to reset it, delete the text and save the scene.")]
         [SerializeField] private string _doorID;
 
+        [Header("Settings")]
+        [Tooltip("Check this to make the door start open by default (when there is no save data).")]
+        [SerializeField] private bool _startOpened = false;
+
         [Header("Events")]
         [SerializeField] private UnityEvent _onDoorOpened;
 
@@ -25,17 +29,13 @@ namespace YourNewFriend
             LoadDoorState();
         }
 
-
 #if UNITY_EDITOR
         private void OnValidate()
-        {
-            // If the door doesn't have an ID (because it was just created or duplicated)
+        {            
             if (string.IsNullOrEmpty(_doorID))
-            {
-                // Generates a GUID (Globally Unique Identifier), e.g.: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+            {         
                 _doorID = System.Guid.NewGuid().ToString();
-
-                // Notifies Unity that the scene has changed and needs to be saved
+                             
                 UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
                 Debug.Log($"Unique ID automatically generated for {gameObject.name}: {_doorID}");
             }
@@ -67,11 +67,22 @@ namespace YourNewFriend
         {
             if (string.IsNullOrEmpty(_doorID)) return;
 
-            bool savedAsOpen = PlayerPrefs.GetInt(_doorID, 0) == 1;
-            if (savedAsOpen)
+            if (PlayerPrefs.HasKey(_doorID))
             {
-                _anim.SetBool(_doorState, true);
-                _onDoorOpened.Invoke();
+                bool savedAsOpen = PlayerPrefs.GetInt(_doorID, 0) == 1;
+                if (savedAsOpen)
+                {
+                    _anim.SetBool(_doorState, true);
+                    _onDoorOpened.Invoke();
+                }
+            }
+            else
+            {
+                if (_startOpened)
+                {
+                    _anim.SetBool(_doorState, true);
+                    _onDoorOpened.Invoke();
+                }
             }
         }
     }
