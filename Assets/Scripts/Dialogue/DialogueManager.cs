@@ -36,13 +36,11 @@ namespace YourNewFriend
         }
 
         public void Next()
-        {
-            Debug.Log($"[DM] Next called. IsActive: {IsActive}");
+        {            
             if (!IsActive) return;
 
             bool hasNext = ActiveSession.MoveNext();
-            Debug.Log($"[DM] hasNext: {hasNext}, index: {ActiveSession.CurrentIndex}");
-
+            
             if (hasNext)
                 ShowCurrentEntry();
             else
@@ -63,7 +61,6 @@ namespace YourNewFriend
 
         private void EndDialogue()
         {
-            Debug.Log("[DM] EndDialogue call");
             ActiveSession = null;
             OnDialogueEnded?.Invoke();
         }
