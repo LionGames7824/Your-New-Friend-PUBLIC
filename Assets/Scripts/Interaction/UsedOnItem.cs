@@ -23,15 +23,13 @@ namespace YourNewFriend
         public string InteractionPrompt => _interactionPrompt;
 
         private void OnTriggerEnter(Collider other)
-        {
-            Debug.Log($"Trigger ativado por: {other.gameObject.name}");
+        {            
 
             if (!_autoInteract) return;
 
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
-            {
-                Debug.Log($"UsedOnItem chamou interact");
+            {                
                 Interact(player);
             }
         }
