@@ -59,11 +59,10 @@ namespace YourNewFriend
 
         private void HandleEntryShown(DialogueEntry entry)
         {
-            
             string body = entry.BodyText;
 
             if (!string.IsNullOrWhiteSpace(entry.SpeakerName))
-            {                
+            {
                 body = $"{entry.SpeakerName}: {entry.BodyText}";
             }
 
@@ -71,7 +70,8 @@ namespace YourNewFriend
 
             // Restart the timer
             StopAutoAdvance();
-            _autoAdvanceCoroutine = StartCoroutine(AutoAdvanceRoutine());
+                        
+            _autoAdvanceCoroutine = StartCoroutine(AutoAdvanceRoutine(entry.dialogueDisplayTime));
         }
 
         private void HandleDialogueEnded()
@@ -81,9 +81,12 @@ namespace YourNewFriend
         }
 
         // --- Auto advance ---
-        private IEnumerator AutoAdvanceRoutine()
-        {
-            yield return new WaitForSeconds(_dialogueDisplayTime);
+        private IEnumerator AutoAdvanceRoutine(float displayTime)
+        {            
+            float timeToWait = displayTime > 0 ? displayTime : _dialogueDisplayTime;
+
+            yield return new WaitForSeconds(timeToWait);
+
             if (DialogueManager.Instance.IsActive)
                 DialogueManager.Instance.Next();
         }
