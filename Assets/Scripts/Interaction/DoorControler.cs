@@ -5,19 +5,30 @@ namespace YourNewFriend
 {
     public class DoorController : MonoBehaviour
     {
+        public enum DoorLockState
+        {
+            OffGreen,  
+            OffRed,    
+            Green,     
+            Red        
+        }
+
         [Header("Persistence")]
         [Tooltip("Automatically generated. If you need to reset it, delete the text and save the scene.")]
         [SerializeField] private string _doorID;
 
         [Header("Settings")]
-        [Tooltip("Check this to make the door start open by default (when there is no save data).")]
         [SerializeField] private bool _startOpened = false;
+        [SerializeField] private DoorLockState _lockState = DoorLockState.OffGreen;
+
+        [Header("References")]
+        [SerializeField] private PanelLightController _panelLight;
 
         [Header("Events")]
         [SerializeField] private UnityEvent _onDoorOpened;
 
         private Animator _anim;
-        private string _doorState = "Door_State";
+        private const string DOOR_STATE = "Door_State";
 
         private void Awake()
         {
@@ -26,35 +37,99 @@ namespace YourNewFriend
 
         private void Start()
         {
+            ApplyLockState();
             LoadDoorState();
         }
 
-#if UNITY_EDITOR
-        private void OnValidate()
-        {            
-            if (string.IsNullOrEmpty(_doorID))
-            {         
-                _doorID = System.Guid.NewGuid().ToString();
-                             
-                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
-                Debug.Log($"Unique ID automatically generated for {gameObject.name}: {_doorID}");
+        // --- Lock State ---
+
+        public void SetLockState(DoorLockState newState)
+        {
+            _lockState = newState;
+            ApplyLockState();
+        }
+
+        private void ApplyLockState()
+        {
+            if (_panelLight == null) return;
+
+            switch (_lockState)
+            {
+                case DoorLockState.OffGreen:
+                    _panelLight.SetLight(PanelLightState.OffGreen);
+                    break;
+                case DoorLockState.OffRed:
+                    _panelLight.SetLight(PanelLightState.OffRed);
+                    break;
+                case DoorLockState.Green:
+                    _panelLight.SetLight(PanelLightState.Green);
+                    break;
+                case DoorLockState.Red:
+                    _panelLight.SetLight(PanelLightState.Red);
+                    break;
             }
         }
-#endif
+
+        // --- Light onn / off ---
+
+        public void TurnOnLight()
+        {
+            switch (_lockState)
+            {
+                case DoorLockState.OffGreen:
+                    SetLockState(DoorLockState.Green);
+                    break;
+                case DoorLockState.OffRed:
+                    SetLockState(DoorLockState.Red);
+                    break;
+            }
+        }
+
+        public void TurnOffLight()
+        {
+            switch (_lockState)
+            {
+                case DoorLockState.Green:
+                    SetLockState(DoorLockState.OffGreen);
+                    break;
+                case DoorLockState.Red:
+                    SetLockState(DoorLockState.OffRed);
+                    break;
+            }
+        }
+
+        // --- Open Door ---
+
+        public void TryOpenWithCard()
+        {
+            if (_lockState != DoorLockState.Green) return;
+            OpenDoor();
+        }
+
+        public void TryOpenWithForce()
+        {
+            if (_lockState != DoorLockState.Red) return;
+            OpenDoor();
+        }
+
+        private void OpenDoor()
+        {
+            if (_anim.GetBool(DOOR_STATE)) return;
+
+            _anim.SetBool(DOOR_STATE, true);
+            SaveDoorState(true);
+            _onDoorOpened.Invoke();            
+        }
 
         public void ToggleDoor()
         {
-            bool isOpening = !_anim.GetBool(_doorState);
-            _anim.SetBool(_doorState, isOpening);
-
+            bool isOpening = !_anim.GetBool(DOOR_STATE);
+            _anim.SetBool(DOOR_STATE, isOpening);
             SaveDoorState(isOpening);
-
-            if (isOpening)
-            {
-                _onDoorOpened.Invoke();
-                Debug.Log($"Door {_doorID} open and state saved");
-            }
+            if (isOpening) _onDoorOpened.Invoke();
         }
+
+        // --- Persistence ---
 
         private void SaveDoorState(bool open)
         {
@@ -67,23 +142,27 @@ namespace YourNewFriend
         {
             if (string.IsNullOrEmpty(_doorID)) return;
 
-            if (PlayerPrefs.HasKey(_doorID))
+            bool savedAsOpen = PlayerPrefs.HasKey(_doorID)
+                ? PlayerPrefs.GetInt(_doorID, 0) == 1
+                : _startOpened;
+
+            if (savedAsOpen)
             {
-                bool savedAsOpen = PlayerPrefs.GetInt(_doorID, 0) == 1;
-                if (savedAsOpen)
-                {
-                    _anim.SetBool(_doorState, true);
-                    _onDoorOpened.Invoke();
-                }
-            }
-            else
-            {
-                if (_startOpened)
-                {
-                    _anim.SetBool(_doorState, true);
-                    _onDoorOpened.Invoke();
-                }
+                _anim.SetBool(DOOR_STATE, true);
+                _onDoorOpened.Invoke();
             }
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (string.IsNullOrEmpty(_doorID))
+            {
+                _doorID = System.Guid.NewGuid().ToString();
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
+                Debug.Log($"ID generated for {gameObject.name}: {_doorID}");
+            }
+        }
+#endif
     }
 }

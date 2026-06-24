@@ -91871,6 +91871,18 @@ PrefabInstance:
       propertyPath: _doorID
       value: d165b5d7-0c19-4429-85fe-d803c1ec510d
       objectReference: {fileID: 0}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _lockState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _panelLight
+      value: 
+      objectReference: {fileID: 1602326422}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TurnGreen
+      objectReference: {fileID: 0}
     - target: {fileID: 8325303358183304282, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -91911,6 +91923,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8783940285090022715, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _materialRed
+      value: 
+      objectReference: {fileID: 2100000, guid: f23e884008b5f7f448ee14d9c6e27382, type: 2}
+    - target: {fileID: 8783940285090022715, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _initialState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783940285090022715, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _materialGreen
+      value: 
+      objectReference: {fileID: 2100000, guid: cb7a8e2124ea16140a45b99ded973836, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94769,6 +94793,10 @@ PrefabInstance:
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _startOpened
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TurnGreen
       objectReference: {fileID: 0}
     - target: {fileID: 8325303358183304282, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105253,6 +105281,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602234159}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1602326422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8783940285090022715, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+  m_PrefabInstance: {fileID: 1413946059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1bd4a00ff2d88d439e7f283567d8a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1606547224
 Material:
   serializedVersion: 8
@@ -118805,6 +118844,14 @@ PrefabInstance:
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _doorID
       value: 2889e40d-8a7e-47f7-9477-f6a65cfc3e77
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _lockState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TurnRed
       objectReference: {fileID: 0}
     - target: {fileID: 8325303358183304282, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: m_LocalPosition.x

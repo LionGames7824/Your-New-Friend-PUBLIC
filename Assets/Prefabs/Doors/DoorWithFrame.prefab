@@ -502,8 +502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1bd4a00ff2d88d439e7f283567d8a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _materialOff: {fileID: 2100000, guid: f298fb5f0e1d3534195cb6540a6bba3b, type: 2}
-  _materialOn: {fileID: 2100000, guid: cb7a8e2124ea16140a45b99ded973836, type: 2}
+  _materialOffGreen: {fileID: 2100000, guid: f298fb5f0e1d3534195cb6540a6bba3b, type: 2}
+  _materialOffRed: {fileID: 2100000, guid: 9b441c992269ab943b9810e5c939aab9, type: 2}
+  _materialGreen: {fileID: 2100000, guid: f23e884008b5f7f448ee14d9c6e27382, type: 2}
+  _materialRed: {fileID: 2100000, guid: cb7a8e2124ea16140a45b99ded973836, type: 2}
+  _initialState: 2
 --- !u!1 &8425472284184113195
 GameObject:
   m_ObjectHideFlags: 0
