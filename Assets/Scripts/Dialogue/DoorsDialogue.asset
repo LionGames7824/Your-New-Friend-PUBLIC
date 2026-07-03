@@ -18,3 +18,5 @@ MonoBehaviour:
   - SpeakerName: 
     dialogueDisplayTime: 3
     BodyText: You need a card to open the door
+  - SpeakerName: 
+    BodyText: You need a card to open the door

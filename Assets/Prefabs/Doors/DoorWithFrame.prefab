@@ -504,8 +504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _materialOffGreen: {fileID: 2100000, guid: f298fb5f0e1d3534195cb6540a6bba3b, type: 2}
   _materialOffRed: {fileID: 2100000, guid: 9b441c992269ab943b9810e5c939aab9, type: 2}
-  _materialGreen: {fileID: 2100000, guid: f23e884008b5f7f448ee14d9c6e27382, type: 2}
-  _materialRed: {fileID: 2100000, guid: cb7a8e2124ea16140a45b99ded973836, type: 2}
+  _materialGreen: {fileID: 2100000, guid: cb7a8e2124ea16140a45b99ded973836, type: 2}
+  _materialRed: {fileID: 2100000, guid: f23e884008b5f7f448ee14d9c6e27382, type: 2}
   _initialState: 2
 --- !u!1 &8425472284184113195
 GameObject:
@@ -625,9 +625,9 @@ PrefabInstance:
       value: MER_Doors
       objectReference: {fileID: 0}
     - target: {fileID: 1891577946934759943, guid: a411eabee862dff4c9a0110a96dca23b, type: 3}
-      propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: _panelLight
+      value: 
+      objectReference: {fileID: 8783940285090022715}
     - target: {fileID: 1891577946934759943, guid: a411eabee862dff4c9a0110a96dca23b, type: 3}
       propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1

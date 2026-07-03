@@ -20,7 +20,7 @@ public class Patrol : MonoBehaviour
     }
 
 
-    void GotoNextPoint()
+    public void GotoNextPoint()
     {
         if (points.Length == 0) return;
         agent.destination = points[destPoint].position;
@@ -32,7 +32,7 @@ public class Patrol : MonoBehaviour
 
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!Chase.isPlayerSeen && !agent.pathPending && agent.remainingDistance < 0.5f)
         {
             GotoNextPoint();
         }

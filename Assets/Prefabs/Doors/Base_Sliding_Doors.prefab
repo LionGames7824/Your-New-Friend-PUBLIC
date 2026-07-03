@@ -69,6 +69,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doorID: 4c279219-6688-4abf-82ac-6a9cc735cdb1
+  _startOpened: 0
+  _lockState: 2
+  _panelLight: {fileID: 0}
   _onDoorOpened:
     m_PersistentCalls:
       m_Calls: []

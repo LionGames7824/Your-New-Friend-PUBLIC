@@ -38,6 +38,9 @@ namespace YourNewFriend
         [SerializeField] private string _playerDroppingItem;
         private float _footstepTimer = 0f;
 
+        [Header("Player Spawn Positions")]
+        [SerializeField] private GameObject[] _spawn;
+
         [Header("Debug Tool")]
         [SerializeField] private bool _debugEnabled;
 
@@ -55,9 +58,12 @@ namespace YourNewFriend
         private bool _groundedPlayer;
         private bool _wasGrounded;
         private bool _canControl = true;
+        private Transform _playerPosition;
 
         private void Awake()
         {
+
+            _playerPosition = GetComponent<Transform>();
             _controller = GetComponent<CharacterController>();
             _playerInput = GetComponent<PlayerInput>();
             _anim = GetComponent<Animator>();
@@ -80,6 +86,9 @@ namespace YourNewFriend
             _isInteractable = false;
 
             InitializeCameraRotation();
+
+            _playerPosition.position = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
+            Debug.Log("Position Loaded: " + _playerPosition.position);
         }
 
         private void HandleCoverOpen(bool state)

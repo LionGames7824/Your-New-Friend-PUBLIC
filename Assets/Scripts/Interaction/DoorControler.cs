@@ -98,6 +98,16 @@ namespace YourNewFriend
             }
         }
 
+        public void SetGreen()
+        {
+            SetLockState(DoorLockState.Green);
+        }
+
+        public void SetRed()
+        {
+            SetLockState(DoorLockState.Red);
+        }
+
         // --- Open Door ---
 
         public void TryOpenWithCard()

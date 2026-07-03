@@ -15,10 +15,10 @@ namespace YourNewFriend
 
         private void Awake()
         {
-            PlayMusic("escapeGuide");
+            PlayMusic("escapeGuide", true);
         }
 
-        public void PlayMusic(string name, bool fade = true)
+        public void PlayMusic(string name, bool fade)
         {
             AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
 
@@ -38,7 +38,7 @@ namespace YourNewFriend
         {
             _currentBackgroundMusic = sound.AudioName;
             _musicSource.clip = sound.AudioClip;
-            _musicSource.Play();
+            if (!_musicSource.isPlaying) _musicSource.Play();
         }
 
         private IEnumerator FadeToNewMusic(AudioLibrary sound)
