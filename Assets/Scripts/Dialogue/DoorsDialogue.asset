@@ -16,7 +16,5 @@ MonoBehaviour:
   _title: Message to open doors
   _entries:
   - SpeakerName: 
-    dialogueDisplayTime: 3
-    BodyText: You need a card to open the door
-  - SpeakerName: 
+    dialogueDisplayTime: 1
     BodyText: You need a card to open the door
