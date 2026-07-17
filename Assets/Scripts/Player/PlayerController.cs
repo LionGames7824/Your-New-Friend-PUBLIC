@@ -25,9 +25,7 @@ namespace YourNewFriend
         [SerializeField] private GameObject _playerHandObject;
 
         [Header("Interaction with Objects")]
-        [SerializeField] private LayerMask _raycastLayers;
-        [SerializeField] private LayerMask _raycastObstructionLayer;
-        [SerializeField] private float _raycastDistance = 5f;
+        [SerializeField] private InteractionDetector _interactionDetector;
 
         [Header("Player Sound Effects")]
         [SerializeField] private string _playerWalking;
@@ -41,14 +39,10 @@ namespace YourNewFriend
         [Header("Player Spawn Positions")]
         [SerializeField] private GameObject[] _spawn;
 
-        [Header("Debug Tool")]
-        [SerializeField] private bool _debugEnabled;
-
         // Player State Variables
         private float _playerSpeed;
         private float _currentCameraYaw;
         private float _currentCameraPitch;
-        private bool _isInteractable;
         private PlayerInput _playerInput;
         private CharacterController _controller;
         private Animator _anim;
@@ -62,7 +56,6 @@ namespace YourNewFriend
 
         private void Awake()
         {
-
             _playerPosition = GetComponent<Transform>();
             _controller = GetComponent<CharacterController>();
             _playerInput = GetComponent<PlayerInput>();
@@ -82,8 +75,6 @@ namespace YourNewFriend
             Cover.onOpenCover += HandleCoverOpen;
             GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
-
-            _isInteractable = false;
 
             InitializeCameraRotation();
 
@@ -114,41 +105,11 @@ namespace YourNewFriend
         {
             MovePlayer();
             UpdatePlayerRotation();
-            HandleInteraction();
         }
 
         public void SetControl(bool canControl)
         {
             _canControl = canControl;
-        }
-
-        // --- Interaction ---
-        private void HandleInteraction()
-        {
-            Vector3 direction = _cameraMainTransform.forward;
-            Vector3 startPos = _cameraMainTransform.position;
-
-            if (_debugEnabled)
-                Debug.DrawLine(startPos, startPos + (direction * _raycastDistance), Color.cyan, 3);
-
-            if (Physics.Raycast(startPos, direction, out RaycastHit hitInfo, _raycastDistance, _raycastLayers.value))
-            {
-                if ((_raycastObstructionLayer.value & (1 << hitInfo.collider.gameObject.layer)) != 0)
-                    return;
-
-                var interactable = hitInfo.collider.gameObject.GetComponent<IInteractable>();
-
-                if (_debugEnabled && interactable != null)
-                    Debug.Log(interactable.InteractionPrompt);
-
-                if (interactable != null && _isInteractable)
-                {
-                    interactable.Interact(this);
-                    AudioManager.Instance.PlaySFX(_playerGrabbingItem);
-                }
-            }
-
-            _isInteractable = false;
         }
 
         // --- Camera ---
@@ -271,7 +232,10 @@ namespace YourNewFriend
         private void OnPlayerInteract(float value)
         {
             if (!_canControl) return;
-            if (value > 0) _isInteractable = true;
+            if (value <= 0) return;
+
+            if (_interactionDetector.TryInteract(this))
+                AudioManager.Instance.PlaySFX(_playerGrabbingItem);
         }
 
         private void OnPlayerJump(float value)
@@ -280,20 +244,18 @@ namespace YourNewFriend
 
             bool isGroundedNow = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
 
-            // Detect jump start
             if (value > 0 && isGroundedNow)
             {
                 _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
                 AudioManager.Instance.PlaySFX(_playerJumpStart);
             }
 
-            // Detect landing
             if (!_wasGrounded && isGroundedNow)
             {
                 AudioManager.Instance.PlaySFX(_playerJumpEnd);
             }
 
-            _wasGrounded = isGroundedNow; // update state for next frame
+            _wasGrounded = isGroundedNow;
         }
 
         private void OnPlayerDropItem()
@@ -301,7 +263,7 @@ namespace YourNewFriend
             Transform itemEquipped = _playerHandObject.transform.childCount > 0 ? _playerHandObject.transform.GetChild(0) : null;
             if (itemEquipped != null)
             {
-                InventoryManager.Instance.DropItemEquipped();                
+                InventoryManager.Instance.DropItemEquipped();
             }
         }
 

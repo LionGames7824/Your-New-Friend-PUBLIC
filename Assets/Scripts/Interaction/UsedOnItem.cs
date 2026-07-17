@@ -8,7 +8,7 @@ namespace YourNewFriend
     {
         [Header("Interaction Settings")]
         [SerializeField] private List<string> _validItemsId;
-        [SerializeField] private string _interactionPrompt = "Use";
+        [SerializeField] private string _interactionPrompt = "";
         [SerializeField] private bool _emptyHanded = false;
 
         [Tooltip("How many times can be used")]

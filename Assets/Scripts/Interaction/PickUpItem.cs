@@ -8,7 +8,7 @@ namespace YourNewFriend
     {
         [SerializeField] private string _itemID;
         [SerializeField] private int quantity = 1;
-        [SerializeField] private string _interactionPrompt = "Pick Up";
+        [SerializeField] private string _interactionPrompt = "[E] Pick up";
         public string InteractionPrompt => _interactionPrompt;
 
         public bool Interact (PlayerController interactor)
