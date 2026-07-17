@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YourNewFriend
 {
-    public class InteractionManager : Singleton<InteractionManager>
+    public class EquippedItemManager : Singleton<EquippedItemManager>
     {
         private string _currentItemId;
         public string CurrentItemId => _currentItemId;
