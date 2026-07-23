@@ -231,6 +231,7 @@ namespace YourNewFriend
 
         private void OnPlayerInteract(float value)
         {
+            Debug.Log($"[INPUT] OnPlayerInteract called, value={value}");
             if (!_canControl) return;
             if (value <= 0) return;
 
