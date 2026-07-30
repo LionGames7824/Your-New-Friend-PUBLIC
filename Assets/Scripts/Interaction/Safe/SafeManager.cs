@@ -46,8 +46,7 @@ namespace YourNewFriend
                 _onUnlocked.Invoke();
             }
             else
-            {
-                Debug.Log("Panne no sistema");
+            {                
                 _onWrongCode.Invoke();
             }
 
