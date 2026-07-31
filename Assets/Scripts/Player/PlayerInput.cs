@@ -57,6 +57,7 @@ namespace YourNewFriend
 
         void IPlayerActions.OnInteractable(InputAction.CallbackContext context)
         {
+            if (!context.performed) return;
             OnPlayerInteract?.Invoke(context.ReadValue<float>());
         }
 
