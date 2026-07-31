@@ -46,7 +46,8 @@ namespace YourNewFriend
                 _onUnlocked.Invoke();
             }
             else
-            {                
+            {
+                Debug.Log("Errou senha");
                 _onWrongCode.Invoke();
             }
 

@@ -986,7 +986,7 @@ Transform:
   - {fileID: 289529524763261844}
   - {fileID: 8058816326911515410}
   - {fileID: 2975223837269454794}
-  - {fileID: 3726778807414971936}
+  - {fileID: 6089139048231879756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 51.164, z: 0}
 --- !u!114 &686961262617428248
@@ -1005,7 +1005,19 @@ MonoBehaviour:
   _maxLength: 4
   _onUnlocked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2360976343300913285}
+        m_TargetAssemblyTypeName: YourNewFriend.DoorSafeAnimator, Assembly-CSharp
+        m_MethodName: PlayOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onWrongCode:
     m_PersistentCalls:
       m_Calls:
@@ -2349,6 +2361,74 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 1
   _interactionPrompt: Press 1
+--- !u!1 &4710407397694805320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6089139048231879756}
+  - component: {fileID: 2360976343300913285}
+  - component: {fileID: 5004278428316934348}
+  m_Layer: 0
+  m_Name: HandleDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6089139048231879756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710407397694805320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1201766, y: 0.11660166, z: 0.9860573}
+  m_LocalScale: {x: 0.89393353, y: 0.89393353, z: 0.89393353}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3726778807414971936}
+  m_Father: {fileID: 3186275872088657817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2360976343300913285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710407397694805320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e071165c0856e714ab5edfd4e402f0d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 5004278428316934348}
+--- !u!95 &5004278428316934348
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710407397694805320}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e0cd157f35bebb49b640da9488abe3f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4906624745391181666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,16 +3798,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7439473472376685930}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.32, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.729707, y: -0.13043663, z: -1.1030544}
+  m_LocalScale: {x: 1.1186514, y: 1.1186514, z: 1.1186514}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4401596046620641428}
   - {fileID: 9212447764034907543}
   - {fileID: 3340399795719180528}
   - {fileID: 1646201779888790051}
-  m_Father: {fileID: 3186275872088657817}
+  m_Father: {fileID: 6089139048231879756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7622935975944248487
 GameObject:
