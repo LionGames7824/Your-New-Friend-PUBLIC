@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 5150818995627748387}
   - component: {fileID: 4704092183725139547}
   - component: {fileID: 7913745022193529926}
+  - component: {fileID: 8039150520493520381}
   m_Layer: 6
   m_Name: Keyboard_Check
   m_TagString: Untagged
@@ -610,6 +611,20 @@ MonoBehaviour:
   _buttonType: 2
   _digitValue: 
   _interactionPrompt: 
+--- !u!114 &8039150520493520381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738759540394791533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.21960786, g: 0.57254905, b: 0.19607845, a: 1}
 --- !u!1 &1035038000251440621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1166,7 @@ GameObject:
   - component: {fileID: 3034813922513886042}
   - component: {fileID: 2284410040525059228}
   - component: {fileID: 6815301160428733320}
+  - component: {fileID: 3320972146432290796}
   m_Layer: 6
   m_Name: Keyboard_8
   m_TagString: Untagged
@@ -1260,6 +1276,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 8
   _interactionPrompt: 
+--- !u!114 &3320972146432290796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067546227981323376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &2356352585698701120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,6 +1933,7 @@ GameObject:
   - component: {fileID: 229363877009130142}
   - component: {fileID: 4441761671263885823}
   - component: {fileID: 1554806015970102411}
+  - component: {fileID: 4742170488401806924}
   m_Layer: 6
   m_Name: Keyboard_7
   m_TagString: Untagged
@@ -2012,6 +2043,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 7
   _interactionPrompt: 
+--- !u!114 &4742170488401806924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992025793260134003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &4125428020278513056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,6 +2175,7 @@ GameObject:
   - component: {fileID: 3170253807867943727}
   - component: {fileID: 2967873760403189923}
   - component: {fileID: 4083722084691896960}
+  - component: {fileID: 1063034171952025959}
   m_Layer: 6
   m_Name: Keyboard_2
   m_TagString: Untagged
@@ -2239,6 +2285,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 2
   _interactionPrompt: 
+--- !u!114 &1063034171952025959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227162967066290873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &4448465079103442892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,6 +2312,7 @@ GameObject:
   - component: {fileID: 1379659803790626357}
   - component: {fileID: 2194786362083117216}
   - component: {fileID: 7099543951419239704}
+  - component: {fileID: 5913237761635240596}
   m_Layer: 6
   m_Name: Keyboard_1
   m_TagString: Untagged
@@ -2360,7 +2421,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonType: 0
   _digitValue: 1
-  _interactionPrompt: Press 1
+  _interactionPrompt: 
+--- !u!114 &5913237761635240596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4448465079103442892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &4710407397694805320
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,6 +2622,7 @@ GameObject:
   - component: {fileID: 6645109975593309893}
   - component: {fileID: 1705019624650179993}
   - component: {fileID: 4296407307693001958}
+  - component: {fileID: 1633770785926780982}
   m_Layer: 6
   m_Name: Keyboard_X
   m_TagString: Untagged
@@ -2656,6 +2732,20 @@ MonoBehaviour:
   _buttonType: 1
   _digitValue: 
   _interactionPrompt: 
+--- !u!114 &1633770785926780982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910973078409011092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.7106918, g: 0.21559298, b: 0.19890426, a: 1}
 --- !u!1 &5198065701953207776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,6 +2969,7 @@ GameObject:
   - component: {fileID: 5011027915675791562}
   - component: {fileID: 6495289742920477080}
   - component: {fileID: 63900049484564919}
+  - component: {fileID: 3413357698988942763}
   m_Layer: 6
   m_Name: Keyboard_5
   m_TagString: Untagged
@@ -2988,6 +3079,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 5
   _interactionPrompt: 
+--- !u!114 &3413357698988942763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503763279596784522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &5974296706249492517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,6 +3211,7 @@ GameObject:
   - component: {fileID: 2756364234175862459}
   - component: {fileID: 2116968995805809144}
   - component: {fileID: 4751934089589445995}
+  - component: {fileID: 8306903555811654835}
   m_Layer: 6
   m_Name: Keyboard_4
   m_TagString: Untagged
@@ -3215,6 +3321,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 4
   _interactionPrompt: 
+--- !u!114 &8306903555811654835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6802144403839538007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &7047429949979949186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,6 +3558,7 @@ GameObject:
   - component: {fileID: 7001749263457407156}
   - component: {fileID: 4396618143469558106}
   - component: {fileID: 483915674283272239}
+  - component: {fileID: 8153073075584477974}
   m_Layer: 6
   m_Name: Keyboard_3
   m_TagString: Untagged
@@ -3547,6 +3668,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 3
   _interactionPrompt: 
+--- !u!114 &8153073075584477974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7167605125983234055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &7172155971501950196
 GameObject:
   m_ObjectHideFlags: 0
@@ -3665,6 +3800,7 @@ GameObject:
   - component: {fileID: 9211246152747867770}
   - component: {fileID: 2662353321910661757}
   - component: {fileID: 5458384698077106042}
+  - component: {fileID: 7743771175144528511}
   m_Layer: 6
   m_Name: Keyboard_9
   m_TagString: Untagged
@@ -3774,6 +3910,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 9
   _interactionPrompt: 
+--- !u!114 &7743771175144528511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7412322412775091100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &7439473472376685930
 GameObject:
   m_ObjectHideFlags: 0
@@ -4137,6 +4287,7 @@ GameObject:
   - component: {fileID: 9118674407345967759}
   - component: {fileID: 8792060431222041122}
   - component: {fileID: 2306761684501967906}
+  - component: {fileID: 3774658071660897350}
   m_Layer: 6
   m_Name: Keyboard_6
   m_TagString: Untagged
@@ -4246,6 +4397,20 @@ MonoBehaviour:
   _buttonType: 0
   _digitValue: 6
   _interactionPrompt: 
+--- !u!114 &3774658071660897350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640543273394648634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!1 &8980705687464142636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4513,6 +4678,7 @@ GameObject:
   - component: {fileID: 7597903005157211719}
   - component: {fileID: 6965833423005496625}
   - component: {fileID: 1602219870340192381}
+  - component: {fileID: 5726124090219719308}
   - component: {fileID: 1387221076674591196}
   - component: {fileID: 6595435645093558843}
   m_Layer: 6
@@ -4588,6 +4754,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5726124090219719308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9151422651438977522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51977cb4ccd154b8de1611eee62f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  _highlightColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
 --- !u!65 &1387221076674591196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4623,4 +4803,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonType: 0
   _digitValue: 0
-  _interactionPrompt: Press
+  _interactionPrompt: 

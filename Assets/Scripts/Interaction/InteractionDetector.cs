@@ -27,6 +27,7 @@ namespace YourNewFriend
 
             if (Physics.Raycast(origin, direction, out RaycastHit hit, _raycastDistance, _raycastLayers))
             {
+                Debug.Log($"[RAYCAST] Hit: {hit.collider.gameObject.name}");
                 bool obstructed = (_raycastObstructionLayer.value & (1 << hit.collider.gameObject.layer)) != 0;
                 if (!obstructed)
                 {

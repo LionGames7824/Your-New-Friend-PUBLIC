@@ -5,7 +5,7 @@ namespace YourNewFriend
     public class HighlightOnTarget : MonoBehaviour, IHighlightable
     {
         [SerializeField] private Renderer _renderer;
-        [SerializeField] private Color _highlightColor = Color.yellow;
+        [SerializeField] private Color _highlightColor = new Color(0.75f, 0.75f, 0.75f); 
 
         private MaterialPropertyBlock _propBlock;
         private Color _originalColor;
@@ -13,6 +13,9 @@ namespace YourNewFriend
 
         private void Awake()
         {
+            if (_renderer == null)
+                _renderer = GetComponent<Renderer>();
+
             _propBlock = new MaterialPropertyBlock();
             _originalColor = _renderer.sharedMaterial.color;
         }
