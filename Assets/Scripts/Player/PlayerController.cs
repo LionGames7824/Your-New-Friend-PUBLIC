@@ -101,6 +101,12 @@ namespace YourNewFriend
             GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
         }
 
+        public void LoadPlayerPosition()
+        {
+            _playerPosition.position = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
+            Debug.Log("Position Loaded: " + _playerPosition.position);
+        }
+
         private void Update()
         {
             MovePlayer();

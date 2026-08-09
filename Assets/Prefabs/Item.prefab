@@ -369,6 +369,8 @@ MonoBehaviour:
     TargetSprite: {fileID: 0}
   - ItemId: crowbar
     TargetSprite: {fileID: 0}
+  - ItemId: egg
+    TargetSprite: {fileID: 21300000, guid: acaee2b2b1937eb429878db813fa4a61, type: 3}
   _quantityLabel: {fileID: 2561196559767548650}
   _icon: {fileID: 1813637753467309716}
   _btnRemoveItem: {fileID: 6897930975062028672}

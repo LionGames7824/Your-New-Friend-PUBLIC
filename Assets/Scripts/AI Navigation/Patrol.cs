@@ -10,7 +10,6 @@ public class Patrol : MonoBehaviour
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-    int ij = 1;
 
     void Start()
     {
@@ -24,9 +23,8 @@ public class Patrol : MonoBehaviour
     {
         if (points.Length == 0) return;
         agent.destination = points[destPoint].position;
-        destPoint = destPoint + ij;
-        if (destPoint == (points.Length - 1) || destPoint == 0) ij = -1 * ij;
-            
+        destPoint++;
+        if (destPoint == points.Length) destPoint = 0;
     }
 
 
