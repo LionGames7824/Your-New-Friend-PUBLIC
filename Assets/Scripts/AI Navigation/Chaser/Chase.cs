@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 using UnityEngine.VFX;
 using YourNewFriend;
 
@@ -13,9 +12,10 @@ namespace YourNewFriend
         private int destPoint = 0;
         private bool permanence = false;
         private NavMeshAgent agent;
+        private Vector3 startPosition;
+        private Coroutine loseInterestRoutine;
         public static bool isPlayerSeen = false;
         public Transform player;
-        public UnityEvent death;
         public Transform sBot;
         public float searchTime = 10f;
         public float catchSpeed = 9f;
@@ -23,6 +23,7 @@ namespace YourNewFriend
         {
             agent = GetComponent<NavMeshAgent>();
             agent.autoBraking = false;
+            startPosition = transform.position;
         }
 
 
@@ -35,12 +36,12 @@ namespace YourNewFriend
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
-                        StopCoroutine(LoseInterest());
-                        StartCoroutine(LoseInterest());
+                        if (loseInterestRoutine != null) StopCoroutine(loseInterestRoutine);
+                        loseInterestRoutine = StartCoroutine(LoseInterest());
                     }
-                    else
+                    else if (loseInterestRoutine == null)
                     {
-                        StartCoroutine(LoseInterest());
+                        loseInterestRoutine = StartCoroutine(LoseInterest());
                     }
                 }
             }
@@ -66,11 +67,12 @@ namespace YourNewFriend
         {
             yield return new WaitForSeconds(searchTime);
             isPlayerSeen = false;
+            loseInterestRoutine = null;
         }
 
         public void TriggerDeath()
         {
-            death.Invoke();
+            GameStateManager.Instance.OpenGameOver(true);
             Debug.Log("Player has been caught!");
         }
 
@@ -85,11 +87,27 @@ namespace YourNewFriend
 
         public void StopChase()
         {
+            if (loseInterestRoutine != null)
+            {
+                StopCoroutine(loseInterestRoutine);
+                loseInterestRoutine = null;
+            }
+
             isPlayerSeen = false;
             permanence = false;
             agent.ResetPath();
             MusicTriggerZone.mus_overlap = false;
             AudioManager.Instance.PlayBuffer();
+        }
+
+        /// <summary>
+        /// Connect this to the GameOverUI's onResume event, so the bot gives up the chase
+        /// and warps back to where it started as soon as the player respawns.
+        /// </summary>
+        public void ReturnToStartPosition()
+        {
+            StopChase();
+            agent.Warp(startPosition);
         }
     }
 }

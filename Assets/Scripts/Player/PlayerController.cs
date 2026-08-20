@@ -75,11 +75,11 @@ namespace YourNewFriend
             Cover.onOpenCover += HandleCoverOpen;
             GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
+            GameStateManager.Instance.IsGameOver += OnGameOverToggled;
 
             InitializeCameraRotation();
 
-            _playerPosition.position = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
-            Debug.Log("Position Loaded: " + _playerPosition.position);
+            TeleportToSavedPosition();
         }
 
         private void HandleCoverOpen(bool state)
@@ -99,11 +99,28 @@ namespace YourNewFriend
             _playerInput.OnPlayerUnequipItem -= OnPlayerUnequipItem;
 
             GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
+            GameStateManager.Instance.IsOpenSettings -= OnSettingsToggled;
+            GameStateManager.Instance.IsGameOver -= OnGameOverToggled;
         }
 
         public void LoadPlayerPosition()
         {
-            _playerPosition.position = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
+            TeleportToSavedPosition();
+        }
+
+        // Moving the transform directly while a CharacterController is enabled can get
+        // overridden/fought by its own collision resolution on the next Move() call, so
+        // the controller has to be disabled for the teleport to actually stick.
+        private void TeleportToSavedPosition()
+        {
+            Vector3 targetPosition = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
+
+            _controller.enabled = false;
+            _playerPosition.position = targetPosition;
+            _controller.enabled = true;
+
+            _playerVelocity = Vector3.zero;
+
             Debug.Log("Position Loaded: " + _playerPosition.position);
         }
 
@@ -116,6 +133,9 @@ namespace YourNewFriend
         public void SetControl(bool canControl)
         {
             _canControl = canControl;
+
+            if (!canControl)
+                _inputVector = Vector2.zero;
         }
 
         // --- Camera ---
@@ -299,6 +319,21 @@ namespace YourNewFriend
             if (!isOpen)
             {
                 _playerInput.ResumeGame();
+            }
+        }
+
+        private void OnGameOverToggled(bool isOpen)
+        {
+            if (isOpen)
+            {
+                Time.timeScale = 0.0f;
+                _playerInput.ShowMouse(true);
+                SetControl(false);
+            }
+            else
+            {
+                _playerInput.ResumeGame();
+                SetControl(true);
             }
         }
     }

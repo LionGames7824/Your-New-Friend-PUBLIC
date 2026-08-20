@@ -6,8 +6,10 @@ namespace YourNewFriend
     {
         public Action<bool> IsOpenInventory;
         public Action<bool> IsOpenSettings;
+        public Action<bool> IsGameOver;
         public bool HasInventoryOpen { get; private set; }
         public bool HasSettingsOpen { get; private set; }
+        public bool HasGameOverOpen { get; private set; }
 
         public void OpenInventory(bool isOpen)
         {
@@ -19,6 +21,12 @@ namespace YourNewFriend
         {
             IsOpenSettings?.Invoke(isOpen);
             HasSettingsOpen = isOpen;
+        }
+
+        public void OpenGameOver(bool isOpen)
+        {
+            IsGameOver?.Invoke(isOpen);
+            HasGameOverOpen = isOpen;
         }
     }
 }

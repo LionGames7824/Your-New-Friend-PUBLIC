@@ -24268,7 +24268,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 229663399}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1275721443}
+        m_TargetAssemblyTypeName: YourNewFriend.GameOverUI, Assembly-CSharp
+        m_MethodName: OnResumePressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &229663399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42592,6 +42604,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -52620,6 +52633,10 @@ PrefabInstance:
       value: Lever
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _resetOnGameOver
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -56098,6 +56115,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 1
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -85259,6 +85277,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -110482,6 +110501,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -130210,6 +130230,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 1
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -141210,6 +141231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275721442}
+  - component: {fileID: 1275721443}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -141237,6 +141259,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 900, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1275721443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275721441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b2b383f9e47aeaee8df7bf9c0f004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onResume:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 990643506136143033}
+        m_TargetAssemblyTypeName: YourNewFriend.Chase, Assembly-CSharp
+        m_MethodName: ReturnToStartPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8617178627913023809}
+        m_TargetAssemblyTypeName: YourNewFriend.PlayerController, Assembly-CSharp
+        m_MethodName: LoadPlayerPosition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1276539514
 GameObject:
   m_ObjectHideFlags: 0
@@ -186724,6 +186785,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls: []
@@ -209361,6 +209423,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -247755,24 +247818,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4817734352104231213}
-  death:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8617178627913023809}
-        m_TargetAssemblyTypeName: YourNewFriend.PlayerController, Assembly-CSharp
-        m_MethodName: LoadPlayerPosition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   sBot: {fileID: 990643506136143029}
   searchTime: 10
-  catchSpeed: 8
+  catchSpeed: 9
 --- !u!33 &997254311965612272
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -250630,6 +250678,10 @@ PrefabInstance:
     - target: {fileID: 8741653794332446512, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: m_Name
       value: Lever
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _resetOnGameOver
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.size
@@ -263270,6 +263322,7 @@ MonoBehaviour:
   _emptyHanded: 1
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -268257,6 +268310,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 1
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -276038,6 +276092,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -281536,6 +281591,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
@@ -288644,6 +288700,7 @@ MonoBehaviour:
   _emptyHanded: 0
   _totalUses: 1
   _autoInteract: 0
+  _resetOnGameOver: 0
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:

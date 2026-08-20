@@ -15,6 +15,9 @@ namespace YourNewFriend
         [SerializeField] private long _totalUses = 1;
         [SerializeField] private bool _autoInteract = false;
 
+        [Tooltip("If enabled, the use count resets when the player respawns after Game Over (e.g. a lever you should be able to retry).")]
+        [SerializeField] private bool _resetOnGameOver = false;
+
         [Header("Events")]
         [SerializeField] private UnityEvent _onCorrectItemUsed;
 
@@ -22,14 +25,36 @@ namespace YourNewFriend
 
         public string InteractionPrompt => _interactionPrompt;
 
+        private void OnEnable()
+        {
+            if (_resetOnGameOver)
+                GameStateManager.Instance.IsGameOver += HandleGameOver;
+        }
+
+        private void OnDisable()
+        {
+            if (_resetOnGameOver && GameStateManager.Instance != null)
+                GameStateManager.Instance.IsGameOver -= HandleGameOver;
+        }
+
+        private void HandleGameOver(bool isOpen)
+        {
+            if (!isOpen) ResetUses();
+        }
+
+        public void ResetUses()
+        {
+            UseCount = 0;
+        }
+
         private void OnTriggerEnter(Collider other)
-        {            
+        {
 
             if (!_autoInteract) return;
 
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
-            {                
+            {
                 Interact(player);
             }
         }
