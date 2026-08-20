@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.VFX;
+using YourNewFriend;
 
 public class Chase : MonoBehaviour
 {
@@ -76,6 +77,8 @@ public class Chase : MonoBehaviour
         agent.speed = catchSpeed;
         agent.destination = player.position;
         permanence = true;
+        MusicTriggerZone.mus_overlap = true;
+        AudioManager.Instance.PlayMusic("WHEREISHE", true);
     }
 
     public void StopChase()
@@ -83,5 +86,7 @@ public class Chase : MonoBehaviour
         isPlayerSeen = false;
         permanence = false;
         agent.ResetPath();
+        MusicTriggerZone.mus_overlap = false;
+        AudioManager.Instance.PlayBuffer();
     }
 }

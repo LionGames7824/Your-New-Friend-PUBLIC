@@ -9,7 +9,7 @@ namespace YourNewFriend
         private const string _playerTag = "Player";
         private bool _hasStoredPreviousTheme = false;
         private bool _sameTheme = false;
-
+        public static bool mus_overlap = false;
         private void OnTriggerEnter(Collider collision)
         {
             if (!collision.CompareTag(_playerTag)) return;
@@ -28,7 +28,11 @@ namespace YourNewFriend
             {
                 _sameTheme = false;
             }
-            AudioManager.Instance.PlayMusic(_musicName, !_sameTheme);
+            AudioManager.Instance.Buffer(_musicName, !_sameTheme);
+            if (!mus_overlap)
+            {
+                AudioManager.Instance.PlayBuffer();
+            }
         }
 
         private void OnTriggerExit(Collider collision)

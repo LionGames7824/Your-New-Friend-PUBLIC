@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 484954767467844990}
   - component: {fileID: 4452115249078568030}
   - component: {fileID: 4699705420507606546}
+  - component: {fileID: 1997000890691444175}
   m_Layer: 0
   m_Name: MER_Door_Right
   m_TagString: Untagged
@@ -181,6 +182,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.011750316, y: 0.01164565, z: 0.010747671}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &1997000890691444175
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6068871875725253639}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.006, y: 0.006, z: 0.0050000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &9174061878163530860
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +210,7 @@ GameObject:
   - component: {fileID: 6871958854524130600}
   - component: {fileID: 8196907889006859305}
   - component: {fileID: 7780251872409367065}
+  - component: {fileID: 3900062255284706874}
   m_Layer: 0
   m_Name: MER_Door_Left
   m_TagString: Untagged
@@ -287,3 +305,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.011750316, y: 0.01164565, z: 0.010747671}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &3900062255284706874
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174061878163530860}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.006, y: 0.006, z: 0.0050000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

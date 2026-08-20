@@ -12,12 +12,23 @@ namespace YourNewFriend
         [SerializeField] private AudioSource _sfxSource;
         [SerializeField] private float _fadeDuration = 1.5f; 
         private string _currentBackgroundMusic;
+        private string _bufferedName;
+        private bool _bufferedThemeState;
 
         private void Awake()
         {
             PlayMusic("escapeGuide", true);
         }
 
+        public void Buffer (string name, bool isNewTheme)
+        {
+            _bufferedName = name;
+            _bufferedThemeState = isNewTheme;
+        }
+        public void PlayBuffer()
+        {
+            PlayMusic(_bufferedName, _bufferedThemeState);
+        }
         public void PlayMusic(string name, bool fade)
         {
             AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
