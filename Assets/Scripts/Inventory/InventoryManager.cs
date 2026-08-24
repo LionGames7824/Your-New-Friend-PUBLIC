@@ -97,6 +97,32 @@ namespace YourNewFriend
             _itemEquipped = string.Empty;
         }
 
+        public void ConsumeEquippedItem()
+        {
+            if (string.IsNullOrEmpty(_itemEquipped)) return;
+
+            string itemId = _itemEquipped;
+            InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
+            if (item != null)
+            {
+                item.Quantity -= 1;
+                if (item.Quantity <= 0)
+                {
+                    _inventory.Items.Remove(item);
+                    OnInventoryUpdated?.Invoke(itemId, 0);
+                    OnItemRemoved?.Invoke(itemId);
+                }
+                else
+                {
+                    OnInventoryUpdated?.Invoke(itemId, item.Quantity);
+                }
+                SaveInventory();
+            }
+
+            _itemEquipped = string.Empty;
+            OnItemUnequipped?.Invoke();
+        }
+
         public bool CheckItem(string itemId)
         {
             InventoryItem item = _inventory.Items.Find(i => i.ItemName == itemId);
