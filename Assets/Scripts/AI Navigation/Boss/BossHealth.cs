@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class BossHealth : MonoBehaviour
+namespace YourNewFriend
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BossHealth : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private int _maxHealth = 100;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private int _currentHealth;
+
+        public int CurrentHealth => _currentHealth;
+        public int MaxHealth => _maxHealth;
+
+        public event Action<int, int> OnHealthChanged;
+        public event Action OnDeath;
+
+        private void Awake()
+        {
+            _currentHealth = _maxHealth;
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (damage <= 0)
+                return;
+
+            _currentHealth -= damage;
+            _currentHealth = Mathf.Max(_currentHealth, 0);
+
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+
+            if (_currentHealth == 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            OnDeath?.Invoke();
+        }
     }
 }
