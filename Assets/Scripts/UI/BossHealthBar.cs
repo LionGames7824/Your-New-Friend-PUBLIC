@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,16 +13,23 @@ namespace YourNewFriend
         private void OnEnable()
         {
             _bossHealth.OnHealthChanged += UpdateHealth;
+            _bossHealth.OnDeath += UpdateOnDeath;
         }
 
         private void OnDisable()
         {
             _bossHealth.OnHealthChanged -= UpdateHealth;
+            _bossHealth.OnDeath -= UpdateOnDeath;
         }
 
         private void UpdateHealth(int current, int max)
         {
             _slider.value = (float)current / max;
+        }
+
+        private void UpdateOnDeath()
+        {
+            Debug.Log("Insira morte screen");
         }
     }
 }
