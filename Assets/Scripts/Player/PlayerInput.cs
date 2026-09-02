@@ -132,6 +132,16 @@ namespace YourNewFriend
         {
             Cursor.lockState = show ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = show;
+
+            // While the cursor is locked, the Input System keeps its tracked mouse
+            // position frozen at wherever it was when it got locked - it only resyncs
+            // once real mouse movement is detected. That means the first UI clicks
+            // right after unlocking (e.g. the Game Over screen's Resume button) can
+            // land on a stale position and miss, until the player happens to move the
+            // mouse enough for it to catch up. Warping to the center forces an
+            // immediate, correct position update so the very next click is accurate.
+            if (show && Mouse.current != null)
+                Mouse.current.WarpCursorPosition(new Vector2(Screen.width / 2f, Screen.height / 2f));
         }
 
         public void ResumeGame()
