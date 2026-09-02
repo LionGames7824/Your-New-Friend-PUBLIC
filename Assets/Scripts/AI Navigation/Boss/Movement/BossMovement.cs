@@ -5,30 +5,32 @@ namespace YourNewFriend
     public class BossMovement : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Transform player;
+        [SerializeField] private Transform _player;
 
         [Header("Movement")]
-        [SerializeField] private float moveSpeed = 6f;
-        [SerializeField] private float hoverHeight = 3f;
+        [SerializeField] private float _moveSpeed = 6f;
+        [SerializeField] private float _hoverHeight = 3f;
         private bool canMove = true;
 
         [Header("Orbit")]
-        [SerializeField] private float orbitRadius = 5f;
-        [SerializeField] private float orbitSpeed = 40f;
+        [SerializeField] private float _orbitRadius = 5f;
+        [SerializeField] private float _orbitSpeed = 40f;
 
-        private Vector3 orbitTarget;
-        private float orbitAngle;
-        private bool isOrbiting;
+        private Vector3 _orbitTarget;
+        private float _orbitAngle;
+        private bool _isOrbiting;
+
+        private const string _playerTag = "Player";
 
         private void Awake()
         {
-            if (player == null)
+            if (_player == null)
             {
-                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                GameObject playerObject = GameObject.FindGameObjectWithTag(_playerTag);
 
                 if (playerObject != null)
                 {
-                    player = playerObject.transform;
+                    _player = playerObject.transform;
                 }
             }
 
@@ -37,16 +39,16 @@ namespace YourNewFriend
 
         private void Update()
         {
-            if (player == null)
+            if (_player == null)
                 return;
 
             if (!canMove)
             {
-                transform.LookAt(player);
+                transform.LookAt(_player);
                 return;
             }
 
-            if (!isOrbiting)
+            if (!_isOrbiting)
             {
                 ApproachOrbitPoint();
             }
@@ -60,16 +62,16 @@ namespace YourNewFriend
         {
             transform.position = Vector3.MoveTowards(
                 transform.position,
-                orbitTarget,
-                moveSpeed * Time.deltaTime);
+                _orbitTarget,
+                _moveSpeed * Time.deltaTime);
 
             float distance = Vector3.Distance(
                 transform.position,
-                orbitTarget);
+                _orbitTarget);
 
             if (distance <= 0.2f)
             {
-                isOrbiting = true;
+                _isOrbiting = true;
             }
         }
 
@@ -83,47 +85,47 @@ namespace YourNewFriend
                 Mathf.Cos(radians),
                 0f,
                 Mathf.Sin(radians)
-            ) * orbitRadius;
+            ) * _orbitRadius;
 
-            orbitTarget =
-                player.position +
-                Vector3.up * hoverHeight +
+            _orbitTarget =
+                _player.position +
+                Vector3.up * _hoverHeight +
                 offset;
 
-            orbitAngle = angle;
+            _orbitAngle = angle;
         }
 
         private void OrbitPlayer()
         {
-            orbitAngle += orbitSpeed * Time.deltaTime;
+            _orbitAngle += _orbitSpeed * Time.deltaTime;
 
-            float radians = orbitAngle * Mathf.Deg2Rad;
+            float radians = _orbitAngle * Mathf.Deg2Rad;
 
             Vector3 offset = new Vector3(
                 Mathf.Cos(radians),
                 0f,
                 Mathf.Sin(radians)
-            ) * orbitRadius;
+            ) * _orbitRadius;
 
             Vector3 targetPosition =
-                player.position +
-                Vector3.up * hoverHeight +
+                _player.position +
+                Vector3.up * _hoverHeight +
                 offset;
 
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 targetPosition,
-                moveSpeed * Time.deltaTime);
+                _moveSpeed * Time.deltaTime);
         }
 
         public void StopOrbit()
         {
-            isOrbiting = false;
+            _isOrbiting = false;
         }
 
         public void StartOrbit()
         {
-            isOrbiting = true;
+            _isOrbiting = true;
         }
 
         public void StopMovement()

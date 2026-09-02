@@ -6,65 +6,66 @@ namespace YourNewFriend
     public class BossAttack : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Transform player;
-        [SerializeField] private Transform laserOrigin;
-        [SerializeField] private LineRenderer laser;
+        [SerializeField] private Transform _player;
+        [SerializeField] private Transform _laserOrigin;
+        [SerializeField] private LineRenderer _laser;
 
         [Header("Laser")]
-        [SerializeField] private float laserDuration = 2f;
-        [SerializeField] private float laserHeight = 10f; // altura acima do alvo
-        [SerializeField] private float damage = 10f;
+        [SerializeField] private float _laserDuration = 2f;
+        [SerializeField] private float _laserHeight = 10f;
+        [SerializeField] private float _damage = 10f;
 
-        private bool isAttacking;
-        private Vector3 lockedTargetPos;
+        private bool _isAttacking;
+        private Vector3 _lockedTargetPos;
+        private const string _playerTag = "Player";
 
-        public bool IsAttacking => isAttacking;
+        public bool IsAttacking => _isAttacking;
         public event Action OnAttackFinished;
 
         private void Awake()
         {
-            if (player == null)
+            if (_player == null)
             {
-                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                GameObject playerObject = GameObject.FindGameObjectWithTag(_playerTag);
                 if (playerObject != null)
-                    player = playerObject.transform;
+                    _player = playerObject.transform;
             }
 
-            if (laser != null)
-                laser.enabled = false;
+            if (_laser != null)
+                _laser.enabled = false;
         }
 
         public void StartLaser()
         {
-            if (isAttacking || player == null || laserOrigin == null)
+            if (_isAttacking || _player == null || _laserOrigin == null)
                 return;
 
-            isAttacking = true;
+            _isAttacking = true;
 
-            if (laser != null)
+            if (_laser != null)
             {
-                laser.enabled = true;
-                AimLaser(); // já desenha a primeira posição correta
+                _laser.enabled = true;
+                AimLaser(); 
             }
 
-            Invoke(nameof(StopLaser), laserDuration);
+            Invoke(nameof(StopLaser), _laserDuration);
         }
 
         private void AimLaser()
         {
-            Vector3 origin = laserOrigin.position;
-            Vector3 endPoint = new Vector3(origin.x, player.position.y, origin.z); // desce reto, sem desviar em X/Z
+            Vector3 origin = _laserOrigin.position;
+            Vector3 endPoint = new Vector3(origin.x, _player.position.y, origin.z); 
 
-            laser.SetPosition(0, origin);
-            laser.SetPosition(1, endPoint);
+            _laser.SetPosition(0, origin);
+            _laser.SetPosition(1, endPoint);
         }
 
         private void StopLaser()
         {
-            isAttacking = false;
+            _isAttacking = false;
 
-            if (laser != null)
-                laser.enabled = false;
+            if (_laser != null)
+                _laser.enabled = false;
 
             OnAttackFinished?.Invoke();
         }

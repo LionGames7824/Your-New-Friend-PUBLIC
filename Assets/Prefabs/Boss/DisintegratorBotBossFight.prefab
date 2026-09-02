@@ -1326,12 +1326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71227a8f004e29429f79b135061de28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  laserOrigin: {fileID: 1759308168644050365}
-  laser: {fileID: 3154683165238434802}
-  laserDuration: 2
-  laserHeight: 10
-  damage: 10
+  _player: {fileID: 0}
+  _laserOrigin: {fileID: 1759308168644050365}
+  _laser: {fileID: 3154683165238434802}
+  _laserDuration: 2
+  _laserHeight: 10
+  _damage: 10
 --- !u!114 &1084596467555735131
 MonoBehaviour:
   m_ObjectHideFlags: 0

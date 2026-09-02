@@ -30,7 +30,7 @@ namespace YourNewFriend
 
         private void UpdateOnDeath()
         {
-            Debug.Log("Insira morte screen");
+            Debug.Log("Call game over screen");
         }
     }
 }

@@ -5,13 +5,13 @@ namespace YourNewFriend
 {
     public class BossDebugDamage : MonoBehaviour
     {
-        [SerializeField] private int damage = 10;
+        [SerializeField] private int _damage = 10;
 
-        private Camera mainCamera;
+        private Camera _mainCamera;
 
         private void Awake()
         {
-            mainCamera = Camera.main;
+            _mainCamera = Camera.main;
         }
 
         private void Update()
@@ -23,17 +23,17 @@ namespace YourNewFriend
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Debug.Log("Acertou: " + hit.collider.name);
+                Debug.Log("Hit: " + hit.collider.name);
 
                 BossHealth bossHealth = hit.collider.GetComponentInParent<BossHealth>();
                 if (bossHealth != null)
                 {
-                    bossHealth.TakeDamage(damage);
+                    bossHealth.TakeDamage(_damage);
                 }
             }
             else
             {
-                Debug.Log("Não acertou nada");
+                Debug.Log("Missed");
             }
         }
     }
