@@ -14,6 +14,7 @@ namespace YourNewFriend
         {
             _bossHealth.OnHealthChanged += UpdateHealth;
             _bossHealth.OnDeath += UpdateOnDeath;
+            UpdateHealth(_bossHealth.CurrentHealth, _bossHealth.MaxHealth);
         }
 
         private void OnDisable()
