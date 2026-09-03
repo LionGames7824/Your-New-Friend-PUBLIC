@@ -18,7 +18,7 @@ namespace YourNewFriend
         public Transform player;
         public Transform sBot;
         public float searchTime = 10f;
-        public float catchSpeed = 9f;
+        public float catchSpeed = 7f;
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -55,6 +55,10 @@ namespace YourNewFriend
                     }
                 }
             }
+            else
+            {
+                agent.destination = player.position;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -79,10 +83,12 @@ namespace YourNewFriend
         public void InitiateChase()
         {
             agent.speed = catchSpeed;
+            isPlayerSeen = true;
             agent.destination = player.position;
             permanence = true;
             MusicTriggerZone.mus_overlap = true;
             AudioManager.Instance.PlayMusic("WHEREISHE", true);
+            Debug.Log(agent.destination);
         }
 
         public void StopChase()

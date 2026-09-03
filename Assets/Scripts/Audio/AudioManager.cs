@@ -24,10 +24,21 @@ namespace YourNewFriend
         {
             _bufferedName = name;
             _bufferedThemeState = isNewTheme;
+            Debug.Log(_bufferedName);
+            Debug.Log(GetBackgroundMusic());
         }
         public void PlayBuffer()
         {
-            PlayMusic(_bufferedName, _bufferedThemeState);
+            if (_bufferedName != null)
+            {
+                PlayMusic(_bufferedName, _bufferedThemeState);
+            }
+            else
+            {
+                PlayMusic("SpaceSound", true);
+            }
+            Debug.Log(_bufferedName);
+            Debug.Log(GetBackgroundMusic());
         }
         public void PlayMusic(string name, bool fade)
         {

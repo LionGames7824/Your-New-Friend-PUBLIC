@@ -12,7 +12,6 @@ namespace YourNewFriend
         private void Start()
         {
             gameObject.SetActive(false);
-
             GameStateManager.Instance.IsGameOver += HandleGameOver;
         }
 
@@ -24,6 +23,7 @@ namespace YourNewFriend
 
         private void HandleGameOver(bool isOpen)
         {
+            AudioManager.Instance.PlayMusic("GameOver", false);
             gameObject.SetActive(isOpen);
         }
 
@@ -33,6 +33,7 @@ namespace YourNewFriend
         public void OnResumePressed()
         {
             Debug.Log("Resume button pressed");
+            AudioManager.Instance.PlayBuffer();
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(null);
 

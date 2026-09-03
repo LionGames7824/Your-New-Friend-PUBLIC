@@ -18,3 +18,6 @@ MonoBehaviour:
   - SpeakerName: 
     dialogueDisplayTime: 1
     BodyText: 
+  - SpeakerName: 
+    dialogueDisplayTime: 1
+    BodyText: 

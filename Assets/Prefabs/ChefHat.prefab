@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4094799019219634241}
   - component: {fileID: 9107364030989867316}
   - component: {fileID: 2588645428137418440}
+  - component: {fileID: 1011395208962261758}
   m_Layer: 0
   m_Name: ChefHat
   m_TagString: Untagged
@@ -106,3 +107,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1956749996919341800, guid: 25c9805233401254aa84bf4115b59a7c, type: 3}
+--- !u!114 &1011395208962261758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3098737129335105977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24d2349db0bb5c45b6dc96c4fde4265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: chefhat
+  quantity: 1
+  _prompt: '[E] Pick Up'

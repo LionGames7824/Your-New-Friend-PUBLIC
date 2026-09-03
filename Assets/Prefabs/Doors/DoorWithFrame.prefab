@@ -629,6 +629,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8783940285090022715}
     - target: {fileID: 1891577946934759943, guid: a411eabee862dff4c9a0110a96dca23b, type: 3}
+      propertyPath: _resetOnGameOver
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891577946934759943, guid: a411eabee862dff4c9a0110a96dca23b, type: 3}
       propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}

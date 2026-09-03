@@ -405,6 +405,7 @@ MonoBehaviour:
   _doorID: b0358a34-d89e-4fde-a699-6cd72435bfa4
   _startOpened: 0
   _lockState: 2
+  _resetOnGameOver: 0
   _panelLight: {fileID: 9221863032104796008}
   _onDoorOpened:
     m_PersistentCalls:

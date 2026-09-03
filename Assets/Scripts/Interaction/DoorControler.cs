@@ -20,6 +20,7 @@ namespace YourNewFriend
         [Header("Settings")]
         [SerializeField] private bool _startOpened = false;
         [SerializeField] private DoorLockState _lockState = DoorLockState.OffGreen;
+        [SerializeField] private bool _resetOnGameOver = false;
 
         [Header("References")]
         [SerializeField] private PanelLightController _panelLight;
@@ -37,6 +38,7 @@ namespace YourNewFriend
 
         private void Start()
         {
+            ListGeneration.doors.Add(gameObject);
             ApplyLockState();
             LoadDoorState();
         }
@@ -144,8 +146,13 @@ namespace YourNewFriend
         private void SaveDoorState(bool open)
         {
             if (string.IsNullOrEmpty(_doorID)) return;
-            PlayerPrefs.SetInt(_doorID, open ? 1 : 0);
-            PlayerPrefs.Save();
+            if (_resetOnGameOver == false)
+            {
+                Debug.Log($"DOOR WAS SAVED: {_doorID} " + open);
+                PlayerPrefs.SetInt(_doorID, open ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+            return;
         }
 
         private void LoadDoorState()
@@ -160,6 +167,23 @@ namespace YourNewFriend
             {
                 _anim.SetBool(DOOR_STATE, true);
                 _onDoorOpened.Invoke();
+            }
+            else
+            {
+                _anim.SetBool(DOOR_STATE, false);
+            }
+        }
+
+        public static void LoadAllDoorsState()
+        {
+            foreach (var door in ListGeneration.doors)
+            {
+                var doorController = door.GetComponent<DoorController>();
+                if (doorController != null)
+                {
+                    Debug.Log("All the doors are loaded");
+                    doorController.LoadDoorState();
+                }
             }
         }
 

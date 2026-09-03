@@ -40,10 +40,16 @@ namespace YourNewFriend
             if (!collision.CompareTag(_playerTag)) return;
 
             // Go back to the previous track if it was stored
+
             if (_hasStoredPreviousTheme && !string.IsNullOrEmpty(_previousTheme))
             {
                 AudioManager.Instance.PlayMusic(_previousTheme, false);
                 _hasStoredPreviousTheme = false; // Reset for next entry
+            }
+            else
+            {
+                AudioManager.Instance.Buffer("SpaceSound", true);
+                AudioManager.Instance.PlayBuffer();
             }
         }
     }

@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8706708338429840759}
-  - component: {fileID: 6769595217202703242}
+  - component: {fileID: 2522166165907323545}
   m_Layer: 0
   m_Name: WalkieTalkie
   m_TagString: Untagged
@@ -278,7 +278,7 @@ Transform:
   - {fileID: 1666344293761832696}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90.654, y: 30.048004, z: 0}
---- !u!114 &6769595217202703242
+--- !u!114 &2522166165907323545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,12 +287,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4507281280105160656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b56bbef6dcd542044ad035153a305e67, type: 3}
+  m_Script: {fileID: 11500000, guid: d24d2349db0bb5c45b6dc96c4fde4265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemID: walkie_talkie
+  _id: walkie_talkie
   quantity: 1
-  _interactionPrompt: Pick Up
+  _prompt: '[E] Pick Up'
 --- !u!1 &5413605270193888046
 GameObject:
   m_ObjectHideFlags: 0
