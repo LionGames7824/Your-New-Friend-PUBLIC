@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2152583319151868140
+--- !u!1 &86919287120434216
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8005305300918455642}
-  - component: {fileID: 3482610709266071842}
-  - component: {fileID: 2970886774539524486}
-  - component: {fileID: 3497395462724320237}
-  - component: {fileID: 4625731983898994421}
-  - component: {fileID: 6557761074214407728}
+  - component: {fileID: 4059667946537241779}
+  - component: {fileID: 2599379328779049412}
+  - component: {fileID: 3942203885570315837}
+  - component: {fileID: 2736080244588052350}
+  - component: {fileID: 8476072343020014292}
+  - component: {fileID: 3004475778430130442}
   m_Layer: 6
-  m_Name: KeyCard
+  m_Name: KeyCard_W
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8005305300918455642
+--- !u!4 &4059667946537241779
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152583319151868140}
-  m_LocalRotation: {x: -0, y: -0.36627758, z: -0, w: 0.93050563}
-  m_LocalPosition: {x: 5.514, y: 2.415, z: 8.776}
-  m_LocalScale: {x: 0.2627589, y: 0.013137947, z: 0.39413837}
+  m_GameObject: {fileID: 86919287120434216}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.76604444, z: 0, w: 0.64278764}
+  m_LocalPosition: {x: 136.42297, y: 0.2477428, z: 8.61731}
+  m_LocalScale: {x: 0.26275897, y: 0.013137947, z: 0.39413843}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -42.972, z: 0}
---- !u!33 &3482610709266071842
+--- !u!33 &2599379328779049412
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152583319151868140}
+  m_GameObject: {fileID: 86919287120434216}
   m_Mesh: {fileID: -5495902117074765545, guid: d7b46d047ced22548ad61429eed07e9e, type: 3}
---- !u!23 &2970886774539524486
+--- !u!23 &3942203885570315837
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152583319151868140}
+  m_GameObject: {fileID: 86919287120434216}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 6ebfcb27fb0f9de4d8991e64033f1a6d, type: 2}
   - {fileID: 2100000, guid: 6ebfcb27fb0f9de4d8991e64033f1a6d, type: 2}
-  - {fileID: 2100000, guid: c9a4679a9ffc41d4badda105027134f6, type: 2}
+  - {fileID: 2100000, guid: 0fa7aeee94dcbf1418833e4523772947, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,44 +88,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3497395462724320237
+--- !u!65 &2736080244588052350
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152583319151868140}
+  m_GameObject: {fileID: 86919287120434216}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: -0.000030517578, y: -0.000015258789, z: 0.000015258789}
---- !u!114 &4625731983898994421
+--- !u!114 &8476072343020014292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152583319151868140}
+  m_GameObject: {fileID: 86919287120434216}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d24d2349db0bb5c45b6dc96c4fde4265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: keycard_cyan
-  _prompt: Press 'e' to pick up the object
---- !u!54 &6557761074214407728
+  _id: keycard_white
+  quantity: 1
+  _prompt: '[E] PICK UP'
+--- !u!54 &3004475778430130442
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2152583319151868140}
-  serializedVersion: 2
+  m_GameObject: {fileID: 86919287120434216}
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

@@ -361,8 +361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconMapping:
-  - ItemId: keycard_cyan
-    TargetSprite: {fileID: 21300000, guid: f4f4ddaaeb7470c49b246ec2548aa2f5, type: 3}
   - ItemId: panel_key
     TargetSprite: {fileID: 0}
   - ItemId: cutting_pliers
@@ -376,6 +374,18 @@ MonoBehaviour:
   - ItemId: db_tip
     TargetSprite: {fileID: 21300000, guid: f2debd1bf6808f24aa9c264e7b7e7c14, type: 3}
   - ItemId: battery
+    TargetSprite: {fileID: 0}
+  - ItemId: keycard_cyan
+    TargetSprite: {fileID: 21300000, guid: f4f4ddaaeb7470c49b246ec2548aa2f5, type: 3}
+  - ItemId: keycard_white
+    TargetSprite: {fileID: 21300000, guid: 92bffde87458a82418b2c6815f1bc787, type: 3}
+  - ItemId: keycard_red
+    TargetSprite: {fileID: 21300000, guid: 3501bb9eaac1ef040ace20c579a7276a, type: 3}
+  - ItemId: keycard_yellow
+    TargetSprite: {fileID: 21300000, guid: 2b8cdf317881ac2488001d6cfe8c293c, type: 3}
+  - ItemId: keycard_pink
+    TargetSprite: {fileID: 21300000, guid: daf4ebc5629c7354eb08997b0f960af4, type: 3}
+  - ItemId: knife
     TargetSprite: {fileID: 0}
   _quantityLabel: {fileID: 2561196559767548650}
   _icon: {fileID: 1813637753467309716}
