@@ -5,8 +5,8 @@ namespace YourNewFriend
 {
     public class SafeDisplayUI : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _displayText;
         [SerializeField] private SafeManager _safeManager;
+        [SerializeField] private GameObject[] _asteriskSlots; 
 
         private void OnEnable()
         {
@@ -20,7 +20,10 @@ namespace YourNewFriend
 
         private void HandleInputChanged(string currentInput)
         {
-            _displayText.text = new string('*', currentInput.Length);
+            for (int i = 0; i < _asteriskSlots.Length; i++)
+            {
+                _asteriskSlots[i].SetActive(i < currentInput.Length);
+            }
         }
     }
 }
