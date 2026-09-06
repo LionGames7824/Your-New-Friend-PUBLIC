@@ -6,27 +6,26 @@ namespace YourNewFriend
     {
         [Header("References")]
         [SerializeField] private Transform _player;
+        [SerializeField] private BossArenaBounds _arenaBounds;
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 6f;
         [SerializeField] private float _hoverHeight = 3f;
-        private bool canMove = true;
 
-        [Header("Orbit")]
-        [SerializeField] private float _orbitRadius = 5f;
-        [SerializeField] private float _orbitSpeed = 40f;
+        [Header("Wander")]
+        [Tooltip("How close to the current target before picking a new random point.")]
+        [SerializeField] private float _arrivalDistance = 0.5f;
 
-        private Vector3 _orbitTarget;
-        private float _orbitAngle;
-        private bool _isOrbiting;
+        private Vector3 _wanderTarget;
+        private bool _canMove = true;
 
-        private const string _playerTag = "Player";
+        private const string PlayerTag = "Player";
 
         private void Awake()
         {
             if (_player == null)
             {
-                GameObject playerObject = GameObject.FindGameObjectWithTag(_playerTag);
+                GameObject playerObject = GameObject.FindGameObjectWithTag(PlayerTag);
 
                 if (playerObject != null)
                 {
@@ -34,7 +33,12 @@ namespace YourNewFriend
                 }
             }
 
-            ChooseOrbitPoint();
+            if (_arenaBounds == null)
+            {
+                _arenaBounds = FindFirstObjectByType<BossArenaBounds>();
+            }
+
+            ChooseWanderPoint();
         }
 
         private void Update()
@@ -42,100 +46,75 @@ namespace YourNewFriend
             if (_player == null)
                 return;
 
-            if (!canMove)
+            if (!_canMove)
             {
                 transform.LookAt(_player);
                 return;
             }
 
-            if (!_isOrbiting)
-            {
-                ApproachOrbitPoint();
-            }
-            else
-            {
-                OrbitPlayer();
-            }
+            Wander();
+            transform.LookAt(_player);
         }
 
-        private void ApproachOrbitPoint()
+        // Just flies from one random point inside the arena to the next,
+        // forever. No orbiting the player, no clamping a moving target
+        // against the walls - every waypoint is generated already inside
+        // the bounds (see BossArenaBounds.GetRandomPoint), so there's
+        // nothing for the boss to get stuck against near a corner.
+        private void Wander()
         {
             transform.position = Vector3.MoveTowards(
                 transform.position,
-                _orbitTarget,
+                _wanderTarget,
                 _moveSpeed * Time.deltaTime);
 
-            float distance = Vector3.Distance(
-                transform.position,
-                _orbitTarget);
+            float distance = Vector3.Distance(transform.position, _wanderTarget);
 
-            if (distance <= 0.2f)
+            if (distance <= _arrivalDistance)
             {
-                _isOrbiting = true;
+                ChooseWanderPoint();
             }
         }
 
-        private void ChooseOrbitPoint()
+        private void ChooseWanderPoint()
         {
-            float angle = Random.Range(0f, 360f);
+            float height = GetHoverHeight();
 
-            float radians = angle * Mathf.Deg2Rad;
-
-            Vector3 offset = new Vector3(
-                Mathf.Cos(radians),
-                0f,
-                Mathf.Sin(radians)
-            ) * _orbitRadius;
-
-            _orbitTarget =
-                _player.position +
-                Vector3.up * _hoverHeight +
-                offset;
-
-            _orbitAngle = angle;
+            _wanderTarget = _arenaBounds != null
+                ? _arenaBounds.GetRandomPoint(height)
+                : transform.position;
         }
 
-        private void OrbitPlayer()
+        private float GetHoverHeight()
         {
-            _orbitAngle += _orbitSpeed * Time.deltaTime;
+            // Anchored to the arena itself (not the player's current Y) so
+            // the hover height stays steady even if the player jumps or
+            // stands on uneven ground.
+            float baseHeight = _arenaBounds != null ? _arenaBounds.transform.position.y : transform.position.y;
+            return baseHeight + _hoverHeight;
+        }
 
-            float radians = _orbitAngle * Mathf.Deg2Rad;
-
-            Vector3 offset = new Vector3(
-                Mathf.Cos(radians),
-                0f,
-                Mathf.Sin(radians)
-            ) * _orbitRadius;
-
-            Vector3 targetPosition =
-                _player.position +
-                Vector3.up * _hoverHeight +
-                offset;
-
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                targetPosition,
-                _moveSpeed * Time.deltaTime);
+        // Names kept as-is (StartOrbit/StopOrbit) so BossController doesn't
+        // need to change - they now just start/stop the wander behaviour.
+        public void StartOrbit()
+        {
+            ChooseWanderPoint();
+            _canMove = true;
         }
 
         public void StopOrbit()
         {
-            _isOrbiting = false;
-        }
-
-        public void StartOrbit()
-        {
-            _isOrbiting = true;
+            _canMove = false;
         }
 
         public void StopMovement()
         {
-            canMove = false;
+            _canMove = false;
         }
 
         public void ResumeMovement()
         {
-            canMove = true;
+            _canMove = true;
         }
     }
 }
