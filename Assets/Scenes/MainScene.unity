@@ -156005,6 +156005,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: DisintegratorBotBossFight
       objectReference: {fileID: 0}
+    - target: {fileID: 3154683165238434802, guid: cddd4ce7435467648991f30074cd5080, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154683165238434802, guid: cddd4ce7435467648991f30074cd5080, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154683165238434802, guid: cddd4ce7435467648991f30074cd5080, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab5d91dafa4cb6947baed3d5e376e8ad, type: 2}
+    - target: {fileID: 3154683165238434802, guid: cddd4ce7435467648991f30074cd5080, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab5d91dafa4cb6947baed3d5e376e8ad, type: 2}
+    - target: {fileID: 3154683165238434802, guid: cddd4ce7435467648991f30074cd5080, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3317302369680705199, guid: cddd4ce7435467648991f30074cd5080, type: 3}
       propertyPath: arenaSize.x
       value: 50
