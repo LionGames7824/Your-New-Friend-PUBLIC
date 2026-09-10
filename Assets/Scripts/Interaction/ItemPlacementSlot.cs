@@ -20,6 +20,8 @@ namespace YourNewFriend
         [SerializeField] private string _interactionPrompt = "[E] Place XXX";
         [Tooltip("Where the item snaps to. Leave empty to use this object's own transform.")]
         [SerializeField] private Transform _placementPoint;
+        [SerializeField] private bool _canPickUp = false;
+        [SerializeField] private bool _placeOnce = true;
 
         [Header("Events")]
         [Tooltip("Called right after the item is placed - e.g. to unlock a door, play a sound/animation.")]
@@ -68,7 +70,10 @@ namespace YourNewFriend
                 return false;
             }
 
-            _data.IsPlaced = true;
+            if (_placeOnce)
+            {
+                _data.IsPlaced = true;
+            }
             SaveData();
 
             InventoryManager.Instance.ConsumeEquippedItem();
@@ -92,7 +97,7 @@ namespace YourNewFriend
                 if (rb != null)
                 {
                     rb.isKinematic = true;
-                    rb.detectCollisions = false;
+                    rb.detectCollisions = _canPickUp;
                 }
 
                 Transform target = _placementPoint != null ? _placementPoint : transform;
