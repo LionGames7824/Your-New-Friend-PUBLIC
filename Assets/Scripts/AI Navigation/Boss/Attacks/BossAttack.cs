@@ -29,7 +29,12 @@ namespace YourNewFriend
         [Tooltip("How far each point can wobble sideways off the straight line, for a crackling energy look.")]
         [SerializeField] private float _jitterAmount = 0.08f;
 
+        [Header("Laser Hit")]
+        [Tooltip("How close (measured flat, ignoring height) the player needs to be to the beam's column to get hit.")]
+        [SerializeField] private float _hitRadius = 1f;
+
         private bool _isAttacking;
+        private bool _hasHitPlayer;
         private float _attackElapsed;
         private const string _playerTag = "Player";
 
@@ -56,6 +61,7 @@ namespace YourNewFriend
 
             _attackElapsed += Time.deltaTime;
             UpdateLaserVisuals();
+            CheckPlayerHit();
         }
 
         public void StartLaser()
@@ -64,6 +70,7 @@ namespace YourNewFriend
                 return;
 
             _isAttacking = true;
+            _hasHitPlayer = false;
             _attackElapsed = 0f;
 
             if (_laser != null)
@@ -120,6 +127,26 @@ namespace YourNewFriend
 
                 _laser.SetPosition(i, point + jitter);
             }
+        }
+
+        private void CheckPlayerHit()
+        {
+            if (_hasHitPlayer || _player == null || _laserOrigin == null)
+                return;
+
+            if (_attackElapsed < _growInTime)
+                return;
+
+            Vector3 origin = _laserOrigin.position;
+            float dx = _player.position.x - origin.x;
+            float dz = _player.position.z - origin.z;
+            float horizontalDistanceSqr = dx * dx + dz * dz;
+
+            if (horizontalDistanceSqr > _hitRadius * _hitRadius)
+                return;
+
+            _hasHitPlayer = true;
+            GameStateManager.Instance.OpenGameOver(true);
         }
 
         private void StopLaser()
