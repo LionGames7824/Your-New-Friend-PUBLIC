@@ -6,27 +6,21 @@ namespace YourNewFriend
     {
         [Header("References")]
         [SerializeField] private Transform _player;
+        [SerializeField] private BossArenaBounds _arenaBounds;
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 6f;
         [SerializeField] private float _hoverHeight = 3f;
-        private bool canMove = true;
 
-        [Header("Orbit")]
-        [SerializeField] private float _orbitRadius = 5f;
-        [SerializeField] private float _orbitSpeed = 40f;
+        private bool _canMove;
 
-        private Vector3 _orbitTarget;
-        private float _orbitAngle;
-        private bool _isOrbiting;
-
-        private const string _playerTag = "Player";
+        private const string PlayerTag = "Player";
 
         private void Awake()
         {
             if (_player == null)
             {
-                GameObject playerObject = GameObject.FindGameObjectWithTag(_playerTag);
+                GameObject playerObject = GameObject.FindGameObjectWithTag(PlayerTag);
 
                 if (playerObject != null)
                 {
@@ -34,7 +28,10 @@ namespace YourNewFriend
                 }
             }
 
-            ChooseOrbitPoint();
+            if (_arenaBounds == null)
+            {
+                _arenaBounds = FindFirstObjectByType<BossArenaBounds>();
+            }
         }
 
         private void Update()
@@ -42,75 +39,19 @@ namespace YourNewFriend
             if (_player == null)
                 return;
 
-            if (!canMove)
+            if (!_canMove)
             {
-                transform.LookAt(_player);
+                FaceTowardsPlayer();
                 return;
             }
 
-            if (!_isOrbiting)
-            {
-                ApproachOrbitPoint();
-            }
-            else
-            {
-                OrbitPlayer();
-            }
+            Chase();
+            FaceTowardsPlayer();
         }
 
-        private void ApproachOrbitPoint()
+        private void Chase()
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                _orbitTarget,
-                _moveSpeed * Time.deltaTime);
-
-            float distance = Vector3.Distance(
-                transform.position,
-                _orbitTarget);
-
-            if (distance <= 0.2f)
-            {
-                _isOrbiting = true;
-            }
-        }
-
-        private void ChooseOrbitPoint()
-        {
-            float angle = Random.Range(0f, 360f);
-
-            float radians = angle * Mathf.Deg2Rad;
-
-            Vector3 offset = new Vector3(
-                Mathf.Cos(radians),
-                0f,
-                Mathf.Sin(radians)
-            ) * _orbitRadius;
-
-            _orbitTarget =
-                _player.position +
-                Vector3.up * _hoverHeight +
-                offset;
-
-            _orbitAngle = angle;
-        }
-
-        private void OrbitPlayer()
-        {
-            _orbitAngle += _orbitSpeed * Time.deltaTime;
-
-            float radians = _orbitAngle * Mathf.Deg2Rad;
-
-            Vector3 offset = new Vector3(
-                Mathf.Cos(radians),
-                0f,
-                Mathf.Sin(radians)
-            ) * _orbitRadius;
-
-            Vector3 targetPosition =
-                _player.position +
-                Vector3.up * _hoverHeight +
-                offset;
+            Vector3 targetPosition = GetChaseTarget();
 
             transform.position = Vector3.MoveTowards(
                 transform.position,
@@ -118,24 +59,51 @@ namespace YourNewFriend
                 _moveSpeed * Time.deltaTime);
         }
 
-        public void StopOrbit()
+        private Vector3 GetChaseTarget()
         {
-            _isOrbiting = false;
+            float height = GetHoverHeight();
+            Vector3 targetPosition = new Vector3(_player.position.x, height, _player.position.z);
+
+            return _arenaBounds != null
+                ? _arenaBounds.ClampPosition(targetPosition)
+                : targetPosition;
         }
 
-        public void StartOrbit()
+        private float GetHoverHeight()
         {
-            _isOrbiting = true;
+            float baseHeight = _arenaBounds != null ? _arenaBounds.transform.position.y : transform.position.y;
+            return baseHeight + _hoverHeight;
+        }
+
+        private void FaceTowardsPlayer()
+        {
+            Vector3 direction = _player.position - transform.position;
+            direction.y = 0f;
+
+            if (direction.sqrMagnitude < 0.0001f)
+                return;
+
+            transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        }
+
+        public void StartChase()
+        {
+            _canMove = true;
+        }
+
+        public void StopChase()
+        {
+            _canMove = false;
         }
 
         public void StopMovement()
         {
-            canMove = false;
+            _canMove = false;
         }
 
         public void ResumeMovement()
         {
-            canMove = true;
+            _canMove = true;
         }
     }
 }

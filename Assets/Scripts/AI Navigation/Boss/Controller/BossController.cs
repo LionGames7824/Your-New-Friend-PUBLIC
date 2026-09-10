@@ -4,9 +4,10 @@ namespace YourNewFriend
 {
     public enum BossState
     {
+        Idle,
         Intro,
         Approach,
-        Orbit,
+        Chase,
         Laser,
         Dash,
         Dead
@@ -42,6 +43,9 @@ namespace YourNewFriend
                 _phaseManager = GetComponent<BossPhaseManager>();
 
             _orbitDuration = _baseOrbitDuration;
+
+            // Nothing should move or attack until StartFight() is called
+            _movement.StopMovement();
         }
 
         private void OnEnable()
@@ -60,6 +64,14 @@ namespace YourNewFriend
 
         private void Start()
         {
+            ChangeState(BossState.Idle);
+        }
+
+        public void StartFight()
+        {
+            if (_currentState != BossState.Idle)
+                return;
+
             ChangeState(BossState.Intro);
         }
 
@@ -74,10 +86,10 @@ namespace YourNewFriend
             {
                 case BossState.Intro:
                     if (_stateTimer >= _introDuration)
-                        ChangeState(BossState.Orbit);
+                        ChangeState(BossState.Chase);
                     break;
 
-                case BossState.Orbit:
+                case BossState.Chase:
                     if (_stateTimer >= _orbitDuration)
                         ChangeState(BossState.Laser);
                     break;
@@ -91,12 +103,16 @@ namespace YourNewFriend
 
             switch (_currentState)
             {
+                case BossState.Idle:
+                    _movement.StopMovement();
+                    break;
+
                 case BossState.Intro:
                     break;
 
-                case BossState.Orbit:
+                case BossState.Chase:
                     _movement.ResumeMovement();
-                    _movement.StartOrbit();
+                    _movement.StartChase();
                     break;
 
                 case BossState.Laser:
@@ -113,7 +129,7 @@ namespace YourNewFriend
         private void HandleAttackFinished()
         {
             if (_currentState == BossState.Laser)
-                ChangeState(BossState.Orbit);
+                ChangeState(BossState.Chase);
         }
 
         private void HandleDeath()

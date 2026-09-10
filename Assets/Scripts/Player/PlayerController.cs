@@ -38,6 +38,8 @@ namespace YourNewFriend
 
         [Header("Player Spawn Positions")]
         [SerializeField] private GameObject[] _spawn;
+        [Tooltip("Uncheck for a quick test: keeps whatever position the Player has in the scene instead of teleporting to the saved PlayerPrefs checkpoint on Play.")]
+        [SerializeField] private bool _useSavedPositionOnStart = true;
 
         // Player State Variables
         private float _playerSpeed;
@@ -79,7 +81,10 @@ namespace YourNewFriend
 
             InitializeCameraRotation();
 
-            TeleportToSavedPosition();
+            if (_useSavedPositionOnStart)
+            {
+                TeleportToSavedPosition();
+            }
         }
 
         private void HandleCoverOpen(bool state)

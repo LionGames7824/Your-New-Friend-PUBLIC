@@ -10,7 +10,6 @@ namespace YourNewFriend
         public void PlayOpen()
         {
             _animator.SetTrigger(OpenTrigger);
-            Debug.Log("PlayOpen chamado às " + Time.time);
         }
     }
 }

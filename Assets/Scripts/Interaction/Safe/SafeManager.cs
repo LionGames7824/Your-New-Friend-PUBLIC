@@ -6,8 +6,8 @@ namespace YourNewFriend
 {
     public class SafeManager : Singleton<SafeManager>
     {
-        [SerializeField] private string _correctCode = "1234";
-        [SerializeField] private int _maxLength = 4;
+        [SerializeField] private string _correctCode = "12345";
+        [SerializeField] private int _maxLength = 5;
 
         [Header("Events")]
         [SerializeField] private UnityEvent _onUnlocked;
@@ -42,12 +42,10 @@ namespace YourNewFriend
         {
             if (_currentInput == _correctCode)
             {
-                Debug.Log("Acertou mizeravi");
                 _onUnlocked.Invoke();
             }
             else
             {
-                Debug.Log("Errou senha");
                 _onWrongCode.Invoke();
             }
 
