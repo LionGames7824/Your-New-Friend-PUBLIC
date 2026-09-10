@@ -12,12 +12,7 @@ namespace YourNewFriend
         [SerializeField] private float _moveSpeed = 6f;
         [SerializeField] private float _hoverHeight = 3f;
 
-        [Header("Wander")]
-        [Tooltip("How close to the current target before picking a new random point.")]
-        [SerializeField] private float _arrivalDistance = 0.5f;
-
-        private Vector3 _wanderTarget;
-        private bool _canMove = true;
+        private bool _canMove;
 
         private const string PlayerTag = "Player";
 
@@ -37,8 +32,6 @@ namespace YourNewFriend
             {
                 _arenaBounds = FindFirstObjectByType<BossArenaBounds>();
             }
-
-            ChooseWanderPoint();
         }
 
         private void Update()
@@ -48,61 +41,57 @@ namespace YourNewFriend
 
             if (!_canMove)
             {
-                transform.LookAt(_player);
+                FaceTowardsPlayer();
                 return;
             }
 
-            Wander();
-            transform.LookAt(_player);
+            Chase();
+            FaceTowardsPlayer();
         }
 
-        // Just flies from one random point inside the arena to the next,
-        // forever. No orbiting the player, no clamping a moving target
-        // against the walls - every waypoint is generated already inside
-        // the bounds (see BossArenaBounds.GetRandomPoint), so there's
-        // nothing for the boss to get stuck against near a corner.
-        private void Wander()
+        private void Chase()
         {
+            Vector3 targetPosition = GetChaseTarget();
+
             transform.position = Vector3.MoveTowards(
                 transform.position,
-                _wanderTarget,
+                targetPosition,
                 _moveSpeed * Time.deltaTime);
-
-            float distance = Vector3.Distance(transform.position, _wanderTarget);
-
-            if (distance <= _arrivalDistance)
-            {
-                ChooseWanderPoint();
-            }
         }
 
-        private void ChooseWanderPoint()
+        private Vector3 GetChaseTarget()
         {
             float height = GetHoverHeight();
+            Vector3 targetPosition = new Vector3(_player.position.x, height, _player.position.z);
 
-            _wanderTarget = _arenaBounds != null
-                ? _arenaBounds.GetRandomPoint(height)
-                : transform.position;
+            return _arenaBounds != null
+                ? _arenaBounds.ClampPosition(targetPosition)
+                : targetPosition;
         }
 
         private float GetHoverHeight()
         {
-            // Anchored to the arena itself (not the player's current Y) so
-            // the hover height stays steady even if the player jumps or
-            // stands on uneven ground.
             float baseHeight = _arenaBounds != null ? _arenaBounds.transform.position.y : transform.position.y;
             return baseHeight + _hoverHeight;
         }
 
-        // Names kept as-is (StartOrbit/StopOrbit) so BossController doesn't
-        // need to change - they now just start/stop the wander behaviour.
-        public void StartOrbit()
+        private void FaceTowardsPlayer()
         {
-            ChooseWanderPoint();
+            Vector3 direction = _player.position - transform.position;
+            direction.y = 0f;
+
+            if (direction.sqrMagnitude < 0.0001f)
+                return;
+
+            transform.rotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        }
+
+        public void StartChase()
+        {
             _canMove = true;
         }
 
-        public void StopOrbit()
+        public void StopChase()
         {
             _canMove = false;
         }

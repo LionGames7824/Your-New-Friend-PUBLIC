@@ -136705,6 +136705,7 @@ Transform:
   - {fileID: 1342019359}
   - {fileID: 1351780445}
   - {fileID: 955571742}
+  - {fileID: 2895409531254577796}
   m_Father: {fileID: 1778476141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1189295087
@@ -156049,7 +156050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3915727042425865074, guid: cddd4ce7435467648991f30074cd5080, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3724008
+      value: 29.168453
       objectReference: {fileID: 0}
     - target: {fileID: 3915727042425865074, guid: cddd4ce7435467648991f30074cd5080, type: 3}
       propertyPath: m_LocalPosition.z
@@ -268823,6 +268824,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450652126840456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2895409531254577796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931843841007501066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.4821167, y: 21.33675, z: -4.2766266}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1188366515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2898394802316201634
 Transform:
   m_ObjectHideFlags: 0
@@ -276273,7 +276289,7 @@ Transform:
   m_GameObject: {fileID: 7523174341235127605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 160, y: -39.96, z: -167.5}
+  m_LocalPosition: {x: 160, y: -20.774914, z: -165.0051}
   m_LocalScale: {x: 2.1000004, y: 2.1, z: 2.1000004}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -279516,6 +279532,24 @@ GameObject:
   - component: {fileID: 7995738178421831802}
   m_Layer: 0
   m_Name: Cube.026
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &4931843841007501066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2895409531254577796}
+  - component: {fileID: 6048793287276604888}
+  - component: {fileID: 7093276058102185225}
+  m_Layer: 0
+  m_Name: BossFightTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285104,6 +285138,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7680448660457641441}
   m_Mesh: {fileID: 8467973019869391972, guid: a79d42da306205a47a6815e3e2dae2d8, type: 3}
+--- !u!65 &6048793287276604888
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931843841007501066}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 4, z: 6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &6052149032051762288
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -287382,6 +287437,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6384072696300261399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1084596467555735131, guid: cddd4ce7435467648991f30074cd5080, type: 3}
+  m_PrefabInstance: {fileID: 1351780444}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81838fb97dbaed64390f26df45497cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6387692039326689459
 Transform:
   m_ObjectHideFlags: 0
@@ -291522,6 +291588,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7093276058102185225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4931843841007501066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a54dd23cc88fde74dfcce32f0cc2ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossController: {fileID: 6384072696300261399}
+  _triggerOnce: 1
 --- !u!4 &7095599065866284505
 Transform:
   m_ObjectHideFlags: 0
