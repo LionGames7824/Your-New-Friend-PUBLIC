@@ -624,7 +624,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3186275872088657817}
-  - component: {fileID: 686961262617428248}
   m_Layer: 0
   m_Name: Safe
   m_TagString: Untagged
@@ -657,50 +656,6 @@ Transform:
   - {fileID: 6089139048231879756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 51.164, z: 0}
---- !u!114 &686961262617428248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578105060464811695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31deb8be0b8984a419345b6e189b5ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _correctCode: 1234
-  _maxLength: 4
-  _onUnlocked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2360976343300913285}
-        m_TargetAssemblyTypeName: YourNewFriend.DoorSafeAnimator, Assembly-CSharp
-        m_MethodName: PlayOpen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onWrongCode:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3692705118335106893}
-        m_TargetAssemblyTypeName: YourNewFriend.SafeHandleAnimator, Assembly-CSharp
-        m_MethodName: PlayTryOpen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2028422417494733040
 GameObject:
   m_ObjectHideFlags: 0

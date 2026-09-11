@@ -5,17 +5,20 @@ namespace YourNewFriend
 {
     public class SafeDisplayUI : MonoBehaviour
     {
-        [SerializeField] private SafeManager _safeManager;
-        [SerializeField] private GameObject[] _asteriskSlots; 
+        [Tooltip("Whatever this display is showing the code for. Must implement IKeypadReceiver (e.g. SafeController).")]
+        [SerializeField] private MonoBehaviour _receiverBehaviour;
+        [SerializeField] private GameObject[] _asteriskSlots;
+
+        private IKeypadReceiver Receiver => _receiverBehaviour as IKeypadReceiver;
 
         private void OnEnable()
         {
-            _safeManager.OnInputChanged += HandleInputChanged;
+            Receiver.OnInputChanged += HandleInputChanged;
         }
 
         private void OnDisable()
         {
-            _safeManager.OnInputChanged -= HandleInputChanged;
+            Receiver.OnInputChanged -= HandleInputChanged;
         }
 
         private void HandleInputChanged(string currentInput)

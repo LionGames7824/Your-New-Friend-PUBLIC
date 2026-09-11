@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace YourNewFriend
 {
-    public class SafeManager : Singleton<SafeManager>
+    public class SafeController : MonoBehaviour, IKeypadReceiver
     {
         [SerializeField] private string _correctCode = "12345";
         [SerializeField] private int _maxLength = 5;
