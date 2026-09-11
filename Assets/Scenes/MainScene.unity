@@ -260159,7 +260159,7 @@ MonoBehaviour:
   - {fileID: 567789975}
   - {fileID: 706416396}
   - {fileID: 453757092}
-  _useSavedPositionOnStart: 0
+  _useSavedPositionOnStart: 1
 --- !u!1 &843214210589705497
 GameObject:
   m_ObjectHideFlags: 0
@@ -279630,7 +279630,7 @@ Transform:
   m_GameObject: {fileID: 7523174341235127605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 160.31763, y: -21.928545, z: -163}
+  m_LocalPosition: {x: 0, y: 0, z: -120}
   m_LocalScale: {x: 2.1000004, y: 2.1, z: 2.1000004}
   m_ConstrainProportionsScale: 1
   m_Children:
