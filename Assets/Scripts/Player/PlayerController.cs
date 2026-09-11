@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
 
+
+
 namespace YourNewFriend
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
+
         [Header("Camera Control Variables")]
         [SerializeField] private Transform _cameraLookAt;
         [SerializeField] private float _minPitch;
@@ -26,6 +29,12 @@ namespace YourNewFriend
 
         [Header("Interaction with Objects")]
         [SerializeField] private InteractionDetector _interactionDetector;
+
+        [Header("Shooting")]
+        [Tooltip("Item id that must be equipped in hand for the player to be able to shoot.")]
+        [SerializeField] private string _weaponItemId;
+        [SerializeField] private int _shootDamage = 10;
+        [SerializeField] private float _shootRange = 100f;
 
         [Header("Player Sound Effects")]
         [SerializeField] private string _playerWalking;
@@ -73,7 +82,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerCrouch += OnPlayerCrouch;
             _playerInput.OnPlayerDropItem += OnPlayerDropItem;
             _playerInput.OnPlayerUnequipItem += OnPlayerUnequipItem;
-
+            _playerInput.OnPlayerShoot += OnPlayerShoot;
             Cover.onOpenCover += HandleCoverOpen;
             GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
@@ -102,7 +111,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerCrouch -= OnPlayerCrouch;
             _playerInput.OnPlayerDropItem -= OnPlayerDropItem;
             _playerInput.OnPlayerUnequipItem -= OnPlayerUnequipItem;
-
+            _playerInput.OnPlayerShoot -= OnPlayerShoot;
             GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings -= OnSettingsToggled;
             GameStateManager.Instance.IsGameOver -= OnGameOverToggled;
@@ -113,9 +122,6 @@ namespace YourNewFriend
             TeleportToSavedPosition();
         }
 
-        // Moving the transform directly while a CharacterController is enabled can get
-        // overridden/fought by its own collision resolution on the next Move() call, so
-        // the controller has to be disabled for the teleport to actually stick.
         private void TeleportToSavedPosition()
         {
             Vector3 targetPosition = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
@@ -302,6 +308,24 @@ namespace YourNewFriend
         private void OnPlayerUnequipItem()
         {
             InventoryManager.Instance.UnequipItem();
+        }
+
+        private void OnPlayerShoot()
+        {
+            if (!_canControl) return;
+
+            bool isHoldingWeapon = InventoryManager.Instance._itemEquipped == _weaponItemId;
+            if (!isHoldingWeapon) return;
+
+            Vector3 origin = _cameraMainTransform.position;
+            Vector3 direction = _cameraMainTransform.forward;
+
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, _shootRange))
+            {
+                BossHealth bossHealth = hit.collider.GetComponentInParent<BossHealth>();
+                if (bossHealth != null)
+                    bossHealth.TakeDamage(_shootDamage);
+            }
         }
 
         private void OnInventoryToggled(bool isOpen)

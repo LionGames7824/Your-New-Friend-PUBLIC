@@ -191,6 +191,15 @@ namespace YourNewFriend
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""9fdbb8f2-3196-4c93-9d16-0a4b9799c3e8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -479,6 +488,17 @@ namespace YourNewFriend
                     ""action"": ""UnequipItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efbe831d-ce0a-4710-b027-2a46e11ce210"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -548,6 +568,7 @@ namespace YourNewFriend
             m_Player_Settings = m_Player.FindAction("Settings", throwIfNotFound: true);
             m_Player_SkipDialogue = m_Player.FindAction("SkipDialogue", throwIfNotFound: true);
             m_Player_UnequipItem = m_Player.FindAction("UnequipItem", throwIfNotFound: true);
+            m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_AnyKey = m_Menu.FindAction("AnyKey", throwIfNotFound: true);
@@ -643,6 +664,7 @@ namespace YourNewFriend
         private readonly InputAction m_Player_Settings;
         private readonly InputAction m_Player_SkipDialogue;
         private readonly InputAction m_Player_UnequipItem;
+        private readonly InputAction m_Player_Shoot;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -698,6 +720,10 @@ namespace YourNewFriend
             /// Provides access to the underlying input action "Player/UnequipItem".
             /// </summary>
             public InputAction @UnequipItem => m_Wrapper.m_Player_UnequipItem;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Shoot".
+            /// </summary>
+            public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -757,6 +783,9 @@ namespace YourNewFriend
                 @UnequipItem.started += instance.OnUnequipItem;
                 @UnequipItem.performed += instance.OnUnequipItem;
                 @UnequipItem.canceled += instance.OnUnequipItem;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
 
             /// <summary>
@@ -801,6 +830,9 @@ namespace YourNewFriend
                 @UnequipItem.started -= instance.OnUnequipItem;
                 @UnequipItem.performed -= instance.OnUnequipItem;
                 @UnequipItem.canceled -= instance.OnUnequipItem;
+                @Shoot.started -= instance.OnShoot;
+                @Shoot.performed -= instance.OnShoot;
+                @Shoot.canceled -= instance.OnShoot;
             }
 
             /// <summary>
@@ -1014,6 +1046,13 @@ namespace YourNewFriend
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnUnequipItem(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnShoot(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Menu" which allows adding and removing callbacks.

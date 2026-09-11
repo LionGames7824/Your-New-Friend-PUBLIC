@@ -110255,6 +110255,128 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947623616}
   m_Mesh: {fileID: 7567532504055388576, guid: 266a4bcbff1ee6e41b0af028d88ddc8e, type: 3}
+--- !u!1 &949883859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949883860}
+  - component: {fileID: 949883864}
+  - component: {fileID: 949883863}
+  - component: {fileID: 949883862}
+  - component: {fileID: 949883861}
+  m_Layer: 6
+  m_Name: PLACEHOLDER_TEASER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &949883860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949883859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6726799, z: -12.925354}
+  m_LocalScale: {x: 0.6228829, y: 0.6228829, z: 0.6228829}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1188366515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949883861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949883859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24d2349db0bb5c45b6dc96c4fde4265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: teaser_boss
+  quantity: 1
+  _prompt: '[E] to pickup'
+  _autoEquipOnPickup: 1
+--- !u!65 &949883862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949883859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &949883863
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949883859}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &949883864
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949883859}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &952605623
 GameObject:
   m_ObjectHideFlags: 0
@@ -137599,6 +137721,7 @@ Transform:
   - {fileID: 1351780445}
   - {fileID: 955571742}
   - {fileID: 2895409531254577796}
+  - {fileID: 949883860}
   m_Father: {fileID: 1778476141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1189295087
@@ -156877,7 +157000,7 @@ PrefabInstance:
       objectReference: {fileID: 4297412254868610072}
     - target: {fileID: 741853750420045624, guid: cddd4ce7435467648991f30074cd5080, type: 3}
       propertyPath: _moveSpeed
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 741853750420045624, guid: cddd4ce7435467648991f30074cd5080, type: 3}
       propertyPath: _arenaBounds
@@ -259863,6 +259986,9 @@ MonoBehaviour:
   _playerCrouchSpeed: 2
   _playerHandObject: {fileID: 4182046125813895416}
   _interactionDetector: {fileID: 3512884248974292085}
+  _weaponItemId: teaser_boss
+  _shootDamage: 10
+  _shootRange: 100
   _playerWalking: Footsteaps
   _footstepInterval: 0.5
   _playerJumpStart: PlayerJumpStart
@@ -266252,6 +266378,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cf1e3043-ddd5-43c2-9344-c13ae3bff7dd
     m_ActionName: Player/UnequipItem[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fdbb8f2-3196-4c93-9d16-0a4b9799c3e8
+    m_ActionName: Player/Shoot[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -279342,7 +279472,7 @@ Transform:
   m_GameObject: {fileID: 7523174341235127605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -120}
+  m_LocalPosition: {x: 160.31763, y: -21.928545, z: -163}
   m_LocalScale: {x: 2.1000004, y: 2.1, z: 2.1000004}
   m_ConstrainProportionsScale: 1
   m_Children:
