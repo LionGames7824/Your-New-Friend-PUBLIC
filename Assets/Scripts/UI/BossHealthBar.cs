@@ -1,4 +1,5 @@
 using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ namespace YourNewFriend
     {
         [SerializeField] private BossHealth _bossHealth;
         [SerializeField] private Slider _slider;
-
+        
         private void OnEnable()
         {
             _bossHealth.OnHealthChanged += UpdateHealth;
@@ -29,8 +30,8 @@ namespace YourNewFriend
         }
 
         private void UpdateOnDeath()
-        {
-            Debug.Log("Call game over screen");
+        {         
+            gameObject.SetActive(false);
         }
     }
 }
