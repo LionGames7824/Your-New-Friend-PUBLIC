@@ -1,369 +1,380 @@
-using System;
-using UnityEngine;
-
-
-
-namespace YourNewFriend
-{
-    [RequireComponent(typeof(CharacterController))]
-    public class PlayerController : MonoBehaviour
-    {
-
-        [Header("Camera Control Variables")]
-        [SerializeField] private Transform _cameraLookAt;
-        [SerializeField] private float _minPitch;
-        [SerializeField] private float _maxPitch;
-        [SerializeField] private float _minYaw;
-        [SerializeField] private float _maxYaw;
-
-        [Header("Player Movement Variables")]
-        [SerializeField] private float _jumpHeight = 1.0f;
-        [SerializeField] private float _gravityValue = -9.81f;
-        [SerializeField] private float _rotationSpeed = 5f;
-        [SerializeField] private float _playerAcceleratedSpeed = 4f;
-        [SerializeField] private float _playerNormalSpeed = 2f;
-        [SerializeField] private float _playerCrouchSpeed = 1f;
-
-        [Header("Player Hand Variables")]
-        [SerializeField] private GameObject _playerHandObject;
-
-        [Header("Interaction with Objects")]
-        [SerializeField] private InteractionDetector _interactionDetector;
-
-        [Header("Shooting")]
-        [Tooltip("Item id that must be equipped in hand for the player to be able to shoot.")]
-        [SerializeField] private string _weaponItemId;
-        [SerializeField] private int _shootDamage = 10;
-        [SerializeField] private float _shootRange = 100f;
-
-        [Header("Player Sound Effects")]
-        [SerializeField] private string _playerWalking;
-        [SerializeField] private float _footstepInterval = 0.5f;
-        [SerializeField] private string _playerJumpStart;
-        [SerializeField] private string _playerJumpEnd;
-        [SerializeField] private string _playerGrabbingItem;
-        [SerializeField] private string _playerDroppingItem;
-        private float _footstepTimer = 0f;
-
-        [Header("Player Spawn Positions")]
-        [SerializeField] private GameObject[] _spawn;
-        [Tooltip("Uncheck for a quick test: keeps whatever position the Player has in the scene instead of teleporting to the saved PlayerPrefs checkpoint on Play.")]
-        [SerializeField] private bool _useSavedPositionOnStart = true;
-
-        // Player State Variables
-        private float _playerSpeed;
-        private float _currentCameraYaw;
-        private float _currentCameraPitch;
-        private PlayerInput _playerInput;
-        private CharacterController _controller;
-        private Animator _anim;
-        private Transform _cameraMainTransform;
-        private Vector3 _playerVelocity;
-        private Vector2 _inputVector;
-        private bool _groundedPlayer;
-        private bool _wasGrounded;
-        private bool _canControl = true;
-        private Transform _playerPosition;
-
-        private void Awake()
-        {
-            _playerPosition = GetComponent<Transform>();
-            _controller = GetComponent<CharacterController>();
-            _playerInput = GetComponent<PlayerInput>();
-            _anim = GetComponent<Animator>();
-            _cameraMainTransform = Camera.main.transform;
-            _playerSpeed = _playerNormalSpeed;
-
-            _playerInput.OnPlayerMove += OnPlayerMove;
-            _playerInput.OnPlayerJump += OnPlayerJump;
-            _playerInput.OnPlayerInteract += OnPlayerInteract;
-            _playerInput.OnPlayerCamera += UpdateCameraRotation;
-            _playerInput.OnPlayerSprint += OnPlayerSprint;
-            _playerInput.OnPlayerCrouch += OnPlayerCrouch;
-            _playerInput.OnPlayerDropItem += OnPlayerDropItem;
-            _playerInput.OnPlayerUnequipItem += OnPlayerUnequipItem;
-            _playerInput.OnPlayerShoot += OnPlayerShoot;
-            Cover.onOpenCover += HandleCoverOpen;
-            GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
-            GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
-            GameStateManager.Instance.IsGameOver += OnGameOverToggled;
-
-            InitializeCameraRotation();
-
-            if (_useSavedPositionOnStart)
-            {
-                TeleportToSavedPosition();
-            }
-        }
-
-        private void HandleCoverOpen(bool state)
-        {
-            SetControl(state);
-        }
-
-        private void OnDestroy()
-        {
-            _playerInput.OnPlayerMove -= OnPlayerMove;
-            _playerInput.OnPlayerJump -= OnPlayerJump;
-            _playerInput.OnPlayerInteract -= OnPlayerInteract;
-            _playerInput.OnPlayerCamera -= UpdateCameraRotation;
-            _playerInput.OnPlayerSprint -= OnPlayerSprint;
-            _playerInput.OnPlayerCrouch -= OnPlayerCrouch;
-            _playerInput.OnPlayerDropItem -= OnPlayerDropItem;
-            _playerInput.OnPlayerUnequipItem -= OnPlayerUnequipItem;
-            _playerInput.OnPlayerShoot -= OnPlayerShoot;
-            GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
-            GameStateManager.Instance.IsOpenSettings -= OnSettingsToggled;
-            GameStateManager.Instance.IsGameOver -= OnGameOverToggled;
-        }
-
-        public void LoadPlayerPosition()
-        {
-            TeleportToSavedPosition();
-        }
-
-        private void TeleportToSavedPosition()
-        {
-            Vector3 targetPosition = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
-
-            _controller.enabled = false;
-            _playerPosition.position = targetPosition;
-            _controller.enabled = true;
-
-            _playerVelocity = Vector3.zero;
-
-            Debug.Log("Position Loaded: " + _playerPosition.position);
-        }
-
-        private void Update()
-        {
-            MovePlayer();
-            UpdatePlayerRotation();
-        }
-
-        public void SetControl(bool canControl)
-        {
-            _canControl = canControl;
-
-            if (!canControl)
-                _inputVector = Vector2.zero;
-        }
-
-        // --- Camera ---
-        private void InitializeCameraRotation()
-        {
-            Vector3 lookDirection = (_cameraLookAt.position - transform.position).normalized;
-            transform.rotation = Quaternion.LookRotation(lookDirection);
-            _currentCameraYaw = transform.eulerAngles.y;
-            _currentCameraPitch = transform.eulerAngles.x;
-        }
-
-        private void UpdateCameraRotation(Vector2 posDelta)
-        {
-            if (!_canControl) return;
-
-            _currentCameraYaw += posDelta.x * _rotationSpeed * Time.deltaTime;
-            _currentCameraPitch -= posDelta.y * _rotationSpeed * Time.deltaTime;
-            _currentCameraPitch = Mathf.Clamp(_currentCameraPitch, _minPitch, _maxPitch);
-
-            transform.rotation = Quaternion.Euler(0, _currentCameraYaw, 0);
-            _cameraMainTransform.localRotation = Quaternion.Euler(_currentCameraPitch, 0, 0);
-        }
-
-        private void UpdatePlayerRotation()
-        {
-            transform.rotation = Quaternion.Euler(0, _currentCameraYaw, 0);
-        }
-
-        // --- Movement ---
-        private void MovePlayer()
-        {
-            UpdateGroundState();
-            ApplyMovement();
-            ApplyRotation();
-            ApplyGravity();
-            PlayFootstepSounds();
-        }
-
-        private void UpdateGroundState()
-        {
-            _groundedPlayer = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
-
-            if (_groundedPlayer && _playerVelocity.y < 0)
-                _playerVelocity.y = -2f;
-        }
-
-        private void ApplyMovement()
-        {
-            Vector3 moveDirection = new Vector3(_inputVector.x, 0, _inputVector.y);
-            moveDirection = _cameraMainTransform.forward * moveDirection.z + _cameraMainTransform.right * moveDirection.x;
-            moveDirection.y = 0f;
-
-            _controller.Move(moveDirection * Time.deltaTime * _playerSpeed);
-        }
-
-        private void ApplyRotation()
-        {
-            if (_inputVector == Vector2.zero) return;
-
-            float targetAngle = Mathf.Atan2(_inputVector.x, _inputVector.y) * Mathf.Rad2Deg + _cameraMainTransform.eulerAngles.y;
-            Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * _rotationSpeed);
-        }
-
-        private void ApplyGravity()
-        {
-            const float fallMultiplier = 2.0f;
-            if (!_groundedPlayer || _playerVelocity.y > 0)
-                _playerVelocity.y += _gravityValue * fallMultiplier * Time.deltaTime;
-
-            _controller.Move(_playerVelocity * Time.deltaTime);
-        }
-
-        private void PlayFootstepSounds()
-        {
-            if (_inputVector != Vector2.zero && _groundedPlayer)
-            {
-                _footstepTimer -= Time.deltaTime;
-                if (_footstepTimer <= 0f)
-                {
-                    AudioManager.Instance.PlaySFX(_playerWalking);
-                    _footstepTimer = _footstepInterval;
-                }
-            }
-            else
-            {
-                _footstepTimer = 0f;
-            }
-        }
-
-        // --- Input Events ---
-        private void OnPlayerMove(Vector2 vector)
-        {
-            if (!_canControl) return;
-            _inputVector = vector;
-        }
-
-        private void OnPlayerSprint(float value)
-        {
-            if (!_canControl) return;
-            _playerSpeed = value > 0 ? _playerAcceleratedSpeed : _playerNormalSpeed;
-        }
-
-        private void OnPlayerCrouch(float value)
-        {
-            if (!_canControl) return;
-
-            if (value > 0)
-            {
-                _anim.SetTrigger("Crouch");
-                _playerSpeed = _playerCrouchSpeed;
-            }
-            else
-            {
-                _anim.SetTrigger("Stand");
-                _playerSpeed = _playerNormalSpeed;
-            }
-        }
-
-        private void OnPlayerInteract(float value)
-        {
-            Debug.Log($"[INPUT] OnPlayerInteract called, value={value}");
-            if (!_canControl) return;
-            if (value <= 0) return;
-
-            if (_interactionDetector.TryInteract(this))
-                AudioManager.Instance.PlaySFX(_playerGrabbingItem);
-        }
-
-        private void OnPlayerJump(float value)
-        {
-            if (!_canControl) return;
-
-            bool isGroundedNow = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
-
-            if (value > 0 && isGroundedNow)
-            {
-                _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
-                AudioManager.Instance.PlaySFX(_playerJumpStart);
-            }
-
-            if (!_wasGrounded && isGroundedNow)
-            {
-                AudioManager.Instance.PlaySFX(_playerJumpEnd);
-            }
-
-            _wasGrounded = isGroundedNow;
-        }
-
-        private void OnPlayerDropItem()
-        {
-            Transform itemEquipped = _playerHandObject.transform.childCount > 0 ? _playerHandObject.transform.GetChild(0) : null;
-            if (itemEquipped != null)
-            {
-                InventoryManager.Instance.DropItemEquipped();
-            }
-        }
-
-        private void OnPlayerUnequipItem()
-        {
-            InventoryManager.Instance.UnequipItem();
-        }
-
-        private void OnPlayerShoot()
-        {
-            if (!_canControl) return;
-
-            bool isHoldingWeapon = InventoryManager.Instance._itemEquipped == _weaponItemId;
-            if (!isHoldingWeapon) return;
-
-            Vector3 origin = _cameraMainTransform.position;
-            Vector3 direction = _cameraMainTransform.forward;
-
-            if (Physics.Raycast(origin, direction, out RaycastHit hit, _shootRange))
-            {
-                BossHealth bossHealth = hit.collider.GetComponentInParent<BossHealth>();
-                if (bossHealth != null)
-                    bossHealth.TakeDamage(_shootDamage);
-            }
-        }
-
-        private void OnInventoryToggled(bool isOpen)
-        {
-            if (!isOpen)
-            {
-                _playerInput.ResumeGame();
-                SetControl(true);
-            }
-            else
-            {
-                bool isHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
-                if (!isHoldingItem)
-                    SetControl(false);
-            }
-        }
-
-        private void OnSettingsToggled(bool isOpen)
-        {
-            if (!isOpen)
-            {
-                _playerInput.ResumeGame();
-            }
-        }
-
-        private void OnGameOverToggled(bool isOpen)
-        {
-            if (isOpen)
-            {
-                Time.timeScale = 0.0f;
-                _playerInput.ShowMouse(true);
-                SetControl(false);
-            }
-            else
-            {
-                _playerInput.ResumeGame();
-                SetControl(true);
-            }
-        }
-    }
+using System;
+using UnityEngine;
+
+
+
+namespace YourNewFriend
+{
+    [RequireComponent(typeof(CharacterController))]
+    public class PlayerController : MonoBehaviour
+    {
+
+        [Header("Camera Control Variables")]
+        [SerializeField] private Transform _cameraLookAt;
+        [SerializeField] private float _minPitch;
+        [SerializeField] private float _maxPitch;
+        [SerializeField] private float _minYaw;
+        [SerializeField] private float _maxYaw;
+
+        [Header("Player Movement Variables")]
+        [SerializeField] private float _jumpHeight = 1.0f;
+        [SerializeField] private float _gravityValue = -9.81f;
+        [SerializeField] private float _rotationSpeed = 5f;
+        [SerializeField] private float _playerAcceleratedSpeed = 4f;
+        [SerializeField] private float _playerNormalSpeed = 2f;
+        [SerializeField] private float _playerCrouchSpeed = 1f;
+
+        [Header("Player Hand Variables")]
+        [SerializeField] private GameObject _playerHandObject;
+
+        [Header("Interaction with Objects")]
+        [SerializeField] private InteractionDetector _interactionDetector;
+
+        [Header("Shooting")]
+        [Tooltip("Item id that must be equipped in hand for the player to be able to shoot.")]
+        [SerializeField] private string _weaponItemId;
+        [SerializeField] private int _shootDamage = 10;
+        [SerializeField] private float _shootRange = 100f;
+        [Tooltip("Sits on the weapon in hand, at the muzzle. Plays the wire/dart visual on each shot.")]
+        [SerializeField] private TaserWireEffect _taserWireEffect;
+
+        [Header("Player Sound Effects")]
+        [SerializeField] private string _playerWalking;
+        [SerializeField] private float _footstepInterval = 0.5f;
+        [SerializeField] private string _playerJumpStart;
+        [SerializeField] private string _playerJumpEnd;
+        [SerializeField] private string _playerGrabbingItem;
+        [SerializeField] private string _playerDroppingItem;
+        private float _footstepTimer = 0f;
+
+        [Header("Player Spawn Positions")]
+        [SerializeField] private GameObject[] _spawn;
+        [Tooltip("Uncheck for a quick test: keeps whatever position the Player has in the scene instead of teleporting to the saved PlayerPrefs checkpoint on Play.")]
+        [SerializeField] private bool _useSavedPositionOnStart = true;
+
+        // Player State Variables
+        private float _playerSpeed;
+        private float _currentCameraYaw;
+        private float _currentCameraPitch;
+        private PlayerInput _playerInput;
+        private CharacterController _controller;
+        private Animator _anim;
+        private Transform _cameraMainTransform;
+        private Vector3 _playerVelocity;
+        private Vector2 _inputVector;
+        private bool _groundedPlayer;
+        private bool _wasGrounded;
+        private bool _canControl = true;
+        private Transform _playerPosition;
+
+        private void Awake()
+        {
+            _playerPosition = GetComponent<Transform>();
+            _controller = GetComponent<CharacterController>();
+            _playerInput = GetComponent<PlayerInput>();
+            _anim = GetComponent<Animator>();
+            _cameraMainTransform = Camera.main.transform;
+            _playerSpeed = _playerNormalSpeed;
+
+            _playerInput.OnPlayerMove += OnPlayerMove;
+            _playerInput.OnPlayerJump += OnPlayerJump;
+            _playerInput.OnPlayerInteract += OnPlayerInteract;
+            _playerInput.OnPlayerCamera += UpdateCameraRotation;
+            _playerInput.OnPlayerSprint += OnPlayerSprint;
+            _playerInput.OnPlayerCrouch += OnPlayerCrouch;
+            _playerInput.OnPlayerDropItem += OnPlayerDropItem;
+            _playerInput.OnPlayerUnequipItem += OnPlayerUnequipItem;
+            _playerInput.OnPlayerShoot += OnPlayerShoot;
+            Cover.onOpenCover += HandleCoverOpen;
+            GameStateManager.Instance.IsOpenInventory += OnInventoryToggled;
+            GameStateManager.Instance.IsOpenSettings += OnSettingsToggled;
+            GameStateManager.Instance.IsGameOver += OnGameOverToggled;
+
+            InitializeCameraRotation();
+
+            if (_useSavedPositionOnStart)
+            {
+                TeleportToSavedPosition();
+            }
+        }
+
+        private void HandleCoverOpen(bool state)
+        {
+            SetControl(state);
+        }
+
+        private void OnDestroy()
+        {
+            _playerInput.OnPlayerMove -= OnPlayerMove;
+            _playerInput.OnPlayerJump -= OnPlayerJump;
+            _playerInput.OnPlayerInteract -= OnPlayerInteract;
+            _playerInput.OnPlayerCamera -= UpdateCameraRotation;
+            _playerInput.OnPlayerSprint -= OnPlayerSprint;
+            _playerInput.OnPlayerCrouch -= OnPlayerCrouch;
+            _playerInput.OnPlayerDropItem -= OnPlayerDropItem;
+            _playerInput.OnPlayerUnequipItem -= OnPlayerUnequipItem;
+            _playerInput.OnPlayerShoot -= OnPlayerShoot;
+            GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
+            GameStateManager.Instance.IsOpenSettings -= OnSettingsToggled;
+            GameStateManager.Instance.IsGameOver -= OnGameOverToggled;
+        }
+
+        public void LoadPlayerPosition()
+        {
+            TeleportToSavedPosition();
+        }
+
+        private void TeleportToSavedPosition()
+        {
+            Vector3 targetPosition = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;
+
+            _controller.enabled = false;
+            _playerPosition.position = targetPosition;
+            _controller.enabled = true;
+
+            _playerVelocity = Vector3.zero;
+
+            Debug.Log("Position Loaded: " + _playerPosition.position);
+        }
+
+        private void Update()
+        {
+            MovePlayer();
+            UpdatePlayerRotation();
+        }
+
+        public void SetControl(bool canControl)
+        {
+            _canControl = canControl;
+
+            if (!canControl)
+                _inputVector = Vector2.zero;
+        }
+
+        // --- Camera ---
+        private void InitializeCameraRotation()
+        {
+            Vector3 lookDirection = (_cameraLookAt.position - transform.position).normalized;
+            transform.rotation = Quaternion.LookRotation(lookDirection);
+            _currentCameraYaw = transform.eulerAngles.y;
+            _currentCameraPitch = transform.eulerAngles.x;
+        }
+
+        private void UpdateCameraRotation(Vector2 posDelta)
+        {
+            if (!_canControl) return;
+
+            _currentCameraYaw += posDelta.x * _rotationSpeed * Time.deltaTime;
+            _currentCameraPitch -= posDelta.y * _rotationSpeed * Time.deltaTime;
+            _currentCameraPitch = Mathf.Clamp(_currentCameraPitch, _minPitch, _maxPitch);
+
+            transform.rotation = Quaternion.Euler(0, _currentCameraYaw, 0);
+            _cameraMainTransform.localRotation = Quaternion.Euler(_currentCameraPitch, 0, 0);
+        }
+
+        private void UpdatePlayerRotation()
+        {
+            transform.rotation = Quaternion.Euler(0, _currentCameraYaw, 0);
+        }
+
+        // --- Movement ---
+        private void MovePlayer()
+        {
+            UpdateGroundState();
+            ApplyMovement();
+            ApplyRotation();
+            ApplyGravity();
+            PlayFootstepSounds();
+        }
+
+        private void UpdateGroundState()
+        {
+            _groundedPlayer = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
+
+            if (_groundedPlayer && _playerVelocity.y < 0)
+                _playerVelocity.y = -2f;
+        }
+
+        private void ApplyMovement()
+        {
+            Vector3 moveDirection = new Vector3(_inputVector.x, 0, _inputVector.y);
+            moveDirection = _cameraMainTransform.forward * moveDirection.z + _cameraMainTransform.right * moveDirection.x;
+            moveDirection.y = 0f;
+
+            _controller.Move(moveDirection * Time.deltaTime * _playerSpeed);
+        }
+
+        private void ApplyRotation()
+        {
+            if (_inputVector == Vector2.zero) return;
+
+            float targetAngle = Mathf.Atan2(_inputVector.x, _inputVector.y) * Mathf.Rad2Deg + _cameraMainTransform.eulerAngles.y;
+            Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * _rotationSpeed);
+        }
+
+        private void ApplyGravity()
+        {
+            const float fallMultiplier = 2.0f;
+            if (!_groundedPlayer || _playerVelocity.y > 0)
+                _playerVelocity.y += _gravityValue * fallMultiplier * Time.deltaTime;
+
+            _controller.Move(_playerVelocity * Time.deltaTime);
+        }
+
+        private void PlayFootstepSounds()
+        {
+            if (_inputVector != Vector2.zero && _groundedPlayer)
+            {
+                _footstepTimer -= Time.deltaTime;
+                if (_footstepTimer <= 0f)
+                {
+                    AudioManager.Instance.PlaySFX(_playerWalking);
+                    _footstepTimer = _footstepInterval;
+                }
+            }
+            else
+            {
+                _footstepTimer = 0f;
+            }
+        }
+
+        // --- Input Events ---
+        private void OnPlayerMove(Vector2 vector)
+        {
+            if (!_canControl) return;
+            _inputVector = vector;
+        }
+
+        private void OnPlayerSprint(float value)
+        {
+            if (!_canControl) return;
+            _playerSpeed = value > 0 ? _playerAcceleratedSpeed : _playerNormalSpeed;
+        }
+
+        private void OnPlayerCrouch(float value)
+        {
+            if (!_canControl) return;
+
+            if (value > 0)
+            {
+                _anim.SetTrigger("Crouch");
+                _playerSpeed = _playerCrouchSpeed;
+            }
+            else
+            {
+                _anim.SetTrigger("Stand");
+                _playerSpeed = _playerNormalSpeed;
+            }
+        }
+
+        private void OnPlayerInteract(float value)
+        {
+            Debug.Log($"[INPUT] OnPlayerInteract called, value={value}");
+            if (!_canControl) return;
+            if (value <= 0) return;
+
+            if (_interactionDetector.TryInteract(this))
+                AudioManager.Instance.PlaySFX(_playerGrabbingItem);
+        }
+
+        private void OnPlayerJump(float value)
+        {
+            if (!_canControl) return;
+
+            bool isGroundedNow = _controller.isGrounded || Physics.Raycast(transform.position, Vector3.down, 0.1f);
+
+            if (value > 0 && isGroundedNow)
+            {
+                _playerVelocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravityValue);
+                AudioManager.Instance.PlaySFX(_playerJumpStart);
+            }
+
+            if (!_wasGrounded && isGroundedNow)
+            {
+                AudioManager.Instance.PlaySFX(_playerJumpEnd);
+            }
+
+            _wasGrounded = isGroundedNow;
+        }
+
+        private void OnPlayerDropItem()
+        {
+            Transform itemEquipped = _playerHandObject.transform.childCount > 0 ? _playerHandObject.transform.GetChild(0) : null;
+            if (itemEquipped != null)
+            {
+                InventoryManager.Instance.DropItemEquipped();
+            }
+        }
+
+        private void OnPlayerUnequipItem()
+        {
+            InventoryManager.Instance.UnequipItem();
+        }
+
+        private void OnPlayerShoot()
+        {
+            if (!_canControl) return;
+
+            bool isHoldingWeapon = InventoryManager.Instance._itemEquipped == _weaponItemId;
+            if (!isHoldingWeapon) return;
+
+            Vector3 origin = _cameraMainTransform.position;
+            Vector3 direction = _cameraMainTransform.forward;
+            Vector3 endPoint = origin + direction * _shootRange;
+
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, _shootRange))
+            {
+                endPoint = hit.point;
+
+                BossHealth bossHealth = hit.collider.GetComponentInParent<BossHealth>();
+                if (bossHealth != null)
+                    bossHealth.TakeDamage(_shootDamage);
+            }
+
+            // The wire is drawn from the weapon's own muzzle, not the camera -
+            // the raycast above uses the camera for accurate aiming, but the
+            // visual should look like it's actually coming out of the gun.
+            if (_taserWireEffect != null)
+                _taserWireEffect.Fire(_taserWireEffect.transform.position, endPoint);
+        }
+
+        private void OnInventoryToggled(bool isOpen)
+        {
+            if (!isOpen)
+            {
+                _playerInput.ResumeGame();
+                SetControl(true);
+            }
+            else
+            {
+                bool isHoldingItem = !string.IsNullOrEmpty(InventoryManager.Instance._itemEquipped);
+                if (!isHoldingItem)
+                    SetControl(false);
+            }
+        }
+
+        private void OnSettingsToggled(bool isOpen)
+        {
+            if (!isOpen)
+            {
+                _playerInput.ResumeGame();
+            }
+        }
+
+        private void OnGameOverToggled(bool isOpen)
+        {
+            if (isOpen)
+            {
+                Time.timeScale = 0.0f;
+                _playerInput.ShowMouse(true);
+                SetControl(false);
+            }
+            else
+            {
+                _playerInput.ResumeGame();
+                SetControl(true);
+            }
+        }
+    }
 }
