@@ -3610,11 +3610,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _receiverBehaviour: {fileID: 6393136439493066304}
   _asteriskSlots:
-  - {fileID: 8142477108916494163}
-  - {fileID: 3053605433002724845}
-  - {fileID: 2002247760661326771}
-  - {fileID: 5340829075129245521}
   - {fileID: 3499766692641061457}
+  - {fileID: 5340829075129245521}
+  - {fileID: 2002247760661326771}
+  - {fileID: 3053605433002724845}
+  - {fileID: 8142477108916494163}
 --- !u!114 &6393136439493066304
 MonoBehaviour:
   m_ObjectHideFlags: 0

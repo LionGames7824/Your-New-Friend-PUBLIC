@@ -8,8 +8,10 @@ namespace YourNewFriend
     {
         [SerializeField] private AudioLibrary[] _musicSounds;
         [SerializeField] private AudioLibrary[] _sfxSounds;
+        [SerializeField] private AudioLibrary[] _voSounds;
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _sfxSource;
+        [SerializeField] private AudioSource _voSource;
         [SerializeField] private float _fadeDuration = 1.5f; 
         private string _currentBackgroundMusic;
         private string _bufferedName;
@@ -61,6 +63,19 @@ namespace YourNewFriend
             _currentBackgroundMusic = sound.AudioName;
             _musicSource.clip = sound.AudioClip;
             if (!_musicSource.isPlaying) _musicSource.Play();
+        }
+
+        public void PlayVoicedDialogue(string name)
+        {
+            AudioLibrary sound = Array.Find(_voSounds, x => x.AudioName == name);
+
+            if (sound == null)
+            {
+                Debug.LogWarning($"Voiced dialogue '{name}' not found!");
+                return;
+            }
+            _voSource.clip = sound.AudioClip;
+            if (!_voSource.isPlaying) _voSource.PlayOneShot(_voSource.clip);
         }
 
         private IEnumerator FadeToNewMusic(AudioLibrary sound)

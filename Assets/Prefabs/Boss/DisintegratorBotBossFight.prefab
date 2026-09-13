@@ -1313,8 +1313,6 @@ MonoBehaviour:
   _arenaBounds: {fileID: 0}
   _moveSpeed: 6
   _hoverHeight: 3
-  _orbitRadius: 5
-  _orbitSpeed: 40
 --- !u!114 &7803606313737402993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,6 +1331,13 @@ MonoBehaviour:
   _laserDuration: 2
   _laserHeight: 10
   _damage: 10
+  _baseWidth: 0.25
+  _growInTime: 0.12
+  _pulseSpeed: 14
+  _pulseAmount: 0.15
+  _segmentCount: 10
+  _jitterAmount: 0.08
+  _hitRadius: 1
 --- !u!114 &1084596467555735131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6847,7 +6852,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: -8705533452240791338, guid: a79d42da306205a47a6815e3e2dae2d8, type: 3}
   - {fileID: 2100000, guid: e70e29df91f6d644db89e49d0f1bf32c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -34,7 +34,7 @@ namespace YourNewFriend
         [Tooltip("Item id that must be equipped in hand for the player to be able to shoot.")]
         [SerializeField] private string _weaponItemId;
         [SerializeField] private int _shootDamage = 10;
-        [SerializeField] private float _shootRange = 100f;
+        [SerializeField] public float _shootRange = 2f;
         [Tooltip("Sits on the weapon in hand, at the muzzle. Plays the wire/dart visual on each shot.")]
         [SerializeField] private TaserWireEffect _taserWireEffect;
 

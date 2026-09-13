@@ -8,7 +8,9 @@ public class DB_Building : MonoBehaviour
     [SerializeField] public static int _buildCount = 0;
     [SerializeField] private UnityEvent _onCompletion;
     [SerializeField] public static bool condition = false;
-    
+
+    [SerializeField] public BoxCollider _db_battery;
+
     void Update()
     {
         if (_buildCount == 3)
@@ -30,8 +32,9 @@ public class DB_Building : MonoBehaviour
         }
     }
 
-    public static void Charged()
+    public void Charged()
     {
         condition = true;
+        _db_battery.GetComponent<BoxCollider>().enabled = true;
     }
 }
