@@ -13,11 +13,16 @@ namespace YourNewFriend
         [SerializeField] private float _hoverHeight = 3f;
 
         private bool _canMove;
+        private Vector3 _initialPosition;
+        private Quaternion _initialRotation;
 
         private const string PlayerTag = "Player";
 
         private void Awake()
         {
+            _initialPosition = transform.position;
+            _initialRotation = transform.rotation;
+
             if (_player == null)
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag(PlayerTag);
@@ -104,6 +109,12 @@ namespace YourNewFriend
         public void ResumeMovement()
         {
             _canMove = true;
+        }
+
+        public void ResetPosition()
+        {
+            transform.position = _initialPosition;
+            transform.rotation = _initialRotation;
         }
     }
 }
