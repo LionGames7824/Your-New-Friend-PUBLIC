@@ -14,6 +14,16 @@ namespace YourNewFriend
 
         private bool _hasTriggered;
 
+        private void OnEnable()
+        {
+            _bossController.OnFightReset += HandleFightReset;
+        }
+
+        private void OnDisable()
+        {
+            _bossController.OnFightReset -= HandleFightReset;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (_triggerOnce && _hasTriggered)
@@ -28,6 +38,14 @@ namespace YourNewFriend
                 _uiToShowOnStart.SetActive(true);
 
             _bossController.StartFight();
+        }
+
+        private void HandleFightReset()
+        {
+            _hasTriggered = false;
+
+            if (_uiToShowOnStart != null)
+                _uiToShowOnStart.SetActive(false);
         }
     }
 }

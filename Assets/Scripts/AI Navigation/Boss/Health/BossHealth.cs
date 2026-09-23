@@ -41,5 +41,11 @@ namespace YourNewFriend
         {
             OnDeath?.Invoke();
         }
+
+        public void ResetHealth()
+        {
+            _currentHealth = _maxHealth;
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        }
     }
 }
