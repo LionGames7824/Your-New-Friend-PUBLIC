@@ -11,6 +11,17 @@ public class DB_Building : MonoBehaviour
 
     [SerializeField] public BoxCollider _db_battery;
 
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("DB_BuildingCompleted"))
+        {
+            _buildCount = PlayerPrefs.GetInt("DB_BuildingCompleted");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("DB_BuildingCompleted", _buildCount);
+        }
+    }
     void Update()
     {
         if (_buildCount == 3)
@@ -22,6 +33,7 @@ public class DB_Building : MonoBehaviour
     public static void IncrementBuildCount()
     {
         _buildCount++;
+        PlayerPrefs.SetInt("DB_BuildingCompleted", _buildCount);
     }
 
     public static void IncrementBuildCountWithCheck()
@@ -29,6 +41,7 @@ public class DB_Building : MonoBehaviour
         if (condition)
         {
             _buildCount++;
+            PlayerPrefs.SetInt("DB_BuildingCompleted", _buildCount);
         }
     }
 

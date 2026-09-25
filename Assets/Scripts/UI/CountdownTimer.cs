@@ -34,6 +34,7 @@ public class CountdownTimer : MonoBehaviour
             else
             {
                 gameObject.SetActive(false);
+                MusicTriggerZone.mus_overlap = false;
                 GameStateManager.Instance.OpenGameOver(true);
                 remainingTime = totalTime;
                 startt = false;
@@ -46,5 +47,13 @@ public class CountdownTimer : MonoBehaviour
     {
         gameObject.SetActive(true);
         startt = true;
+    }
+
+    public void StopTimer()
+    {
+        gameObject.SetActive(false);
+        MusicTriggerZone.mus_overlap = false;
+        remainingTime = totalTime;
+        startt = false;
     }
 }

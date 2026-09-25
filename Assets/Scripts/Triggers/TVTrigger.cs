@@ -21,21 +21,25 @@ namespace YourNewFriend
 
         public VideoClip _clip;
         public VideoClip _defaultClip;
+        private bool flag = false;
         private void Awake()
         {
             if (!PlayerPrefs.HasKey(_tvID)) PlayerPrefs.SetInt(_tvID, 0);
         }
         void Update()
         {
-            if (!_voSource.isPlaying)
+            if (!_voSource.isPlaying && !flag)
             {
                 _tv.clip = _defaultClip;
+                _tv.Play();
+                flag = true;
             }
         }
         private void OnTriggerEnter(Collider collision)
         {
             if (collision.CompareTag(_playerTag)) 
                 TriggerTV();
+                flag = false;
         }
 
         public void TriggerTV()

@@ -19,6 +19,5 @@ namespace YourNewFriend
         public string Id => _id;
         public string Title => _title;
         public DialogueEntry[] Entries => _entries;
-
     }
 }

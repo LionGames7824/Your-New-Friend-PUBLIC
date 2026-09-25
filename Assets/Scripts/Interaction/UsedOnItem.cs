@@ -47,6 +47,11 @@ namespace YourNewFriend
             UseCount = 0;
         }
 
+        public void ReduceUses()
+        {
+            UseCount--;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
 

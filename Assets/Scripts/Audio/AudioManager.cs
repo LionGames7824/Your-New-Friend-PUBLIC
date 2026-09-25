@@ -12,7 +12,7 @@ namespace YourNewFriend
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _sfxSource;
         [SerializeField] private AudioSource _voSource;
-        [SerializeField] private float _fadeDuration = 1.5f; 
+        [SerializeField] private float _fadeDuration = 0.5f; 
         private string _currentBackgroundMusic;
         private string _bufferedName;
         private bool _bufferedThemeState;
@@ -29,6 +29,12 @@ namespace YourNewFriend
             Debug.Log(_bufferedName);
             Debug.Log(GetBackgroundMusic());
         }
+
+        public void ResetBuffer()
+        {
+            _bufferedName = null;
+            _bufferedThemeState = false;
+        }
         public void PlayBuffer()
         {
             if (_bufferedName != null)
@@ -37,7 +43,8 @@ namespace YourNewFriend
             }
             else
             {
-                PlayMusic("SpaceSound", true);
+                Buffer("SpaceSound", true);
+                PlayBuffer();
             }
             Debug.Log(_bufferedName);
             Debug.Log(GetBackgroundMusic());
@@ -61,6 +68,13 @@ namespace YourNewFriend
         private void PlayImmediately(AudioLibrary sound)
         {
             _currentBackgroundMusic = sound.AudioName;
+            _musicSource.clip = sound.AudioClip;
+            if (!_musicSource.isPlaying) _musicSource.Play();
+        }
+
+        public void PlayImmediatelyWithoutSaving(string name)
+        {
+            AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
             _musicSource.clip = sound.AudioClip;
             if (!_musicSource.isPlaying) _musicSource.Play();
         }

@@ -12,7 +12,7 @@ namespace YourNewFriend
         [SerializeField] private TextMeshProUGUI _bodyText;
 
         [Header("Panel")]
-        [SerializeField] private GameObject _dialoguePanel;        
+        [SerializeField] public GameObject _dialoguePanel;        
         [SerializeField] private Button _nextButton; 
 
         [Header("Timer")]

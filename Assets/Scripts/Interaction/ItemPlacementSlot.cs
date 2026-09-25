@@ -70,7 +70,7 @@ namespace YourNewFriend
                 return false;
             }
 
-            if (_placeOnce)
+            if (_placeOnce && !_canPickUp)
             {
                 _data.IsPlaced = true;
             }
@@ -104,6 +104,7 @@ namespace YourNewFriend
                 item.transform.SetParent(target, true);
                 item.transform.localPosition = Vector3.zero;
                 item.transform.localRotation = Quaternion.identity;
+                item.transform.localScale = Vector3.one;
                 return;
             }
 

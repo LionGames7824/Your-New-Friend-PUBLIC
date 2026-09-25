@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using UnityEngine.Events;
 
 namespace YourNewFriend
 {
@@ -16,6 +17,8 @@ namespace YourNewFriend
         [SerializeField] private bool _triggerOnce = false;
         [SerializeField] private bool _save = false;
 
+
+        [SerializeField] private UnityEvent _onCutsceneStart;
         private bool _hasTriggered = false;
 
         public PlayableDirector playableDirector;
@@ -30,6 +33,7 @@ namespace YourNewFriend
             if (_triggerOnce && _hasTriggered) return;
             if (PlayerPrefs.GetInt(_cutsceneID) == 1) return;
 
+            _onCutsceneStart.Invoke();
             playableDirector.Play(cutscene);
             _hasTriggered = true;
             SaveCutsceneState(_save);

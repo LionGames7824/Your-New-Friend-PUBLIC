@@ -85,7 +85,6 @@ namespace YourNewFriend
         public void UnequipItem()
         {
             if (string.IsNullOrEmpty(_itemEquipped)) return;
-            AddItem(_itemEquipped, 1);
             _itemEquipped = string.Empty;
             OnItemUnequipped?.Invoke(); 
         }

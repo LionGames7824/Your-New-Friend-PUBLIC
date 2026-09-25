@@ -389,6 +389,8 @@ MonoBehaviour:
     TargetSprite: {fileID: 0}
   - ItemId: big_propeller
     TargetSprite: {fileID: 0}
+  - ItemId: keycard_green
+    TargetSprite: {fileID: 21300000, guid: 9def717a289fa754990cc6bf7ea6d576, type: 3}
   _quantityLabel: {fileID: 2561196559767548650}
   _icon: {fileID: 1813637753467309716}
   _btnRemoveItem: {fileID: 6897930975062028672}

@@ -72,6 +72,11 @@ namespace YourNewFriend
             }
         }
 
+        public void ToggleGameOverReset(bool value)
+        {
+            _resetOnGameOver = value;
+        }
+
         // --- Light onn / off ---
 
         public void TurnOnLight()
@@ -114,17 +119,25 @@ namespace YourNewFriend
 
         public void TryOpenWithCard()
         {
-            if (_lockState != DoorLockState.Green) return;
+            if (_lockState != DoorLockState.Green)
+            {
+                gameObject.GetComponent<UsedOnItem>().ReduceUses();
+                return;
+            }
             OpenDoor();
         }
 
         public void TryOpenWithForce()
         {
-            if (_lockState != DoorLockState.Red) return;
+            if (_lockState != DoorLockState.Red)
+            {
+                gameObject.GetComponent<UsedOnItem>().ReduceUses();
+                return;
+            }
             OpenDoor();
         }
 
-        private void OpenDoor()
+        public void OpenDoor()
         {
             if (_anim.GetBool(DOOR_STATE)) return;
 
@@ -133,6 +146,19 @@ namespace YourNewFriend
             _onDoorOpened.Invoke();            
         }
 
+        public void OpenDoorWithoutSaving()
+        {
+            if (_anim.GetBool(DOOR_STATE)) return;
+
+            _anim.SetBool(DOOR_STATE, true);
+            _onDoorOpened.Invoke();
+        }
+        public void CloseDoor()
+        {
+            if (!_anim.GetBool(DOOR_STATE)) return;
+            _anim.SetBool(DOOR_STATE, false);
+            SaveDoorState(false);
+        }
         public void ToggleDoor()
         {
             bool isOpening = !_anim.GetBool(DOOR_STATE);

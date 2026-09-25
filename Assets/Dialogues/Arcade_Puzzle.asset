@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b6352533f9eee9429093b4770f5485e, type: 3}
-  m_Name: NewDialogue
+  m_Name: Arcade_Puzzle
   m_EditorClassIdentifier: 
-  _id: 
-  _title: 
+  _id: AP
+  _title: Arcade_Puzzle
   _entries:
   - SpeakerName: 
-    BodyText: 
+    dialogueDisplayTime: 3
+    BodyText: Aha, this might be a clue towards opening that storage unit!

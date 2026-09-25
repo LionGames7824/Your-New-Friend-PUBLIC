@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b6352533f9eee9429093b4770f5485e, type: 3}
-  m_Name: well
+  m_Name: Arcade_CloseDoor
   m_EditorClassIdentifier: 
-  _id: well
-  _title: well
+  _id: ACD
+  _title: Arcade_CD
   _entries:
   - SpeakerName: 
     dialogueDisplayTime: 3
-    BodyText: Well, there's a man here
+    BodyText: Quick! I need to close the door.

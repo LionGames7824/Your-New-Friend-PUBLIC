@@ -15,10 +15,15 @@ namespace YourNewFriend
         private Vector3 startPosition;
         private Coroutine loseInterestRoutine;
         public static bool isPlayerSeen = false;
+        public Transform capsule;
         public Transform player;
         public Transform sBot;
         public float searchTime = 10f;
         public float catchSpeed = 7f;
+
+        private bool mus_flag1 = false;
+        private bool mus_flag2 = false;
+
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -31,8 +36,15 @@ namespace YourNewFriend
         {
             if (isPlayerSeen && !permanence)
             {
+                mus_flag2 = false;
+                if (mus_flag1 == false)
+                {
+                    MusicTriggerZone.mus_overlap = true;
+                    AudioManager.Instance.PlayMusic("WHEREISHE", true);
+                    mus_flag1 = true;
+                }
                 agent.destination = player.position;
-                if (Physics.Raycast(sBot.position, player.position - sBot.position, out RaycastHit hit) && sBot.InverseTransformVector(hit.point - sBot.position).z > 0)
+                if (Physics.Raycast(sBot.position, capsule.position - sBot.position, out RaycastHit hit) && sBot.InverseTransformVector(hit.point - sBot.position).z > 0)
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
@@ -47,10 +59,18 @@ namespace YourNewFriend
             }
             else if (!isPlayerSeen && !permanence)
             {
-                if (Physics.Raycast(sBot.position, player.position - sBot.position, out RaycastHit hit) && sBot.InverseTransformVector(hit.point - sBot.position).z > 0)
+                mus_flag1 = false;
+                if (mus_flag2 == false)
+                {
+                    MusicTriggerZone.mus_overlap = false;
+                    AudioManager.Instance.PlayBuffer();
+                    mus_flag2 = true;
+                }
+                if (Physics.Raycast(sBot.position, capsule.position - sBot.position, out RaycastHit hit) && sBot.InverseTransformVector(hit.point - sBot.position).z > 0)
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
+                        Debug.Log("Player is seen");
                         isPlayerSeen = true;
                     }
                 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YourNewFriend
 {
@@ -11,6 +12,7 @@ namespace YourNewFriend
 
         [Tooltip("If true, walking in a second time (after already starting the fight once) does nothing.")]
         [SerializeField] private bool _triggerOnce = true;
+        [SerializeField] private UnityEvent _onStart;
 
         private bool _hasTriggered;
 
@@ -26,10 +28,14 @@ namespace YourNewFriend
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_triggerOnce && _hasTriggered)
-                return;
-
             if (!other.CompareTag("Player"))
+                return;
+            TriggerBattle();
+        }
+
+        public void TriggerBattle()
+        {
+            if (_triggerOnce && _hasTriggered)
                 return;
 
             _hasTriggered = true;
@@ -37,6 +43,8 @@ namespace YourNewFriend
             if (_uiToShowOnStart != null)
                 _uiToShowOnStart.SetActive(true);
 
+            _onStart?.Invoke();
+            AudioManager.Instance.PlayMusic("RoboTrap", true);
             _bossController.StartFight();
         }
 

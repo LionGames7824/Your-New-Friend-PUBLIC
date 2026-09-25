@@ -124,6 +124,11 @@ namespace YourNewFriend
             TeleportToSavedPosition();
         }
 
+        public void UnlockMouse()
+        {
+            _playerInput.ShowMouse(true);
+            SetControl(false);
+        }
         private void TeleportToSavedPosition()
         {
             Vector3 targetPosition = _spawn[PlayerPrefs.GetInt("POS_ID")].transform.position;

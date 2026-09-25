@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6352533f9eee9429093b4770f5485e, type: 3}
+  m_Name: Arcade_Dizzy
+  m_EditorClassIdentifier: 
+  _id: AD
+  _title: Arcade_Dizzy
+  _entries:
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: "The Disintegration technology\u2026"
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: One of the first big advancements humanity has made
+  - SpeakerName: 
+    dialogueDisplayTime: 2
+    BodyText: ...
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: "It\u2019s so sad seeing Dizzy like this\u2026"
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: But I might be able to patch it up.
+  - SpeakerName: 
+    dialogueDisplayTime: 4
+    BodyText: If I just find a battery, a propeller, and a tip of the disintegrator
+  - SpeakerName: 
+    dialogueDisplayTime: 4
+    BodyText: I can use it to break down the shaft and get into the dispose zone.
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: "I might be able to escape from there\u2026"

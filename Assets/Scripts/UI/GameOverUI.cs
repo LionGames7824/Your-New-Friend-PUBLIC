@@ -23,7 +23,7 @@ namespace YourNewFriend
 
         private void HandleGameOver(bool isOpen)
         {
-            AudioManager.Instance.PlayMusic("GameOver", false);
+            AudioManager.Instance.PlayImmediatelyWithoutSaving("GameOver");
             gameObject.SetActive(isOpen);
         }
 
