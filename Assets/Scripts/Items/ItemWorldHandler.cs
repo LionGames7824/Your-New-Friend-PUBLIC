@@ -115,10 +115,8 @@ namespace YourNewFriend
                     // Parent the item to the hand
                     item.transform.SetParent(_playerHandTransform.transform, true);
 
-                    // Reset local position and rotation to align properly
-                    item.transform.localPosition = Vector3.zero;
-                    item.transform.localRotation = Quaternion.identity;
-                    
+                    item.transform.localPosition = item.HandPositionOffset;
+                    item.transform.localRotation = Quaternion.Euler(item.HandRotationOffset);
              
                     return;
                 }
