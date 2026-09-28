@@ -20,10 +20,16 @@ MonoBehaviour:
     BodyText: "That\u2019s odd, the card reader\u2019s broken\u2026"
   - SpeakerName: 
     dialogueDisplayTime: 2
+    BodyText: ...
+  - SpeakerName: 
+    dialogueDisplayTime: 2
     BodyText: Hello?! Is anybody there??
   - SpeakerName: 
     dialogueDisplayTime: 5
     BodyText: "Can someone let me out of the Engine Room \u2026please?"
+  - SpeakerName: 
+    dialogueDisplayTime: 2
+    BodyText: ...
   - SpeakerName: 
     dialogueDisplayTime: 2
     BodyText: I need to somehow power off this door

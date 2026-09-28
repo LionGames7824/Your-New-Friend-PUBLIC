@@ -16,5 +16,57 @@ MonoBehaviour:
   _title: THE_ROBOT_IniD
   _entries:
   - SpeakerName: ???
-    dialogueDisplayTime: 1
+    dialogueDisplayTime: 2
     BodyText: Well, well, well
+  - SpeakerName: ???
+    dialogueDisplayTime: 8
+    BodyText: The universe itself has aligned the stars for me to converse with a
+      species of this petty kind one last time!
+  - SpeakerName: ???
+    dialogueDisplayTime: 2
+    BodyText: How are you feeling this instant?
+  - SpeakerName: ???
+    dialogueDisplayTime: 2
+    BodyText: What are you thinking about?
+  - SpeakerName: ???
+    dialogueDisplayTime: 3
+    BodyText: "Perhaps, about the noise you just heard, or\u2026"
+  - SpeakerName: ???
+    dialogueDisplayTime: 5
+    BodyText: "about the fact that all of the communications are surprisingly quiet\u2026"
+  - SpeakerName: ???
+    dialogueDisplayTime: 1
+    BodyText: or maybe
+  - SpeakerName: ???
+    dialogueDisplayTime: 3
+    BodyText: You wanna know who you are talking to?
+  - SpeakerName: ???
+    dialogueDisplayTime: 2
+    BodyText: He-he-he
+  - SpeakerName: ???
+    dialogueDisplayTime: 1
+    BodyText: Listen
+  - SpeakerName: ???
+    dialogueDisplayTime: 2
+    BodyText: It is a miracle you are still alive
+  - SpeakerName: ???
+    dialogueDisplayTime: 2
+    BodyText: But this will not last any longer
+  - SpeakerName: ???
+    dialogueDisplayTime: 3
+    BodyText: I want you-
+  - SpeakerName: ???
+    dialogueDisplayTime: 3
+    BodyText: I WANT YOU TO ESCAPE
+  - SpeakerName: ???
+    dialogueDisplayTime: 3
+    BodyText: -to exit through the door on your right.
+  - SpeakerName: ???
+    dialogueDisplayTime: 1
+    BodyText: "When that happens\u2026"
+  - SpeakerName: ???
+    dialogueDisplayTime: 3
+    BodyText: I will finally have some fun >:)
+  - SpeakerName: ???
+    dialogueDisplayTime: 2
+    BodyText: See ya!

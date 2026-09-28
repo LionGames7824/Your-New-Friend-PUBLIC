@@ -16,16 +16,16 @@ MonoBehaviour:
   _title: MER_WakeUp
   _entries:
   - SpeakerName: 
-    dialogueDisplayTime: 1
+    dialogueDisplayTime: 0.75
     BodyText: What?
   - SpeakerName: 
-    dialogueDisplayTime: 1.5
+    dialogueDisplayTime: 0.75
     BodyText: '*heavy breathing*'
   - SpeakerName: 
     dialogueDisplayTime: 2
     BodyText: "What\u2026 just happened\u2026?"
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 2
     BodyText: "what was that sound\u2026?"
   - SpeakerName: 
     dialogueDisplayTime: 2

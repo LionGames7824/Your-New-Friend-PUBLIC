@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YourNewFriend
 {
@@ -29,6 +30,7 @@ namespace YourNewFriend
         [SerializeField] private string _id;
         [SerializeField] private int quantity = 1;
         [SerializeField] private string _prompt;
+        [SerializeField] private UnityEvent _onPickUp;
 
         [Tooltip("If true, this item goes straight into the player's hand the moment it's picked up, instead of just going into the inventory.")]
         [SerializeField] private bool _autoEquipOnPickup = false;
@@ -104,6 +106,7 @@ namespace YourNewFriend
 
                 if (_autoEquipOnPickup)
                     InventoryManager.Instance.EquipItem(_id);
+                _onPickUp?.Invoke();
             }
 
             UpdateState();

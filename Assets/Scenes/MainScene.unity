@@ -2988,6 +2988,38 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: f41704e1b0d32004bb5e147c7880b458, type: 3}
   - AudioName: THE_ROBOT_Destroy
     AudioClip: {fileID: 8300000, guid: 47291263ce0ae3f49a2d4bf9d4e25ab5, type: 3}
+  - AudioName: MER_WakeUp
+    AudioClip: {fileID: 8300000, guid: e9777b144c489f7408fa63bb11cc2b78, type: 3}
+  - AudioName: PBE_Help
+    AudioClip: {fileID: 8300000, guid: 6b759a0a1881c5842b614cf318035563, type: 3}
+  - AudioName: SBI
+    AudioClip: {fileID: 8300000, guid: daa29884b37902546b31223cd8576c7e, type: 3}
+  - AudioName: Arcade_Close
+    AudioClip: {fileID: 8300000, guid: 2097053e5436b9b47acb9aba037f4aca, type: 3}
+  - AudioName: Arcade_AfterClosing
+    AudioClip: {fileID: 8300000, guid: 11b6578b714f12f4880d7a69fad3507c, type: 3}
+  - AudioName: Arcade_Dizzy
+    AudioClip: {fileID: 8300000, guid: f267c1237a34561479b452e9f1520456, type: 3}
+  - AudioName: Dispose_ID
+    AudioClip: {fileID: 8300000, guid: 2b76f0582d2021d458c73bd84400f60b, type: 3}
+  - AudioName: Stage_Puzzle
+    AudioClip: {fileID: 8300000, guid: 48554200cb441054f97fa77100e126d5, type: 3}
+  - AudioName: Arcade_Puzzle
+    AudioClip: {fileID: 8300000, guid: 6d0c71ad2047d044e81aba3429926710, type: 3}
+  - AudioName: Recharge_Station
+    AudioClip: {fileID: 8300000, guid: 06e6a44f5e632154499cc3fabe00f264, type: 3}
+  - AudioName: THE_ROBOT_IniD_Continued
+    AudioClip: {fileID: 8300000, guid: 3ba9765b41c25e443a759ee62dea5238, type: 3}
+  - AudioName: Chef_Escape
+    AudioClip: {fileID: 8300000, guid: e47fad789f8fa934283512f4ff0c1aa1, type: 3}
+  - AudioName: Chef_Task
+    AudioClip: {fileID: 8300000, guid: b6ecc9d506728c849a0a3d79be93fc9e, type: 3}
+  - AudioName: Chef_Done
+    AudioClip: {fileID: 8300000, guid: 72b5edf1da30de04a8dc4d97d94f9874, type: 3}
+  - AudioName: FED
+    AudioClip: {fileID: 8300000, guid: 16288b3781a1fd242b4e65d3544e902f, type: 3}
+  - AudioName: WalkieTalkie
+    AudioClip: {fileID: 8300000, guid: 9ffd523d36c15df418c7965fc7029652, type: 3}
   _musicSource: {fileID: 1529806457}
   _sfxSource: {fileID: 2123593962}
   _voSource: {fileID: 1191997404}
@@ -7187,6 +7219,7 @@ Transform:
   - {fileID: 1235730289}
   - {fileID: 554189402}
   - {fileID: 2523679986954077729}
+  - {fileID: 1962386731}
   m_Father: {fileID: 1778476141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &71827057
@@ -27129,7 +27162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _startOpened
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6766429466795775599, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: m_IsActive
@@ -28698,6 +28731,78 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 4, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &255574945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255574946}
+  - component: {fileID: 255574948}
+  - component: {fileID: 255574947}
+  m_Layer: 0
+  m_Name: '"SafeCode'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &255574946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255574945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1031273197}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &255574947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255574945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 979c93a1-1cff-4ff5-9426-614447789330
+  _dialogueName: WalkieTalkie
+  _triggerOnce: 0
+  _save: 0
+--- !u!114 &255574948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255574945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae11bca86de9184e94c94f5a845a05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue: {fileID: 11400000, guid: 023e7ce25fab2454cb5f4714f555e1fa, type: 2}
+  _dialogueID: 7cc8aa58-3a09-4499-93c7-ac033ed910df
+  _triggerOnce: 0
+  _save: 0
+  _onDialogueStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  _dialogueUI: {fileID: 1689640781}
 --- !u!1 &255743265
 GameObject:
   m_ObjectHideFlags: 0
@@ -37031,6 +37136,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1433776125}
+        m_TargetAssemblyTypeName: YourNewFriend.DialogueVOTriggerZone, Assembly-CSharp
+        m_MethodName: TriggerVoiceOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1433776124}
+        m_TargetAssemblyTypeName: YourNewFriend.DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _dialogueUI: {fileID: 1689640781}
 --- !u!114 &329374921
 MonoBehaviour:
@@ -41025,6 +41154,7 @@ Transform:
   - {fileID: 687160218}
   - {fileID: 1749087355}
   - {fileID: 329374919}
+  - {fileID: 1433776123}
   - {fileID: 1451107948}
   - {fileID: 445253572}
   - {fileID: 573018166}
@@ -42249,6 +42379,7 @@ GameObject:
   - component: {fileID: 366051320}
   - component: {fileID: 366051322}
   - component: {fileID: 366051321}
+  - component: {fileID: 366051323}
   m_Layer: 0
   m_Name: '"Arcade_Close'
   m_TagString: Untagged
@@ -42315,6 +42446,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &366051323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366051319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: cfcd4aa9-d1cd-4bae-8483-03c4424d9712
+  _dialogueName: Arcade_Close
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &366065788
 GameObject:
   m_ObjectHideFlags: 0
@@ -68621,7 +68768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441cb92abae1a8046a0933f7adc72792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutsceneID: ca4452b4-3a65-4879-8511-6aa69ffcc734
+  _cutsceneID: c721d84a-a01e-4e32-b280-8d6f4c26c60f
   _triggerOnce: 1
   _save: 1
   _onCutsceneStart:
@@ -88165,6 +88312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 715605916}
   - component: {fileID: 715605917}
+  - component: {fileID: 715605918}
   m_Layer: 0
   m_Name: '"ChefBot_Talk_Done'
   m_TagString: Untagged
@@ -88210,6 +88358,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _dialogueUI: {fileID: 0}
+--- !u!114 &715605918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715605915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: f04e3f71-dc4b-4bd4-8784-9bd34998d98c
+  _dialogueName: Chef_Done
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &716079931
 GameObject:
   m_ObjectHideFlags: 0
@@ -90595,6 +90759,7 @@ GameObject:
   - component: {fileID: 738390446}
   - component: {fileID: 738390448}
   - component: {fileID: 738390447}
+  - component: {fileID: 738390449}
   m_Layer: 0
   m_Name: '"Stage_Puzzle'
   m_TagString: Untagged
@@ -90661,6 +90826,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &738390449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738390445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 333f7aeb-4d31-4423-afb5-9b3b1f47fa2f
+  _dialogueName: Stage_Puzzle
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &738703538
 GameObject:
   m_ObjectHideFlags: 0
@@ -91168,6 +91349,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1890220049}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &744711690
 GameObject:
@@ -93160,6 +93353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 762828070}
   - component: {fileID: 762828071}
+  - component: {fileID: 762828072}
   m_Layer: 0
   m_Name: '"Arcade_AfterClosing'
   m_TagString: Untagged
@@ -93205,6 +93399,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _dialogueUI: {fileID: 0}
+--- !u!114 &762828072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762828069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 148d058b-201e-4b1f-9c81-aa3d7b3e2192
+  _dialogueName: Arcade_AfterClosing
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &763607517
 GameObject:
   m_ObjectHideFlags: 0
@@ -102674,6 +102884,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &847834663 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1701980859410514038, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+  m_PrefabInstance: {fileID: 1575564760723058247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &851302521
 GameObject:
   m_ObjectHideFlags: 0
@@ -104707,6 +104922,17 @@ Transform:
   - {fileID: 352311348}
   m_Father: {fileID: 1684844887}
   m_LocalEulerAnglesHint: {x: 0, y: -88.643, z: 0}
+--- !u!114 &866490350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+  m_PrefabInstance: {fileID: 246437990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0607e9d61b21f6a4aa568508e5d69dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &866970482
 GameObject:
   m_ObjectHideFlags: 0
@@ -118756,6 +118982,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000002, y: 2, z: 2.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1015047493 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4879708447142405525, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+  m_PrefabInstance: {fileID: 1575564760723058247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1015160652
 GameObject:
   m_ObjectHideFlags: 0
@@ -119962,6 +120193,7 @@ GameObject:
   - component: {fileID: 1026524163}
   - component: {fileID: 1026524162}
   - component: {fileID: 1026524161}
+  - component: {fileID: 1026524164}
   m_Layer: 0
   m_Name: '"TR'
   m_TagString: Untagged
@@ -119996,7 +120228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3d09303de19fa4581a8f89840a49aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tvID: 892cd804-3861-4fab-8bac-734983465502
+  _tvID: abe043ec-e83a-409f-9c6d-687d7fae0e48
   _tv: {fileID: 7221008786374740745}
   _triggerOnce: 1
   _save: 1
@@ -120015,7 +120247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _voID: ac1a3684-ae86-4236-9617-5eea4c2b9a8c
+  _voID: d802b2c9-4742-4a4e-b07e-d6b4cde05aa8
   _dialogueName: THE_ROBOT_IniD
   _triggerOnce: 1
   _save: 1
@@ -120040,6 +120272,53 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 8, z: 15}
   m_Center: {x: 0, y: 4, z: -2.5}
+--- !u!114 &1026524164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026524159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae11bca86de9184e94c94f5a845a05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue: {fileID: 11400000, guid: defaefe2674f609489d92128d5f51077, type: 2}
+  _dialogueID: 51c6e4be-edd1-4db8-b73a-8e8bb6155aa9
+  _triggerOnce: 1
+  _save: 1
+  _onDialogueStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1726028938}
+        m_TargetAssemblyTypeName: YourNewFriend.DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1726028939}
+        m_TargetAssemblyTypeName: YourNewFriend.DialogueVOTriggerZone, Assembly-CSharp
+        m_MethodName: TriggerVoiceOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _dialogueUI: {fileID: 0}
 --- !u!1 &1026964584
 GameObject:
   m_ObjectHideFlags: 0
@@ -120595,6 +120874,7 @@ Transform:
   - {fileID: 1529380529}
   - {fileID: 1620746889}
   - {fileID: 8048173519913823432}
+  - {fileID: 255574946}
   m_Father: {fileID: 1778476141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1031358653
@@ -126126,6 +126406,7 @@ Transform:
   - {fileID: 7890273754483129794}
   - {fileID: 3497205213185338335}
   - {fileID: 1026524160}
+  - {fileID: 1726028937}
   m_Father: {fileID: 1778476141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070839870
@@ -134004,6 +134285,7 @@ GameObject:
   - component: {fileID: 1134130383}
   - component: {fileID: 1134130385}
   - component: {fileID: 1134130384}
+  - component: {fileID: 1134130386}
   m_Layer: 0
   m_Name: '"Arcade_Dizzy'
   m_TagString: Untagged
@@ -134070,6 +134352,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9, y: 8, z: 9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1134130386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134130382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 606c2a9d-52ea-4816-a9f8-b5bed15dd23d
+  _dialogueName: Arcade_Dizzy
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &1135134074
 GameObject:
   m_ObjectHideFlags: 0
@@ -140580,7 +140878,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -143230,6 +143528,7 @@ GameObject:
   - component: {fileID: 1207534824}
   - component: {fileID: 1207534822}
   - component: {fileID: 1207534823}
+  - component: {fileID: 1207534825}
   m_Layer: 0
   m_Name: '"ChefBot_Talk_Escape'
   m_TagString: Untagged
@@ -143270,10 +143569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae11bca86de9184e94c94f5a845a05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogue: {fileID: 0}
+  _dialogue: {fileID: 11400000, guid: d6c683805d0a39c45a611be937625cc1, type: 2}
   _dialogueID: 172f866b-b518-4aef-883f-8ac1ed888cd3
-  _triggerOnce: 1
-  _save: 1
+  _triggerOnce: 0
+  _save: 0
   _onDialogueStart:
     m_PersistentCalls:
       m_Calls: []
@@ -143308,6 +143607,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1684844887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1207534825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207534821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 0a55857f-f542-4296-90e7-e443e281e72a
+  _dialogueName: Chef_Escape
+  _triggerOnce: 0
+  _save: 0
 --- !u!1 &1208311286
 GameObject:
   m_ObjectHideFlags: 0
@@ -143319,6 +143634,7 @@ GameObject:
   - component: {fileID: 1208311289}
   - component: {fileID: 1208311288}
   - component: {fileID: 1208311287}
+  - component: {fileID: 1208311290}
   m_Layer: 0
   m_Name: '''''WU'
   m_TagString: Untagged
@@ -143360,7 +143676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 11400000, guid: abffd97f4da3b8140ac2e5e48b523e06, type: 2}
-  _dialogueID: 914b2609-a4df-4ec5-9525-9d6fa1a49c19
+  _dialogueID: e0a6db9e-5d7b-4794-a697-8528c65a6643
   _triggerOnce: 1
   _save: 1
   _onDialogueStart:
@@ -143385,6 +143701,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 171818814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208311290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208311286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 822b9213-fbb0-4fdf-af51-7108b3b1ffc3
+  _dialogueName: MER_WakeUp
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &1211369937
 GameObject:
   m_ObjectHideFlags: 0
@@ -162478,6 +162810,7 @@ GameObject:
   - component: {fileID: 1363102205}
   - component: {fileID: 1363102207}
   - component: {fileID: 1363102206}
+  - component: {fileID: 1363102208}
   m_Layer: 0
   m_Name: '"ChefBot_Talk_Task'
   m_TagString: Untagged
@@ -162568,6 +162901,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 8, z: 7}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1363102208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363102204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: dd5f662e-1a4b-4741-8772-70c1afa1892a
+  _dialogueName: Chef_Task
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &1363227268
 GameObject:
   m_ObjectHideFlags: 0
@@ -173071,6 +173420,78 @@ Transform:
   - {fileID: 227542349}
   m_Father: {fileID: 533437527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1433776122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433776123}
+  - component: {fileID: 1433776125}
+  - component: {fileID: 1433776124}
+  m_Layer: 0
+  m_Name: '"Final'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1433776123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433776122}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.75, y: -40, z: -41.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 358911651}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1433776124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433776122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae11bca86de9184e94c94f5a845a05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue: {fileID: 11400000, guid: 358d96a3598c0be4f97ed981e6cdd788, type: 2}
+  _dialogueID: bd7d8fd9-547b-4799-ae07-46c9e91c78ae
+  _triggerOnce: 0
+  _save: 0
+  _onDialogueStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  _dialogueUI: {fileID: 0}
+--- !u!114 &1433776125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433776122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 2a3c9c96-e2bd-4aa1-88f5-d6ac2512b610
+  _dialogueName: FED
+  _triggerOnce: 0
+  _save: 0
 --- !u!1 &1434136299
 GameObject:
   m_ObjectHideFlags: 0
@@ -175838,7 +176259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _startOpened
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _onDoorOpened.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -175898,6 +176319,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8325303358183304282, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
   m_PrefabInstance: {fileID: 1461300648}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1461300650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+  m_PrefabInstance: {fileID: 1461300648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0607e9d61b21f6a4aa568508e5d69dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1461327044
 GameObject:
   m_ObjectHideFlags: 0
@@ -211299,6 +211731,90 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725641295}
   m_Mesh: {fileID: 8385836491182413749, guid: 266a4bcbff1ee6e41b0af028d88ddc8e, type: 3}
+--- !u!1 &1726028936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726028937}
+  - component: {fileID: 1726028939}
+  - component: {fileID: 1726028938}
+  m_Layer: 0
+  m_Name: '"AfterTR'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1726028937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726028936}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.04, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1070443432}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1726028938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726028936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae11bca86de9184e94c94f5a845a05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue: {fileID: 11400000, guid: 9238f7cb8d1e0f246a17d3f2a9357b76, type: 2}
+  _dialogueID: 9e455c19-af79-4c52-8e42-8fd309a9fbdf
+  _triggerOnce: 1
+  _save: 1
+  _onDialogueStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1461300650}
+        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _dialogueUI: {fileID: 0}
+--- !u!114 &1726028939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726028936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: ca06822d-6b70-4225-8831-a33e32cf861e
+  _dialogueName: THE_ROBOT_IniD_Continued
+  _triggerOnce: 0
+  _save: 0
 --- !u!1 &1727043430
 GameObject:
   m_ObjectHideFlags: 0
@@ -214919,6 +215435,7 @@ GameObject:
   - component: {fileID: 1760903350}
   - component: {fileID: 1760903352}
   - component: {fileID: 1760903351}
+  - component: {fileID: 1760903353}
   m_Layer: 0
   m_Name: '"Dispose_Identification'
   m_TagString: Untagged
@@ -214985,6 +215502,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1760903353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760903349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: ab7ea7fa-11b9-46cf-9014-efcc1512ef70
+  _dialogueName: Dispose_ID
+  _triggerOnce: 1
+  _save: 1
 --- !u!21 &1761091556
 Material:
   serializedVersion: 8
@@ -215078,6 +215611,7 @@ GameObject:
   - component: {fileID: 1765114612}
   - component: {fileID: 1765114614}
   - component: {fileID: 1765114613}
+  - component: {fileID: 1765114615}
   m_Layer: 0
   m_Name: '"Arcade_Puzzle'
   m_TagString: Untagged
@@ -215144,6 +215678,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7, y: 8, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1765114615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765114611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: b4023c13-4054-4eff-bc0d-d445ce552ae5
+  _dialogueName: Arcade_Puzzle
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &1765704332
 GameObject:
   m_ObjectHideFlags: 0
@@ -230571,6 +231121,7 @@ GameObject:
   - component: {fileID: 1890220048}
   - component: {fileID: 1890220050}
   - component: {fileID: 1890220049}
+  - component: {fileID: 1890220051}
   m_Layer: 0
   m_Name: '''''PBE_SOS'
   m_TagString: Untagged
@@ -230627,7 +231178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 11400000, guid: 8a54e3ffc38c0f24497a1a9666d7f366, type: 2}
-  _dialogueID: 60a7e2f6-3714-432f-99e3-22a6df762a6b
+  _dialogueID: 34a6e90f-c3eb-4d41-bf46-ffaac6529ec4
   _triggerOnce: 1
   _save: 1
   _onDialogueStart:
@@ -230637,6 +231188,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _dialogueUI: {fileID: 0}
+--- !u!114 &1890220051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890220047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 0a05f4ba-c3dd-41d6-8877-61cd726254b6
+  _dialogueName: PBE_Help
+  _triggerOnce: 1
+  _save: 1
 --- !u!1 &1890272056
 GameObject:
   m_ObjectHideFlags: 0
@@ -238755,6 +239322,100 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000002, y: 2, z: 2.0000002}
   m_Center: {x: 0.000061035156, y: 0, z: 0}
+--- !u!1 &1962386730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962386731}
+  - component: {fileID: 1962386734}
+  - component: {fileID: 1962386733}
+  - component: {fileID: 1962386732}
+  m_Layer: 0
+  m_Name: '"Recharge'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1962386731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962386730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 67.5, y: 4, z: -7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 70130785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1962386732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962386730}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15, y: 8, z: 25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1962386733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962386730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: a00f468d-c7ee-43ab-824e-0bde3551aeae
+  _dialogueName: Recharge_Station
+  _triggerOnce: 1
+  _save: 1
+--- !u!114 &1962386734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962386730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae11bca86de9184e94c94f5a845a05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue: {fileID: 11400000, guid: fae58766fe9a7a1448bc98cc5c434ac0, type: 2}
+  _dialogueID: 658ab2e5-2705-4a95-bee0-d4d323a14392
+  _triggerOnce: 1
+  _save: 1
+  _onDialogueStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  _dialogueUI: {fileID: 0}
 --- !u!64 &1963531466
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -244355,6 +245016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018083203}
   - component: {fileID: 2018083202}
+  - component: {fileID: 2018083204}
   m_Layer: 0
   m_Name: '"LC'
   m_TagString: Untagged
@@ -244400,6 +245062,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1667855113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018083204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018083201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _voID: 6dbcc72d-535a-442b-bb85-d0edf30add28
+  _dialogueName: SBI
+  _triggerOnce: 0
+  _save: 0
 --- !u!1 &2019841659
 GameObject:
   m_ObjectHideFlags: 0
@@ -269353,7 +270031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -269376,6 +270054,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[8].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 919132147948297212}
@@ -269396,6 +270090,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2018083202}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 2018083204}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 866490350}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 847834663}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[8].m_Target
+      value: 
+      objectReference: {fileID: 1015047493}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -269409,6 +270119,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[8].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
@@ -269432,6 +270158,22 @@ PrefabInstance:
       value: TriggerDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: TriggerVoiceOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: OpenDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[8].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.Animator, UnityEngine
       objectReference: {fileID: 0}
@@ -269450,6 +270192,22 @@ PrefabInstance:
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
       value: YourNewFriend.DialogueTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: YourNewFriend.DialogueVOTriggerZone, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
+      value: YourNewFriend.DoorController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_TargetAssemblyTypeName
+      value: UnityEngine.Collider, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[8].m_TargetAssemblyTypeName
+      value: UnityEngine.Collider, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -269477,6 +270235,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
+      propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[8].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -289567,6 +290341,58 @@ PrefabInstance:
       propertyPath: _autoEquipOnPickup
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 255574948}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 255574947}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerVoiceOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: YourNewFriend.DialogueTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: YourNewFriend.DialogueVOTriggerZone, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522166165907323545, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
+      propertyPath: _onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3614243843855175082, guid: 829142b560bf53e4db1d6cb048fc6907, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -301220,7 +302046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -50.000946, y: 139}
+  m_AnchoredPosition: {x: -50.000977, y: 139}
   m_SizeDelta: {x: 900, y: 900}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7041628271605564862

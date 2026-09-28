@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6352533f9eee9429093b4770f5485e, type: 3}
+  m_Name: THE_ROBOT_IniD_Continued
+  m_EditorClassIdentifier: 
+  _id: THE_ROBOT_IniD_Continued
+  _title: THE_ROBOT_IniD_Continued
+  _entries:
+  - SpeakerName: 
+    dialogueDisplayTime: 1.5
+    BodyText: H-holy moly!!
+  - SpeakerName: 
+    dialogueDisplayTime: 1.5
+    BodyText: Was that the
+  - SpeakerName: 
+    dialogueDisplayTime: 2.5
+    BodyText: That was a simple glitch, right??
+  - SpeakerName: 
+    dialogueDisplayTime: 2
+    BodyText: From countless robots on this ship
+  - SpeakerName: 
+    dialogueDisplayTime: 4
+    BodyText: "I have never seen anything like this before\u2026"
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: ...
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: But is it even possible to escape now?
+  - SpeakerName: 
+    dialogueDisplayTime: 5
+    BodyText: I mean, how can I be sure of whatever this thing says to me
+  - SpeakerName: 
+    dialogueDisplayTime: 4
+    BodyText: This entire place feels completely broken
+  - SpeakerName: 
+    dialogueDisplayTime: 4
+    BodyText: And now I somehow must deal with this?!?!
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: '*heavy sigh*'
+  - SpeakerName: 
+    dialogueDisplayTime: 3
+    BodyText: There is, really, little time to waste
+  - SpeakerName: 
+    dialogueDisplayTime: 1
+    BodyText: I have to move on

@@ -43,5 +43,5 @@ MonoBehaviour:
     dialogueDisplayTime: 2.5
     BodyText: Are alone, forgotten
   - SpeakerName: ???
-    dialogueDisplayTime: 4
+    dialogueDisplayTime: 5
     BodyText: And finally punished for killing my fun >:(

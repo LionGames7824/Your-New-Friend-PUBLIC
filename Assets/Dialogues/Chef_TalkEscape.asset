@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6352533f9eee9429093b4770f5485e, type: 3}
+  m_Name: Chef_TalkEscape
+  m_EditorClassIdentifier: 
+  _id: CTE
+  _title: Chef_TaskEscape
+  _entries:
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: "Here, I know what you\u2019re here for\u2026"
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: "You want to escape, don\u2019t you?"
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: Thus, the only thing I can do
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: "Is to save at least one person on this ship\u2026"
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: And my mission will be complete
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: The green keycard is in the first circular storage unit
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 2
+    BodyText: "Hopefully you won\u2019t get caught"
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 1
+    BodyText: ...
+  - SpeakerName: ChefBot
+    dialogueDisplayTime: 1
+    BodyText: "Goodbye\u2026"
+  - SpeakerName: 
+    dialogueDisplayTime: 1
+    BodyText: ...

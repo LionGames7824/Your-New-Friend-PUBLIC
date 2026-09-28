@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6352533f9eee9429093b4770f5485e, type: 3}
+  m_Name: Walkie-Talkie
+  m_EditorClassIdentifier: 
+  _id: WalkieTalkie
+  _title: WT
+  _entries:
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 2
+    BodyText: Radio check
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 3
+    BodyText: "I finally found like the only quiet place on this ship\u2026"
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 2
+    BodyText: "Let\u2019s get straight to the point."
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 5
+    BodyText: "There\u2019s a safe in one of the engine rooms, and I feel like I
+      am the only one that actually remembers the password for it"
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 3
+    BodyText: I know my memory is not the best
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 2
+    BodyText: Which is why I decided to record this message in the first place
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 1
+    BodyText: "For everyone\u2019s benefit"
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 2
+    BodyText: "\u2026"
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 3
+    BodyText: The passcode is 92636
+  - SpeakerName: Sarah
+    dialogueDisplayTime: 2
+    BodyText: "Hopefully this doesn\u2019t get lost\u2026"
