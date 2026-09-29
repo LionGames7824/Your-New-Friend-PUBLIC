@@ -19,13 +19,13 @@ MonoBehaviour:
     dialogueDisplayTime: 3
     BodyText: "The Disintegration technology\u2026"
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 5
     BodyText: One of the first big advancements humanity has made
   - SpeakerName: 
     dialogueDisplayTime: 2
     BodyText: ...
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 4
     BodyText: "It\u2019s so sad seeing Dizzy like this\u2026"
   - SpeakerName: 
     dialogueDisplayTime: 3

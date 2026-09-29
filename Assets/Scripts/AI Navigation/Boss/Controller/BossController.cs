@@ -21,6 +21,7 @@ namespace YourNewFriend
         [SerializeField] private BossAttack _attack;
         [SerializeField] private BossHealth _health;
         [SerializeField] private BossPhaseManager _phaseManager;
+        [SerializeField] private UnityEvent _onDeath;
 
         [Header("Timing")]
         [SerializeField] private float _introDuration = 1.5f;
@@ -137,7 +138,8 @@ namespace YourNewFriend
         // death animation/VFX later, then deactivate once it finishes.
         private void HandleBossDeath()
         {
-            gameObject.SetActive(false);
+            _onDeath?.Invoke();
+            gameObject.GetComponent<BossController>().enabled = false;
         }
 
         private void HandleAttackFinished()

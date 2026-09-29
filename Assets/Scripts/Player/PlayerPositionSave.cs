@@ -26,5 +26,15 @@ namespace YourNewFriend
                 save._savingDisabled = true;
             }
         }
+
+        public void EnableSaving()
+        {
+            _savingDisabled = false;
+        }
+
+        public void DisableSaving()
+        {
+            _savingDisabled = true;
+        }
     }
 }

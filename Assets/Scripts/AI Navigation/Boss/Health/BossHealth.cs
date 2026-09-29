@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace YourNewFriend
@@ -15,6 +16,8 @@ namespace YourNewFriend
         public event Action<int, int> OnHealthChanged;
         public event Action OnDeath;
 
+        public float cooldown = TaserWireEffect.cooldown;
+        private Coroutine _cooldown;
         private void Awake()
         {
             _currentHealth = _maxHealth;
@@ -25,9 +28,12 @@ namespace YourNewFriend
         {
             if (damage <= 0)
                 return;
+            if (_cooldown != null)
+                return;
 
             _currentHealth -= damage;
             _currentHealth = Mathf.Max(_currentHealth, 0);
+            _cooldown = StartCoroutine(CoolDown(cooldown));
 
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
 
@@ -46,6 +52,12 @@ namespace YourNewFriend
         {
             _currentHealth = _maxHealth;
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        }
+
+        private IEnumerator CoolDown(float cooldown)
+        {
+            yield return new WaitForSeconds(cooldown);
+            _cooldown = null;
         }
     }
 }

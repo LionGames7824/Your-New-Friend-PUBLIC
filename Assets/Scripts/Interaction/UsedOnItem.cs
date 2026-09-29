@@ -17,6 +17,7 @@ namespace YourNewFriend
 
         [Tooltip("If enabled, the use count resets when the player respawns after Game Over (e.g. a lever you should be able to retry).")]
         [SerializeField] private bool _resetOnGameOver = false;
+        [SerializeField] private UnityEvent _onGameOver;
 
         [Header("Events")]
         [SerializeField] private UnityEvent _onCorrectItemUsed;
@@ -40,6 +41,12 @@ namespace YourNewFriend
         private void HandleGameOver(bool isOpen)
         {
             if (!isOpen) ResetUses();
+            _onGameOver?.Invoke();
+        }
+
+        public void ToggleGameOver(bool gameOver)
+        {
+            _resetOnGameOver = gameOver;
         }
 
         public void ResetUses()

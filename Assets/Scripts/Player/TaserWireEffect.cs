@@ -20,6 +20,8 @@ namespace YourNewFriend
         [Tooltip("How far each point can wobble sideways off the straight line, for a crackling energy look.")]
         [SerializeField] private float _jitterAmount = 0.05f;
 
+        [SerializeField] public static float cooldown = 1f;
+
         private Coroutine _activeShot;
 
         private void Awake()
@@ -34,7 +36,7 @@ namespace YourNewFriend
                 return;
 
             if (_activeShot != null)
-                StopCoroutine(_activeShot);
+                return;
 
             _activeShot = StartCoroutine(PlayShot(origin, endPoint));
         }
@@ -52,7 +54,9 @@ namespace YourNewFriend
             }
 
             _wire.enabled = false;
+            yield return new WaitForSeconds(cooldown);
             _activeShot = null;
+            
         }
 
         private void UpdateWireVisuals(Vector3 origin, Vector3 endPoint, float elapsed)

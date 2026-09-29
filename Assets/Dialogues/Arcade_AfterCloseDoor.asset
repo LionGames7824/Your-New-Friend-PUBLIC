@@ -19,14 +19,14 @@ MonoBehaviour:
     dialogueDisplayTime: 3
     BodyText: "Pheww\u2026, that was close\u2026"
   - SpeakerName: 
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 7
     BodyText: ...
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 5
     BodyText: "I remember how lively this place was not so long ago\u2026"
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 5
     BodyText: People were at least still coming down to this section of the ship.
   - SpeakerName: 
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 4
     BodyText: "Nowadays I have barely seen a soul\u2026"

@@ -16,5 +16,5 @@ MonoBehaviour:
   _title: Arcade_CD
   _entries:
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 1
     BodyText: Quick! I need to close the door.

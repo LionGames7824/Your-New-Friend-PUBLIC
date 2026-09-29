@@ -35,6 +35,16 @@ namespace YourNewFriend
             }
         }
 
+        public static void TurnOffOverlap()
+        {
+            mus_overlap = false;
+        }
+
+        public static void TurnOnOverlap()
+        {
+            mus_overlap = true;
+        }
+
         private void OnTriggerExit(Collider collision)
         {
             if (!collision.CompareTag(_playerTag)) return;

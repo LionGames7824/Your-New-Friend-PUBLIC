@@ -1248,6 +1248,7 @@ GameObject:
   - component: {fileID: 1084596467555735131}
   - component: {fileID: 1612613367447032927}
   - component: {fileID: 3154683165238434802}
+  - component: {fileID: 3284220445930237676}
   m_Layer: 0
   m_Name: DisintegratorBotBossFight
   m_TagString: Untagged
@@ -1354,6 +1355,9 @@ MonoBehaviour:
   _attack: {fileID: 7803606313737402993}
   _health: {fileID: 8472821763027397523}
   _phaseManager: {fileID: 1612613367447032927}
+  _onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   _introDuration: 1.5
   _baseOrbitDuration: 3
 --- !u!114 &1612613367447032927
@@ -1493,6 +1497,27 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!95 &3284220445930237676
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424195778581198290}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0440cbf7026eab41a97828edd7cde57, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2574347817793859572
 GameObject:
   m_ObjectHideFlags: 0

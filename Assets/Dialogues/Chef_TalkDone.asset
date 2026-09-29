@@ -16,14 +16,14 @@ MonoBehaviour:
   _title: Chef_TaskCompleted
   _entries:
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: Bellissimo!
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 5
     BodyText: During your search, I was able to get you one of my delicate knives.
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 4
     BodyText: You can pick it up right behind me,
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: I know you like those!

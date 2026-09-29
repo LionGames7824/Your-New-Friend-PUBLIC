@@ -16,32 +16,32 @@ MonoBehaviour:
   _title: Chef_TaskEscape
   _entries:
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: "Here, I know what you\u2019re here for\u2026"
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: "You want to escape, don\u2019t you?"
   - SpeakerName: ChefBot
     dialogueDisplayTime: 2
     BodyText: Thus, the only thing I can do
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: "Is to save at least one person on this ship\u2026"
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: And my mission will be complete
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: The green keycard is in the first circular storage unit
   - SpeakerName: ChefBot
     dialogueDisplayTime: 2
     BodyText: "Hopefully you won\u2019t get caught"
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 1
+    dialogueDisplayTime: 2
     BodyText: ...
   - SpeakerName: ChefBot
     dialogueDisplayTime: 1
     BodyText: "Goodbye\u2026"
   - SpeakerName: 
-    dialogueDisplayTime: 1
+    dialogueDisplayTime: 2
     BodyText: ...

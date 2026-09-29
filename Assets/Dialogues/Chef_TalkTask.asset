@@ -19,20 +19,14 @@ MonoBehaviour:
     dialogueDisplayTime: 2
     BodyText: Hey, hey, hey!
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 2
     BodyText: "Have you seen my chef\u2019s hat anywhere recently?"
-  - SpeakerName: ChefBot
-    dialogueDisplayTime: 3
-    BodyText: I believe someone might have taken it to one of the storage rooms.
   - SpeakerName: ChefBot
     dialogueDisplayTime: 3
     BodyText: I believe someone might have taken it to one of the storage rooms.
   - SpeakerName: ChefBot
     dialogueDisplayTime: 2
     BodyText: "\u2026"
-  - SpeakerName: ChefBot
-    dialogueDisplayTime: 3
-    BodyText: Here, I powered off the doors of a few of the nearest ones
   - SpeakerName: ChefBot
     dialogueDisplayTime: 3
     BodyText: Here, I powered off the doors of a few of the nearest ones

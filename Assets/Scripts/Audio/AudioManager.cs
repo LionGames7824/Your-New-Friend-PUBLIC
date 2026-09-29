@@ -79,6 +79,11 @@ namespace YourNewFriend
             if (!_musicSource.isPlaying) _musicSource.Play();
         }
 
+        public void ResetBackgroundMusic()
+        {
+            _currentBackgroundMusic = null;
+        }
+
         public void PlayVoicedDialogue(string name)
         {
             AudioLibrary sound = Array.Find(_voSounds, x => x.AudioName == name);
