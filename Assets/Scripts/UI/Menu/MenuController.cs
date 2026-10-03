@@ -58,13 +58,13 @@ namespace YourNewFriend
 
         public void OnStartGame()
         {
+            PlayerPrefs.DeleteAll();
             SceneManager.LoadScene(_sceneName);
         }
 
         public void OnLoadGame()
         {
-            // Future: Load from save file, etc.
-            Debug.Log("Load game functionality not implemented yet.");
+            SceneManager.LoadScene(_sceneName);
         }
 
         public void OnOptions()

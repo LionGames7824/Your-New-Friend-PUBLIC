@@ -27166,7 +27166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _resetOnGameOver
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6766429466795775599, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: m_IsActive
@@ -37027,7 +37027,7 @@ Transform:
   m_GameObject: {fileID: 329374918}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.75, y: -40, z: -41.5}
+  m_LocalPosition: {x: 60, y: -40, z: -44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37055,66 +37055,6 @@ MonoBehaviour:
   _onDialogueEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 445253573}
-        m_TargetAssemblyTypeName: CountdownTrigger, Assembly-CSharp
-        m_MethodName: StartCountdown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 402397905}
-        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1992852812}
-        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2316706463168504861}
-        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1529806457}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: c3ae3ce6360676a46a59d56ceb2c00b6, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 550015485}
         m_TargetAssemblyTypeName: YourNewFriend.PlayerPositionSave, Assembly-CSharp
         m_MethodName: DisableSavingForAll
@@ -37175,6 +37115,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1451107947}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _dialogueUI: {fileID: 1689640781}
 --- !u!114 &329374921
 MonoBehaviour:
@@ -37230,8 +37182,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 8, z: 15}
-  m_Center: {x: 0, y: 4, z: -2.5}
+  m_Size: {x: 20, y: 10, z: 30}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!21 &329555100
 Material:
   serializedVersion: 8
@@ -41166,7 +41118,6 @@ Transform:
   - {fileID: 329374919}
   - {fileID: 1433776123}
   - {fileID: 1451107948}
-  - {fileID: 445253572}
   - {fileID: 573018166}
   m_Father: {fileID: 1778476141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52283,66 +52234,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444853593}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &445253571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 445253572}
-  - component: {fileID: 445253573}
-  m_Layer: 0
-  m_Name: COUNTDOWN
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &445253572
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445253571}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 358911651}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &445253573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445253571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3add93d7825b24f847c9b9dcfe1dee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onCountdownStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1207534822}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  timer: {fileID: 1532257668}
 --- !u!1 &445628700
 GameObject:
   m_ObjectHideFlags: 0
@@ -88773,7 +88664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d4b833bc1e7c84da0a7b882d0cb378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _voID: f04e3f71-dc4b-4bd4-8784-9bd34998d98c
+  _voID: 282c2c1a-6c9c-4930-b43e-29d636aecdca
   _dialogueName: Chef_Done
   _triggerOnce: 1
   _save: 1
@@ -94821,6 +94712,10 @@ PrefabInstance:
     - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: _doorID
       value: a2c4e8f4-0b6d-44fd-b316-129c068cf7c7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824135038375972850, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
+      propertyPath: _startOpened
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6766429466795775599, guid: 23129c3269654094da9f4d5ae04871f5, type: 3}
       propertyPath: m_IsActive
@@ -127944,6 +127839,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 715605918}
+        m_TargetAssemblyTypeName: YourNewFriend.DialogueVOTriggerZone, Assembly-CSharp
+        m_MethodName: TriggerVoiceOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &1082409270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -144338,8 +144245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 11400000, guid: d6c683805d0a39c45a611be937625cc1, type: 2}
-  _dialogueID: 172f866b-b518-4aef-883f-8ac1ed888cd3
-  _triggerOnce: 0
+  _dialogueID: 70bfba1c-19ac-48d3-9ffb-94d3677f4393
+  _triggerOnce: 1
   _save: 0
   _onDialogueStart:
     m_PersistentCalls:
@@ -144401,7 +144308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _voID: 0a55857f-f542-4296-90e7-e443e281e72a
   _dialogueName: Chef_Escape
-  _triggerOnce: 0
+  _triggerOnce: 1
   _save: 0
 --- !u!1 &1208311286
 GameObject:
@@ -152111,6 +152018,30 @@ MonoBehaviour:
   onResume:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1529806457}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1904673408}
+        m_TargetAssemblyTypeName: YourNewFriend.MusicTriggerZone, Assembly-CSharp
+        m_MethodName: TurnOffOverlap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 24893517}
         m_TargetAssemblyTypeName: YourNewFriend.AudioManager, Assembly-CSharp
         m_MethodName: ResetBackgroundMusic
@@ -152159,18 +152090,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1451107947}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 24893517}
         m_TargetAssemblyTypeName: YourNewFriend.AudioManager, Assembly-CSharp
         m_MethodName: ResetBuffer
@@ -152211,18 +152130,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1904673408}
-        m_TargetAssemblyTypeName: YourNewFriend.MusicTriggerZone, Assembly-CSharp
-        m_MethodName: TurnOffOverlap
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -176323,19 +176230,19 @@ MonoBehaviour:
   _onCountdownStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1529806457}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
+      - m_Target: {fileID: 24893517}
+        m_TargetAssemblyTypeName: YourNewFriend.AudioManager, Assembly-CSharp
+        m_MethodName: PlayOnceImmediatelyWithoutSaving
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: c3ae3ce6360676a46a59d56ceb2c00b6, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
+          m_StringArgument: System Reboot
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1451107947}
+      - m_Target: {fileID: 1207534822}
         m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -176345,12 +176252,36 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1207534822}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 402397905}
+        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
+        m_MethodName: OpenDoorWithoutSaving
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1992852812}
+        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
+        m_MethodName: OpenDoorWithoutSaving
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2316706463168504861}
+        m_TargetAssemblyTypeName: YourNewFriend.DoorController, Assembly-CSharp
+        m_MethodName: OpenDoorWithoutSaving
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -176379,8 +176310,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 10, y: 8, z: 15}
-  m_Center: {x: 0, y: 4, z: -2.5}
+  m_Size: {x: 20, y: 10, z: 30}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!4 &1451107948
 Transform:
   m_ObjectHideFlags: 0
@@ -176390,7 +176321,7 @@ Transform:
   m_GameObject: {fileID: 1451107945}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.75, y: -40, z: -41.5}
+  m_LocalPosition: {x: 60, y: -40, z: -44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -191039,7 +190970,7 @@ MonoBehaviour:
   _onCorrectItemUsed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1853302839}
+      - m_Target: {fileID: 4973421358805557365}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: Play
         m_Mode: 5
@@ -193487,7 +193418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441cb92abae1a8046a0933f7adc72792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutsceneID: 25aa018f-8c0f-4611-b87d-978fe2518ed6
+  _cutsceneID: ac0a35f9-f6ef-464f-bbd2-319e0c6dfa60
   _triggerOnce: 1
   _save: 1
   _onCutsceneStart:
@@ -193524,6 +193455,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: c42add87ba03c9344a3023142c3933a3, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4182046125813895416}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -203075,8 +203018,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 70, y: 8, z: 4}
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Size: {x: 72.83862, y: 8, z: 4}
+  m_Center: {x: -1.4193115, y: 4, z: 0}
 --- !u!1 &1676699244
 GameObject:
   m_ObjectHideFlags: 0
@@ -204440,7 +204383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7355277756633574577, guid: b28e8ec4d056959468480c85cae9844a, type: 3}
       propertyPath: _resetOnGameOver
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -271921,7 +271864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ToggleDoor
+      value: OpenDoorWithoutSaving
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -271941,7 +271884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
-      value: OpenDoor
+      value: OpenDoorWithoutSaving
       objectReference: {fileID: 0}
     - target: {fileID: 8984465924005553293, guid: bc369608942ccf547903d640a3dd03df, type: 3}
       propertyPath: _onCorrectItemUsed.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
@@ -279786,7 +279729,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1672964187338014008}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: d919fa1907228ce4d8edd796b2c9b7b6, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 314b1a5832f71a647b6b87829d0e27ba, type: 2}
   m_InitialState: 0
   m_WrapMode: 0
   m_DirectorUpdateMode: 1
@@ -290960,6 +290903,11 @@ PrefabInstance:
 --- !u!65 &4973421358805557364 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 4630555945906169384, guid: 8d12cf7ad79e060448b8c8505cd60c55, type: 3}
+  m_PrefabInstance: {fileID: 4973421358805557363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4973421358805557365 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5967224896007139100, guid: 8d12cf7ad79e060448b8c8505cd60c55, type: 3}
   m_PrefabInstance: {fileID: 4973421358805557363}
   m_PrefabAsset: {fileID: 0}
 --- !u!33 &4984784706389641929

@@ -25,11 +25,14 @@ MonoBehaviour:
     dialogueDisplayTime: 3
     BodyText: "It\u2019s definitely not a place anyone usually visits"
   - SpeakerName: 
-    dialogueDisplayTime: 3
+    dialogueDisplayTime: 4
     BodyText: "And I don\u2019t think I even have access to open this room"
   - SpeakerName: 
     dialogueDisplayTime: 3
     BodyText: "Hmmm\u2026"
+  - SpeakerName: 
+    dialogueDisplayTime: 6
+    BodyText: "I can\u2026 try to get rid of the floor entirely"
   - SpeakerName: 
     dialogueDisplayTime: 3
     BodyText: Dizzy should be able to handle that

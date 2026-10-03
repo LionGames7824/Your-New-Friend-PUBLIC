@@ -65,6 +65,22 @@ namespace YourNewFriend
                 PlayImmediately(sound);
         }
 
+        public void PlayMusicWithoutSaving(string name, bool fade)
+        {
+            AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
+
+            if (sound == null)
+            {
+                Debug.LogWarning($"Music '{name}' not found!");
+                return;
+            }
+
+            if (fade)
+                StartCoroutine(FadeToNewMusic(sound));
+            else
+                PlayImmediatelyWithoutSaving(sound.AudioName);
+        }
+
         private void PlayImmediately(AudioLibrary sound)
         {
             _currentBackgroundMusic = sound.AudioName;
@@ -77,6 +93,12 @@ namespace YourNewFriend
             AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
             _musicSource.clip = sound.AudioClip;
             if (!_musicSource.isPlaying) _musicSource.Play();
+        }
+        public void PlayOnceImmediatelyWithoutSaving(string name)
+        {
+            AudioLibrary sound = Array.Find(_musicSounds, x => x.AudioName == name);
+            _musicSource.clip = sound.AudioClip;
+            if (!_musicSource.isPlaying) _musicSource.PlayOneShot(_musicSource.clip);
         }
 
         public void ResetBackgroundMusic()

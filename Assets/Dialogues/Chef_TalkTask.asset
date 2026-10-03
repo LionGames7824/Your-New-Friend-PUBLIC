@@ -25,7 +25,7 @@ MonoBehaviour:
     dialogueDisplayTime: 3
     BodyText: I believe someone might have taken it to one of the storage rooms.
   - SpeakerName: ChefBot
-    dialogueDisplayTime: 2
+    dialogueDisplayTime: 3
     BodyText: "\u2026"
   - SpeakerName: ChefBot
     dialogueDisplayTime: 3

@@ -39,8 +39,11 @@ namespace YourNewFriend
                 mus_flag2 = false;
                 if (mus_flag1 == false)
                 {
-                    MusicTriggerZone.mus_overlap = true;
-                    AudioManager.Instance.PlayMusic("WHEREISHE", true);
+                    if (MusicTriggerZone.mus_overlap == false)
+                    {
+                        MusicTriggerZone.mus_overlap = true;
+                        AudioManager.Instance.PlayMusicWithoutSaving("WHEREISHE", true);
+                    }
                     mus_flag1 = true;
                 }
                 agent.destination = player.position;
@@ -107,7 +110,7 @@ namespace YourNewFriend
             agent.destination = player.position;
             permanence = true;
             MusicTriggerZone.mus_overlap = true;
-            AudioManager.Instance.PlayMusic("WHEREISHE", true);
+            AudioManager.Instance.PlayMusicWithoutSaving("WHEREISHE", true);
             Debug.Log(agent.destination);
         }
 

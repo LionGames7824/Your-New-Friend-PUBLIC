@@ -139,10 +139,10 @@ namespace YourNewFriend
 
         public void OpenDoor()
         {
+            SaveDoorState(true);
             if (_anim.GetBool(DOOR_STATE)) return;
 
             _anim.SetBool(DOOR_STATE, true);
-            SaveDoorState(true);
             _onDoorOpened.Invoke();            
         }
 

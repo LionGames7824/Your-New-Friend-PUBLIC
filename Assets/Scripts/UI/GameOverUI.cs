@@ -23,6 +23,7 @@ namespace YourNewFriend
 
         private void HandleGameOver(bool isOpen)
         {
+            MusicTriggerZone.mus_overlap = false;
             AudioManager.Instance.PlayImmediatelyWithoutSaving("GameOver");
             gameObject.SetActive(isOpen);
         }
