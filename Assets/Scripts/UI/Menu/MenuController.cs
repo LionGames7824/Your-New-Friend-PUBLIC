@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 namespace YourNewFriend
@@ -16,6 +17,8 @@ namespace YourNewFriend
         [Header("Menu Variables")]
         [SerializeField] private GameObject _menuOptions;
         [SerializeField] private AudioSource _selectSound;
+        [Tooltip("Load Game button. Disabled when there is no save to continue.")]
+        [SerializeField] private Button _loadButton;
 
         [SerializeField] private string _sceneName = "MainScene";
 
@@ -26,6 +29,9 @@ namespace YourNewFriend
         {
             _animatorRawImage = _rawImage.GetComponent<Animator>();
             _rawImage.SetActive(false);
+
+            if (_loadButton != null)
+                _loadButton.interactable = SaveSystem.HasSave();
         }
 
 
@@ -58,12 +64,19 @@ namespace YourNewFriend
 
         public void OnStartGame()
         {
-            PlayerPrefs.DeleteAll();
+            SaveSystem.StartNewGame();
             SceneManager.LoadScene(_sceneName);
         }
 
         public void OnLoadGame()
         {
+            if (!SaveSystem.HasSave())
+            {
+                Debug.Log("No save found to load.");
+                return;
+            }
+
+            SaveSystem.PrepareLoadGame();
             SceneManager.LoadScene(_sceneName);
         }
 

@@ -114,6 +114,7 @@ namespace YourNewFriend
             _playerInput.OnPlayerDropItem -= OnPlayerDropItem;
             _playerInput.OnPlayerUnequipItem -= OnPlayerUnequipItem;
             _playerInput.OnPlayerShoot -= OnPlayerShoot;
+            Cover.onOpenCover -= HandleCoverOpen;
             GameStateManager.Instance.IsOpenInventory -= OnInventoryToggled;
             GameStateManager.Instance.IsOpenSettings -= OnSettingsToggled;
             GameStateManager.Instance.IsGameOver -= OnGameOverToggled;

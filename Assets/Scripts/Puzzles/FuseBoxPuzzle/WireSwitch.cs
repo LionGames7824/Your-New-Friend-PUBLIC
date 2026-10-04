@@ -31,6 +31,14 @@ namespace YourNewFriend
         [SerializeField] public Vector3 _flickUp = new Vector3 (315, 90, 90); //off
         [SerializeField] public Vector3 _flickDown = new Vector3 (315, 270, 270); //on
 
+        public static void ResetPuzzle()
+        {
+            entrance = false;
+            check = true;
+            completed = false;
+            order = 0;
+        }
+
         // Start is called before the first frame update
         void Start()
         {

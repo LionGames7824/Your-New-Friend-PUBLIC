@@ -2015,6 +2015,7 @@ MonoBehaviour:
   _rawImage: {fileID: 866731517}
   _menuOptions: {fileID: 1881253923}
   _selectSound: {fileID: 1256845908}
+  _loadButton: {fileID: 1187378040}
   _sceneName: MainScene
 --- !u!4 &1356926910
 Transform:
