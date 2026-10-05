@@ -11,10 +11,16 @@ namespace YourNewFriend
         private const string _playerTag = "Player";
         [SerializeField] private bool _triggerOnce = false;
         [SerializeField] private bool _save = false;
+        [SerializeField] private bool _playOnAwake = false;
         private bool _hasTriggered = false;
-        private void Awake()
+        private void OnEnable()
         {
             if (!PlayerPrefs.HasKey(_voID)) PlayerPrefs.SetInt(_voID, 0);
+
+            if (_playOnAwake && PlayerPrefs.GetInt(_voID) == 0)
+            {
+                TriggerVoiceOver();
+            }
         }
         private void OnTriggerEnter(Collider collision)
         {

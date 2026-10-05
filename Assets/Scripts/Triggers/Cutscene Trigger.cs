@@ -20,13 +20,19 @@ namespace YourNewFriend
 
         [SerializeField] private UnityEvent _onCutsceneStart;
         private bool _hasTriggered = false;
+        [SerializeField] private bool _playOnAwake = false;
 
         public PlayableDirector playableDirector;
         public TimelineAsset cutscene;
 
-        private void Awake()
+        private void OnEnable()
         {
             if (!PlayerPrefs.HasKey(_cutsceneID)) PlayerPrefs.SetInt(_cutsceneID, 0);
+
+            if (_playOnAwake && PlayerPrefs.GetInt(_cutsceneID) == 0)
+            {
+                TriggerCutscene();
+            }
         }
         public void TriggerCutscene()
         {

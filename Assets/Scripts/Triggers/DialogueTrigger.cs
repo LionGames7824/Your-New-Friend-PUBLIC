@@ -14,6 +14,7 @@ namespace YourNewFriend
         [Tooltip("If true, the dialogue can only be triggered once")]
         [SerializeField] private bool _triggerOnce = false;
         [SerializeField] private bool _save = false;
+        [SerializeField] private bool _playOnAwake = false;
 
         [SerializeField] public UnityEvent _onDialogueStart;
         [SerializeField] public UnityEvent _onDialogueEnd;
@@ -26,9 +27,16 @@ namespace YourNewFriend
         // Reference to the DialogueUI instance (assign in inspector or will be found at runtime)
         [SerializeField] private DialogueUI _dialogueUI;
 
-        private void Awake()
+        private void Start()
         {
             if (!PlayerPrefs.HasKey(_dialogueID)) PlayerPrefs.SetInt(_dialogueID, 0);
+
+            /*
+            if (_playOnAwake && PlayerPrefs.GetInt(_dialogueID) == 0)
+            {
+                TriggerDialogue();
+            }
+            */
         }
 
         void Update()
