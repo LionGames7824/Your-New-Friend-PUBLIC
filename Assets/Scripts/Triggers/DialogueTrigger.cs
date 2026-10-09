@@ -31,12 +31,12 @@ namespace YourNewFriend
         {
             if (!PlayerPrefs.HasKey(_dialogueID)) PlayerPrefs.SetInt(_dialogueID, 0);
 
-            /*
+            
             if (_playOnAwake && PlayerPrefs.GetInt(_dialogueID) == 0)
             {
                 TriggerDialogue();
             }
-            */
+            
         }
 
         void Update()

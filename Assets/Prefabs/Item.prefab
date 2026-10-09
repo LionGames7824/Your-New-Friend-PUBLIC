@@ -362,19 +362,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iconMapping:
   - ItemId: panel_key
-    TargetSprite: {fileID: 0}
+    TargetSprite: {fileID: 21300000, guid: 2276459ef4888c24aadf833a65553735, type: 3}
   - ItemId: cutting_pliers
-    TargetSprite: {fileID: 21300000, guid: d2818424923a05246a110e6323c9faa2, type: 3}
+    TargetSprite: {fileID: 21300000, guid: d92d687c280503640a623e98ac07f06c, type: 3}
   - ItemId: crowbar
-    TargetSprite: {fileID: 0}
+    TargetSprite: {fileID: 21300000, guid: a8f53ed6284d4a549824ca278c4d2dfd, type: 3}
   - ItemId: chefhat
-    TargetSprite: {fileID: 21300000, guid: bad2dc3b51709714281fe50dd7736b31, type: 3}
+    TargetSprite: {fileID: 21300000, guid: 5663ad4cd7929f24c8b3b7267782b356, type: 3}
   - ItemId: walkie_talkie
-    TargetSprite: {fileID: 0}
+    TargetSprite: {fileID: 21300000, guid: 2f9586eef553d554c86304039e7bfbfe, type: 3}
   - ItemId: db_tip
-    TargetSprite: {fileID: 21300000, guid: f2debd1bf6808f24aa9c264e7b7e7c14, type: 3}
+    TargetSprite: {fileID: 21300000, guid: 1ae6203865864c447b5b481374ceb18d, type: 3}
   - ItemId: battery
-    TargetSprite: {fileID: 0}
+    TargetSprite: {fileID: 21300000, guid: 7c763d904245d374aab303787a4f699e, type: 3}
   - ItemId: keycard_cyan
     TargetSprite: {fileID: 21300000, guid: f4f4ddaaeb7470c49b246ec2548aa2f5, type: 3}
   - ItemId: keycard_white
@@ -386,11 +386,13 @@ MonoBehaviour:
   - ItemId: keycard_pink
     TargetSprite: {fileID: 21300000, guid: daf4ebc5629c7354eb08997b0f960af4, type: 3}
   - ItemId: knife
-    TargetSprite: {fileID: 0}
+    TargetSprite: {fileID: 21300000, guid: e1de3fb8540a4904a8f615a5014b18bf, type: 3}
   - ItemId: big_propeller
-    TargetSprite: {fileID: 0}
+    TargetSprite: {fileID: 21300000, guid: 493422118568b01498df68f5504b1105, type: 3}
   - ItemId: keycard_green
     TargetSprite: {fileID: 21300000, guid: 9def717a289fa754990cc6bf7ea6d576, type: 3}
+  - ItemId: taser_boss
+    TargetSprite: {fileID: 21300000, guid: 0637b8f72cc93e84aa4d8a969a23366d, type: 3}
   _quantityLabel: {fileID: 2561196559767548650}
   _icon: {fileID: 1813637753467309716}
   _btnRemoveItem: {fileID: 6897930975062028672}

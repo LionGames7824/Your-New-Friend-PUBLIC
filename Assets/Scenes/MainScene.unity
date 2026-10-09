@@ -69069,7 +69069,7 @@ MonoBehaviour:
   _onCutsceneStart:
     m_PersistentCalls:
       m_Calls: []
-  _playOnAwake: 0
+  _playOnAwake: 1
   playableDirector: {fileID: 3059592040089698952}
   cutscene: {fileID: 11400000, guid: 314b1a5832f71a647b6b87829d0e27ba, type: 2}
 --- !u!65 &579309770
@@ -144392,7 +144392,7 @@ MonoBehaviour:
   _dialogueID: e0a6db9e-5d7b-4794-a697-8528c65a6643
   _triggerOnce: 1
   _save: 1
-  _playOnAwake: 0
+  _playOnAwake: 1
   _onDialogueStart:
     m_PersistentCalls:
       m_Calls: []
@@ -144431,7 +144431,7 @@ MonoBehaviour:
   _dialogueName: MER_WakeUp
   _triggerOnce: 1
   _save: 1
-  _playOnAwake: 0
+  _playOnAwake: 1
 --- !u!1 &1211369937
 GameObject:
   m_ObjectHideFlags: 0
@@ -185777,7 +185777,7 @@ MonoBehaviour:
     ItemPrefab: {fileID: 1586275545118585116, guid: f900b11de0f646a4fb1a47b351fa51cb, type: 3}
   - ItemId: keycard_green
     ItemPrefab: {fileID: 6961466844705335890, guid: aa0897c9e3b9dec459c1e972f46bc4ab, type: 3}
-  - ItemId: teaser_boss
+  - ItemId: taser_boss
     ItemPrefab: {fileID: 6142516025149123065, guid: 5f4268671a2024449b0ee20dc03b50ec, type: 3}
 --- !u!1 &1525054062
 GameObject:
@@ -280545,6 +280545,10 @@ PrefabInstance:
       value: Taser
       objectReference: {fileID: 0}
     - target: {fileID: 6203249740554948392, guid: 5f4268671a2024449b0ee20dc03b50ec, type: 3}
+      propertyPath: _id
+      value: taser_boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6203249740554948392, guid: 5f4268671a2024449b0ee20dc03b50ec, type: 3}
       propertyPath: _handPositionOffset.x
       value: 0.05
       objectReference: {fileID: 0}
@@ -280616,6 +280620,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7886608144560776113, guid: 5f4268671a2024449b0ee20dc03b50ec, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b43c4d23cdfc4054f9a7ed62e60a0527, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
