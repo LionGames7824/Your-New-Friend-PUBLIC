@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using System;
+using static UnityEditor.Progress;
 
 namespace YourNewFriend
 {
@@ -23,6 +24,8 @@ namespace YourNewFriend
         [SerializeField] private BossPhaseManager _phaseManager;
         [SerializeField] private UnityEvent _onDeath;
 
+        [SerializeField] private StorableItem taser;
+        [SerializeField] private Transform target;
         [Header("Timing")]
         [SerializeField] private float _introDuration = 1.5f;
         [SerializeField] private float _baseOrbitDuration = 3f;
@@ -170,7 +173,13 @@ namespace YourNewFriend
 
             _health.ResetHealth();
             _movement.ResetPosition();
-
+            InventoryManager.Instance.UnequipItem();
+            InventoryManager.Instance.RemoveItem("taser_boss", 1);
+            taser.Reactivate();
+            taser.transform.SetParent(target, true);
+            taser.transform.localPosition = Vector3.zero;
+            taser.transform.localRotation = Quaternion.identity;
+            taser.transform.localScale = Vector3.one;
             ChangeState(BossState.Idle);
 
             OnFightReset?.Invoke();
