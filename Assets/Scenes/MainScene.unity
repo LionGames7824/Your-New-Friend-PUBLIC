@@ -176233,7 +176233,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 0.23172, y: 2.08552}
+        m_Scale: {x: 0.23172475, y: 2.0855231}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -287562,7 +287562,7 @@ Transform:
   m_GameObject: {fileID: 7523174341235127605}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 159.96, y: -4.26, z: -162.19}
+  m_LocalPosition: {x: 0, y: 0, z: -120}
   m_LocalScale: {x: 2.1000004, y: 2.1, z: 2.1000004}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -304192,7 +304192,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -50.000977, y: 139}
+  m_AnchoredPosition: {x: -50.000916, y: 139}
   m_SizeDelta: {x: 900, y: 900}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7041628271605564862

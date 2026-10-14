@@ -29,6 +29,13 @@ namespace YourNewFriend
             GameStateManager.Instance.IsOpenInventory += HandleInventoryToggle; 
 
             gameObject.SetActive(false);
+
+            var session = DialogueManager.Instance.ActiveSession;
+            if (session != null && session.CurrentEntry != null)
+            {
+                HandleDialogueStarted(session.Dialogue.Title);
+                HandleEntryShown(session.CurrentEntry);
+            }
         }
 
         private void OnDestroy()
