@@ -22,6 +22,9 @@ namespace YourNewFriend
 
         [SerializeField] private string _sceneName = "MainScene";
 
+        [Tooltip("The LoadingScene component that shows the progress bar during the scene switch - without this, the scene just swaps instantly with no loading screen.")]
+        [SerializeField] private LoadingScene _loadingScene;
+
         private InputAction _anyKey;
         private Animator _animatorRawImage;
 
@@ -65,7 +68,7 @@ namespace YourNewFriend
         public void OnStartGame()
         {
             SaveSystem.StartNewGame();
-            SceneManager.LoadScene(_sceneName);
+            _loadingScene.LoadScene(_sceneName);
         }
 
         public void OnLoadGame()
@@ -77,7 +80,7 @@ namespace YourNewFriend
             }
 
             SaveSystem.PrepareLoadGame();
-            SceneManager.LoadScene(_sceneName);
+            _loadingScene.LoadScene(_sceneName);
         }
 
         public void OnOptions()
