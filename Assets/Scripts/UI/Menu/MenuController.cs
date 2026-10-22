@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +21,12 @@ namespace YourNewFriend
         [Tooltip("Load Game button. Disabled when there is no save to continue.")]
         [SerializeField] private Button _loadButton;
 
+        [Header("Options Menu")]
+        [SerializeField] private GameObject _mainMenuPanel;
+        [SerializeField] private GameObject _optionsMenuPanel;
+
         [SerializeField] private string _sceneName = "MainScene";
 
-        [Tooltip("The LoadingScene component that shows the progress bar during the scene switch - without this, the scene just swaps instantly with no loading screen.")]
         [SerializeField] private LoadingScene _loadingScene;
 
         private InputAction _anyKey;
@@ -35,8 +39,13 @@ namespace YourNewFriend
 
             if (_loadButton != null)
                 _loadButton.interactable = SaveSystem.HasSave();
-        }
 
+            if (_mainMenuPanel != null)
+                _mainMenuPanel.SetActive(false);
+
+            if (_optionsMenuPanel != null)
+                _optionsMenuPanel.SetActive(false);
+        }
 
         private void OnEnable()
         {
@@ -85,8 +94,20 @@ namespace YourNewFriend
 
         public void OnOptions()
         {
-            // Future: Show Options UI
-            Debug.Log("Open Options Menu");
+            if (_mainMenuPanel != null)
+                _mainMenuPanel.SetActive(false);
+
+            if (_optionsMenuPanel != null)
+                _optionsMenuPanel.SetActive(true);
+        }
+
+        public void OnBackFromOptions()
+        {
+            if (_optionsMenuPanel != null)
+                _optionsMenuPanel.SetActive(false);
+
+            if (_mainMenuPanel != null)
+                _mainMenuPanel.SetActive(true);
         }
 
         public void OnExitGame()
