@@ -28,7 +28,7 @@ namespace YourNewFriend
         }
         void Update()
         {
-            if (!_voSource.isPlaying && !flag)
+            if (!IsVoicePlaying() && !flag)
             {
                 _tv.clip = _defaultClip;
                 _tv.Play();
@@ -37,9 +37,19 @@ namespace YourNewFriend
         }
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.CompareTag(_playerTag)) 
+            if (collision.CompareTag(_playerTag))
+            {
                 TriggerTV();
                 flag = false;
+            }
+        }
+
+        private bool IsVoicePlaying()
+        {
+            if (_voSource != null)
+                return _voSource.isPlaying;
+
+            return AudioManager.Instance.IsVoicePlaying;
         }
 
         public void TriggerTV()

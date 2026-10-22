@@ -28,6 +28,7 @@ namespace YourNewFriend
 
         public float CurrentMusicVolume => _musicVolume;
         public float CurrentSFXVolume => _sfxVolume;
+        public bool IsVoicePlaying => _voSource != null && _voSource.isPlaying;
 
         private string _currentBackgroundMusic;
         private string _bufferedName;
