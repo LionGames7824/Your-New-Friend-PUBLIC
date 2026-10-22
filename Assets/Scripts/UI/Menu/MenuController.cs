@@ -26,6 +26,7 @@ namespace YourNewFriend
         [SerializeField] private GameObject _optionsMenuPanel;
 
         [SerializeField] private string _sceneName = "MainScene";
+        [SerializeField] private string _gameStartMusic = "EscapeGuide";
 
         [SerializeField] private LoadingScene _loadingScene;
 
@@ -77,6 +78,7 @@ namespace YourNewFriend
         public void OnStartGame()
         {
             SaveSystem.StartNewGame();
+            StartGameMusic();
             _loadingScene.LoadScene(_sceneName);
         }
 
@@ -89,7 +91,13 @@ namespace YourNewFriend
             }
 
             SaveSystem.PrepareLoadGame();
+            StartGameMusic();
             _loadingScene.LoadScene(_sceneName);
+        }
+        private void StartGameMusic()
+        {
+            AudioManager.Instance.ResetBuffer();
+            AudioManager.Instance.PlayMusic(_gameStartMusic, false);
         }
 
         public void OnOptions()
