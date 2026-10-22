@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace YourNewFriend
@@ -7,18 +6,21 @@ namespace YourNewFriend
     public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     {
         private static T _instance;
+
         public static T Instance
         {
             get
             {
-                if ((object)_instance == null)
+                if (_instance == null)
                 {
                     _instance = FindObjectOfType<T>();
+
                     if (_instance == null)
                     {
                         FindOrCreateNewInstance();
                     }
                 }
+
                 return _instance;
             }
         }
@@ -30,15 +32,12 @@ namespace YourNewFriend
 
         private static void FindOrCreateNewInstance()
         {
-            // Try to find existing instance
             _instance = FindObjectOfType<T>();
 
             if (_instance == null)
             {
-                // Since the instance was not found, create new one
-                GameObject gameObject = new GameObject();
-                gameObject.name = typeof(T).Name;
-                _instance = gameObject.AddComponent<T>();
+                GameObject obj = new GameObject(typeof(T).Name);
+                _instance = obj.AddComponent<T>();
             }
         }
 
@@ -47,6 +46,7 @@ namespace YourNewFriend
             if (_instance == null)
             {
                 _instance = this as T;
+                DontDestroyOnLoad(gameObject);
             }
             else if (_instance != this)
             {

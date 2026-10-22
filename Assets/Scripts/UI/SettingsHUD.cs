@@ -14,6 +14,19 @@ namespace YourNewFriend
 
             GameStateManager.Instance.IsOpenSettings += OpenSettings;
         }
+        private void OnEnable()
+        {
+            if (AudioManager.Instance == null)
+                return;
+
+            _musicSlider.SetValueWithoutNotify(
+                AudioManager.Instance.CurrentMusicVolume
+            );
+
+            _sfxSlider.SetValueWithoutNotify(
+                AudioManager.Instance.CurrentSFXVolume
+            );
+        }
 
         private void OnDestroy()
         {

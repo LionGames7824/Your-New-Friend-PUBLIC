@@ -17,7 +17,7 @@ namespace YourNewFriend
 
         [Header("Menu Variables")]
         [SerializeField] private GameObject _menuOptions;
-        [SerializeField] private AudioSource _selectSound;
+
         [Tooltip("Load Game button. Disabled when there is no save to continue.")]
         [SerializeField] private Button _loadButton;
 
@@ -66,7 +66,7 @@ namespace YourNewFriend
         {
             if (!_videoPlayer.isPlaying)
             {
-                _selectSound.Play();
+                AudioManager.Instance.PlayMusic("MenuSong", false);
                 _videoPlayer.Play();
                 _rawImage.SetActive(true);
                 _animatorRawImage.SetTrigger("fadeIn");

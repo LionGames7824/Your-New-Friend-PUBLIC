@@ -17,7 +17,14 @@ namespace YourNewFriend
         /// <summary>Wipes all saved progress and runtime state so the next scene load starts from scratch.</summary>
         public static void StartNewGame()
         {
+            // Audio settings are player preferences, not game progress: keep them across a new game.
+            float musicVolume = PlayerPrefs.GetFloat(AudioManager.MusicVolumeKey, 1f);
+            float sfxVolume = PlayerPrefs.GetFloat(AudioManager.SFXVolumeKey, 1f);
+
             PlayerPrefs.DeleteAll();
+
+            PlayerPrefs.SetFloat(AudioManager.MusicVolumeKey, musicVolume);
+            PlayerPrefs.SetFloat(AudioManager.SFXVolumeKey, sfxVolume);
             PlayerPrefs.Save();
             ResetRuntimeState();
             Debug.Log("SaveSystem: New game started, save data wiped.");
