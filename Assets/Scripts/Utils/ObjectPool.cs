@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace YourNewFriend
@@ -35,16 +33,14 @@ namespace YourNewFriend
 
         public GameObject GetFromPool()
         {
-            if (_pooledObjects.Count == 0)
-            {
-                GameObject newInstance = Instantiate(_objectToPool);
-                return newInstance;
-            }
+            GameObject instance = _pooledObjects.Count > 0
+                ? _pooledObjects.Pop()
+                : Instantiate(_objectToPool, _container);
 
-            GameObject nextInstance = _pooledObjects.Pop();
-            nextInstance.gameObject.SetActive(true);
-            _activeObjects.Add(nextInstance);
-            return nextInstance;
+            instance.SetActive(true);
+            instance.transform.SetAsLastSibling(); 
+            _activeObjects.Add(instance);
+            return instance;
         }
 
         public void ReturnToPool(GameObject obj)
@@ -64,23 +60,19 @@ namespace YourNewFriend
             }
         }
 
-
         public void ReturnAllPooledObjects(Action<GameObject> resetAction)
         {
             for (int i = _activeObjects.Count - 1; i >= 0; --i)
             {
-                var activePooledObj = _activeObjects[i];
-                if (activePooledObj != null)
+                var obj = _activeObjects[i];
+                if (obj != null)
                 {
-                    resetAction?.Invoke(activePooledObj);
-                    activePooledObj.SetActive(false);
-
-                    if (!_pooledObjects.Contains(activePooledObj))
-                    {
-                        _pooledObjects.Push(activePooledObj);
-                    }
+                    resetAction?.Invoke(obj);
+                    obj.SetActive(false);
+                    if (!_pooledObjects.Contains(obj))
+                        _pooledObjects.Push(obj);
                 }
-                _activeObjects.Remove(activePooledObj);
+                _activeObjects.RemoveAt(i);
             }
         }
     }
