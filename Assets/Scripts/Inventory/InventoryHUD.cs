@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,10 @@ namespace YourNewFriend
         [Header("Pool Settings")]
         [SerializeField] private GameObject _buttonPrefab;
         [SerializeField] private uint _initPoolSize;
+
+        [Header("Total Settings")]
+        [SerializeField] private TMP_Text _numberOfItems;
+        [SerializeField] private TMP_Text _totalOfItems;
 
         private ObjectPool _pool;
 
@@ -67,6 +72,7 @@ namespace YourNewFriend
                         itemPool.SetActive(true);
                     }
                 }
+                UpdateInventoryTexts();
             }
             else
             {
@@ -96,6 +102,7 @@ namespace YourNewFriend
                         _pool.ReturnToPool(itemView.gameObject);
                         itemView.ResetData();
                     }
+                    UpdateInventoryTexts();
                     return;
                 }
             }
@@ -120,6 +127,7 @@ namespace YourNewFriend
                     // Use the pool's ReturnToPool method
                     _pool.ReturnToPool(itemView.gameObject);
                     itemView.ResetData();
+                    UpdateInventoryTexts();
                     break;
                 }
             }
@@ -129,6 +137,22 @@ namespace YourNewFriend
         {
             gameObject.SetActive(false);
             GameStateManager.Instance.IsOpenInventory(false);
+        }
+
+        private void UpdateInventoryTexts()
+        {
+            var items = InventoryManager.Instance.Inventory.Items;
+
+            int numberOfItems = (int)_initPoolSize;
+            int totalOfItems = 0;
+
+            foreach (var item in items)
+            {
+                totalOfItems += item.Quantity;
+            }
+
+            _numberOfItems.text = numberOfItems.ToString();
+            _totalOfItems.text = totalOfItems.ToString();
         }
     }
 }
