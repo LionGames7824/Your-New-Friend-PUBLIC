@@ -265703,7 +265703,7 @@ MonoBehaviour:
   - {fileID: 567789975}
   - {fileID: 706416396}
   - {fileID: 453757092}
-  _useSavedPositionOnStart: 0
+  _useSavedPositionOnStart: 1
 --- !u!1 &843214210589705497
 GameObject:
   m_ObjectHideFlags: 0

@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Interac
+  m_text: Interact/Equip | Drop | Unequip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
   m_sharedMaterial: {fileID: 5507682582286448174, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
@@ -1862,7 +1862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E
+  m_text: E | Q | F
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
   m_sharedMaterial: {fileID: 5507682582286448174, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ctrl
+  m_text: Ctrl | Shift
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
   m_sharedMaterial: {fileID: 5507682582286448174, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
@@ -3266,7 +3266,7 @@ GameObject:
   - component: {fileID: 1027230937}
   - component: {fileID: 1027230936}
   m_Layer: 5
-  m_Name: Cell_Interac
+  m_Name: Cell_Interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3521,7 +3521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Run
+  m_text: Run | Crouch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
   m_sharedMaterial: {fileID: 5507682582286448174, guid: e0bbd6c9a23d0b5468a960c7b265acfe, type: 2}
@@ -4760,11 +4760,11 @@ MonoBehaviour:
   _videoPlayer: {fileID: 249845752}
   _rawImage: {fileID: 866731517}
   _menuOptions: {fileID: 1881253923}
-  _selectSound: 
   _loadButton: {fileID: 1187378040}
   _mainMenuPanel: {fileID: 1881253923}
   _optionsMenuPanel: {fileID: 381982654}
   _sceneName: MainScene
+  _gameStartMusic: EscapeGuide
   _loadingScene: {fileID: 45934479}
 --- !u!4 &1356926910
 Transform:
@@ -6778,7 +6778,7 @@ RectTransform:
   m_Father: {fileID: 8951571293529754682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7914,8 +7914,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8229544309638046852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
